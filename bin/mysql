@@ -1,0 +1,68 @@
+#!/bin/bash
+CONTAINER_NAME=IT_Verwaltung
+IMAGE_NAME=mysql:5.7.20
+
+function start_container {
+    if [ ! "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+        if [ "$(docker ps -aq -f status=exited -f name=$CONTAINER_NAME)" ]; then
+            echo "starting already existing container $CONTAINER_NAME"
+            docker start $CONTAINER_NAME
+        else
+            echo "creating mysql container $CONTAINER_NAME"
+            docker run --name $CONTAINER_NAME -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ALLOW_EMPTY_PASSWORD=false -e MYSQL_DATABASE=IT_Verwaltung -d -p 3306:3306 $IMAGE_NAME
+        fi
+    else
+        echo "container is already running"
+    fi
+}
+
+function stop_container {
+    if [  "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+        echo "stopping $CONTAINER_NAME"
+        docker stop $CONTAINER_NAME
+    else
+        echo "$CONTAINER_NAME is not running"
+    fi
+}
+
+function remove_container {
+    if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
+        echo "removing $CONTAINER_NAME"
+        docker stop $CONTAINER_NAME
+        docker rm $CONTAINER_NAME
+    fi
+}
+
+function reset_container {
+    remove_container
+    start_container
+}
+
+function tail_logs {
+    if [  "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+        docker logs --tail 50 -f $CONTAINER_NAME
+    else
+        echo "$CONTAINER_NAME is not running"
+    fi
+}
+
+case "$1" in
+    start)
+        start_container
+        ;;
+    stop)
+        stop_container
+        ;;
+    reset)
+        reset_container
+        ;;
+    remove)
+        remove_container
+        ;;
+    tail)
+        tail_logs
+        ;;
+    *)
+        echo "usage: mysql start/stop/reset/remove/tail"
+        ;;
+esac
