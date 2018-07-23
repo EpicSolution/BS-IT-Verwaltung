@@ -22,7 +22,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class addUserController extends Controller
+class AddUserController extends Controller
 {
     /**
      * @Route("/addUser", name="add_user")
