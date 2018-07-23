@@ -39,7 +39,7 @@ class UserListController extends Controller
     /**
      * @Route("/delete/user/{id}", name="delete_user", requirements  = { "id" = "\d+" })
      */
-    public function deleteUserAction(Request $request, string $id)
+    public function deleteUserAction(string $id)
     {
         $this->deleteUser($id);
         $userHeader = [];
