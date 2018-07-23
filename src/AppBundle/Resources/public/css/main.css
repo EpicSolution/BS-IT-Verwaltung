@@ -92,9 +92,9 @@
 }
 
 .main-content {
-  margin-top: 60px;
-  margin-left: 200px;
-  padding: 20px;
+  margin-top: .25rem;
+  margin-left: 16rem;
+  padding: .5rem;
 }
 
 .collapsed + .main-content {
