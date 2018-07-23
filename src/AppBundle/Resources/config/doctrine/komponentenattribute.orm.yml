@@ -1,0 +1,14 @@
+AppBundle\Entity\komponentenattribute:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\komponentenattributeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        bezeichnung:
+            type: string
+            length: '25'

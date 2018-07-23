@@ -1,0 +1,11 @@
+AppBundle\Entity\wird_beschrieben_durch:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\wird_beschrieben_durchRepository
+    id:
+        komponentenartenId:
+            type: integer
+            column: komponentenarten_id
+        komponentenattributeId:
+            type: integer
+            column: komponentenattribute_id
