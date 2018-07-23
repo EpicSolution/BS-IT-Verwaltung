@@ -9,7 +9,7 @@ class Komponenten
     protected $id;
     
     /** @var int */
-    protected $raume_id;
+    protected $raeume_id;
 
     /** @var int */
     protected $lieferant_id;
@@ -26,7 +26,7 @@ class Komponenten
     /** @var string */
     protected $hersteller;
 
-    /** @var int */
+    /** @var Komponentenarten */
     protected $komponentenarten_id;
 
     public function getId(): int
@@ -99,12 +99,12 @@ class Komponenten
         $this->hersteller = $hersteller;
     }    
 
-    public function getKomponentenarten_id(): int
+    public function getKomponentenartenId(): Komponentenarten
     {
         return $this->komponentenarten_id;
     }
 
-    public function setKomponentenarten_id(int $komponentenarten_id)
+    public function setKomponentenartenId(Komponentenarten $komponentenarten_id)
     {
         $this->komponentenarten_id = $komponentenarten_id;
     }

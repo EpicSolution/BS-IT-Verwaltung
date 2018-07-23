@@ -14,25 +14,23 @@ class Komponentenarten
     /** @var string */
     protected $komponentenart;
 
+    /** @var ArrayCollection  */
     protected $komponenten;
-
-
 
     public function __construct()
     {
         $this->komponenten = new ArrayCollection();
     }
 
-    public function getKomponenten(): int
+    public function getKomponenten(): ArrayCollection
     {
         return $this->komponenten;
     }
 
-    public function setKomponenten(int $komponenten)
+    public function setKomponenten(ArrayCollection $komponenten)
     {
         $this->komponenten = $komponenten;
     }
-
 
     public function getId(): int
     {

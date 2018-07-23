@@ -21,7 +21,7 @@ AppBundle\Entity\Komponenten:
       type: string
       length: 45
   manyToOne:
-      Komponentenarten_id:
+      komponentenarten_id:
           targetEntity: Komponentenarten
           inversedBy: komponenten
           joinColumn:

@@ -10,6 +10,6 @@ AppBundle\Entity\Komponentenarten:
       type: string
       legnth: 45
   oneToMany:
-      Komponenten:
-          targetEntity: komponenten
+      komponenten:
+          targetEntity: Komponenten
           mappedBy: Komponentenarten    
