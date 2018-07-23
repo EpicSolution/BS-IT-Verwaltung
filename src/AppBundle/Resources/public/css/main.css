@@ -1,1 +1,135 @@
 @import 'login.css';
+
+/* Styles der Navigation */
+.navbar-global {
+  background-color: #191919;
+}
+
+.navbar-global .navbar-brand {
+  color: white;
+}
+
+.navbar-global .navbar-user > li > a
+{
+  color: white;
+}
+
+.navbar-primary {
+  background-color: #333;
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+  top: 3.4rem;
+  width: 16rem;
+  z-index: 8;
+  overflow: hidden;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.navbar-primary.collapsed {
+  width: 4rem;
+}
+
+.navbar-primary.collapsed .glyphicon {
+  font-size: 22px;
+}
+
+.navbar-primary.collapsed .nav-label {
+  display: none;
+}
+
+.btn-expand-collapse {
+    position: absolute;
+    display: block;
+    left: 0px;
+    bottom:0;
+    width: 100%;
+    padding: 8px 0;
+    border-top:solid 1px #666;
+    color: grey;
+    font-size: 20px;
+    text-align: center;
+}
+
+.btn-expand-collapse:hover,
+.btn-expand-collapse:focus {
+    background-color: #0069D9;
+    color: white;
+}
+
+.btn-expand-collapse:active {
+    background-color: #111;
+}
+
+.navbar-primary-menu,
+.navbar-primary-menu li {
+  margin:0; padding:0;
+  list-style: none;
+}
+
+.navbar-primary-menu li a {
+  display: block;
+  padding: 10px 18px;
+  text-align: left;
+  border-bottom:solid 1px #444;
+  color: #ccc;
+}
+
+.navbar-primary-menu li a:hover {
+  background-color: #0069D9;
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-primary-menu li a .glyphicon {
+  margin-right: 6px;
+}
+
+.navbar-primary-menu li a:hover .glyphicon {
+  color: orchid;
+}
+
+.main-content {
+  margin-top: 60px;
+  margin-left: 200px;
+  padding: 20px;
+}
+
+.collapsed + .main-content {
+  margin-left: 4rem;
+}
+
+/*Styles der einzelenen Elemente in der Side Nav*/
+/*Hier werden einige Bootstrap Standard Styles überschrieben*/
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.card{
+  background-color: #333 !important;
+}
+
+.card-header {
+  padding: .5rem .25rem !important;
+}
+
+.card-body {
+  padding: .25rem !important;
+  background-color: #444 !important;
+}
+
+.btn-link{
+  font-size: 1.35rem !important;
+  font-weight: bold !important;
+}
+
+/*Helfer Styles*/
+.textbolder{
+  font-weight: bold !important;
+  font-size: 1.5rem !important;
+}
+
+
