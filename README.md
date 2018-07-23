@@ -4,7 +4,7 @@ Verwaltung der It Infrastruktur der Martin Segitz Schule
 Installation
 ------------
 
-Lokal MySQL Server starten mit docker
+### Lokal MySQL Server starten mit docker
 
 Docker installieren: https://docs.docker.com/get-started/#images-and-containers
 
@@ -26,11 +26,28 @@ parameters:
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
 
-Lokal Webserver starten
+### Lokal Webserver starten
 
 ```bash
 $ composer install
 $ php bin/console server:start
 $ open http://localhost:8000/
 ```
+
+### Assets Instrallieren
+
+css, img, js unter src/AppBundle/Resources/public ablegen
+
+dann diesen Befehl ausführen 
+
+```bash
+$ php bin/console assets:install
+```
+
+### User angelegen per Befehl
+
+```bash
+$ php bin/console fos:user:create
+```
+
 
