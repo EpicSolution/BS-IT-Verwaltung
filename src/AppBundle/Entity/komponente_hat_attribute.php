@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * komponente_hat_attribute
  */
@@ -27,6 +27,17 @@ class komponente_hat_attribute
      */
     private $wert;
 
+    /** @var ArrayCollection */
+    private $komponentenattribute;
+
+    /** @var ArrayCollection */
+    private $komponentenid;
+
+    public function __construct()
+    {
+        $this->komponentenattribute = new ArrayCollection();
+        $this->komponentenid = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -108,6 +119,38 @@ class komponente_hat_attribute
     public function getWert()
     {
         return $this->wert;
+    }
+    
+    /**
+     * @return ArrayCollection
+     */
+    public function getkomponentenattribute(): ArrayCollection
+    {
+        return $this->komponentenattribute;
+    }
+
+    /**
+     * @param ArrayCollection $komponentenattribute
+     */
+    public function setkomponentenattribute(ArrayCollection $komponentenattribute): void
+    {
+        $this->komponentenattribute = $komponentenattribute;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getkomponentenid1(): ArrayCollection
+    {
+        return $this->komponentenid;
+    }
+
+    /**
+     * @param ArrayCollection $komponentenid
+     */
+    public function setkomponentenid1(ArrayCollection $komponentenid): void
+    {
+        $this->komponentenid = $komponentenid;
     }
 }
 

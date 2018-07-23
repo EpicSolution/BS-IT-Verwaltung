@@ -10,13 +10,13 @@ AppBundle\Entity\software_in_raum:
             type: integer
             column: raeume_id
     manyToOne:
-      raeume_id:
+      raeume:
           targetEntity: raeume
           inversedBy: software_in_raum
           joinColumn:
               name: raeumeId
               referencedColumnName: id 
-      komponenten_id:
+      komponenten:
           targetEntity: raeume
           inversedBy: software_in_raum
           joinColumn:

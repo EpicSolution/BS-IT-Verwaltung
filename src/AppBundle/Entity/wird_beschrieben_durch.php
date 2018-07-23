@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * wird_beschrieben_durch
  */
@@ -22,6 +22,17 @@ class wird_beschrieben_durch
      */
     private $komponentenattributeId;
 
+    /** @var ArrayCollection */
+    private $komponentenattribute;
+
+    /** @var ArrayCollection */
+    private $komponenten;
+
+    public function __construct()
+    {
+        $this->komponentenattribute = new ArrayCollection();
+        $this->raeume = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -79,6 +90,38 @@ class wird_beschrieben_durch
     public function getKomponentenattributeId()
     {
         return $this->komponentenattributeId;
+    }
+
+                /**
+     * @return ArrayCollection
+     */
+    public function getkomponentenattribute(): ArrayCollection
+    {
+        return $this->komponentenattribute;
+    }
+
+    /**
+     * @param ArrayCollection $komponentenattribute
+     */
+    public function setkomponentenattribute(ArrayCollection $komponentenattribute): void
+    {
+        $this->komponentenattribute = $komponentenattribute;
+    }
+
+                /**
+     * @return ArrayCollection
+     */
+    public function getkomponenten(): ArrayCollection
+    {
+        return $this->komponenten;
+    }
+
+    /**
+     * @param ArrayCollection $komponenten
+     */
+    public function setkomponenten(ArrayCollection $komponenten): void
+    {
+        $this->komponenten = $komponenten;
     }
 }
 

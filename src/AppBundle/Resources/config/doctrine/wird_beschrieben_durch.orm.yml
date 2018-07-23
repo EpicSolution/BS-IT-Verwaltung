@@ -8,7 +8,7 @@ AppBundle\Entity\wird_beschrieben_durch:
         joinColumn:
           name: komponentenattributeId
           referencedColumnName: id
-      komponentenartid:
+      komponentenart:
         targetEntity: komponentenarten
         joinColumn:
           name: komponentenartId

@@ -26,12 +26,12 @@ AppBundle\Entity\Komponenten:
               name: komponentenarten_id
               referencedColumnName: id 
       lieferanten_id:
-          targetEntity: lieferant
+          targetEntity: Lieferant
           inversedBy: komponenten
           joinColumn:
               name: lieferant_id
               referencedColumnName: id
-      raeume_id:
+      raeume_id1:
           targetEntity: raeume
           inversedBy: komponenten
           joinColumn:

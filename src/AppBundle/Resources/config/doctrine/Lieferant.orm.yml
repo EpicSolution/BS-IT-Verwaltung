@@ -1,4 +1,4 @@
-AppBundle\Entity\lieferant:
+AppBundle\Entity\Lieferant:
   type:  entity
   table: Lieferant
   id:

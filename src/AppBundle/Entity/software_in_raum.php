@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * software_in_raum
  */
@@ -21,6 +21,18 @@ class software_in_raum
      * @var int
      */
     private $raeumeId;
+    
+    /** @var ArrayCollection */
+    private $raeume;
+
+    /** @var ArrayCollection */
+    private $komponenten;
+
+    public function __construct()
+    {
+        $this->komponenten = new ArrayCollection();
+        $this->raeume = new ArrayCollection();
+    }
 
 
     /**
@@ -79,6 +91,37 @@ class software_in_raum
     public function getRaeumeId()
     {
         return $this->raeumeId;
+    }
+            /**
+     * @return ArrayCollection
+     */
+    public function getraeume(): ArrayCollection
+    {
+        return $this->raeume;
+    }
+
+    /**
+     * @param ArrayCollection $raeume
+     */
+    public function setraeume(ArrayCollection $raeume): void
+    {
+        $this->raeume = $raeume;
+    }
+
+                /**
+     * @return ArrayCollection
+     */
+    public function getkomponenten(): ArrayCollection
+    {
+        return $this->komponenten;
+    }
+
+    /**
+     * @param ArrayCollection $komponenten
+     */
+    public function setkomponenten(ArrayCollection $komponenten): void
+    {
+        $this->komponenten = $komponenten;
     }
 }
 

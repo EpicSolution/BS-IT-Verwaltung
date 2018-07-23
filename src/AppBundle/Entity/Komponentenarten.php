@@ -17,9 +17,13 @@ class Komponentenarten
     /** @var ArrayCollection  */
     protected $komponenten;
 
+    /** @var ArrayCollection  */
+    protected $komponentenarten;
+
     public function __construct()
     {
         $this->komponenten = new ArrayCollection();
+        $this->komponentenarten = new ArrayCollection();
     }
 
     public function getKomponenten(): ArrayCollection
@@ -51,4 +55,5 @@ class Komponentenarten
     {
         $this->komponentenart = $komponentenart;
     }
+    
 }
