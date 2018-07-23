@@ -13,24 +13,19 @@ class raeume
     private $id;
 
     /**
-     * @var int
+     * @var string
      */
-    private $rId;
+    private $Nr;
 
     /**
      * @var string
      */
-    private $rNr;
+    private $Bezeichnung;
 
     /**
      * @var string
      */
-    private $rBezeichnung;
-
-    /**
-     * @var string
-     */
-    private $rNotiz;
+    private $Notiz;
 
 
     /**
@@ -42,101 +37,76 @@ class raeume
     {
         return $this->id;
     }
-
-    /**
-     * Set rId
+     /**
+     * Set Nr
      *
-     * @param integer $rId
+     * @param string $Nr
      *
      * @return raeume
      */
-    public function setRId($rId)
+    public function setNr($Nr)
     {
-        $this->rId = $rId;
+        $this->Nr = $Nr;
 
         return $this;
     }
 
     /**
-     * Get rId
-     *
-     * @return int
-     */
-    public function getRId()
-    {
-        return $this->rId;
-    }
-
-    /**
-     * Set rNr
-     *
-     * @param string $rNr
-     *
-     * @return raeume
-     */
-    public function setRNr($rNr)
-    {
-        $this->rNr = $rNr;
-
-        return $this;
-    }
-
-    /**
-     * Get rNr
+     * Get Nr
      *
      * @return string
      */
-    public function getRNr()
+    public function getNr()
     {
-        return $this->rNr;
+        return $this->Nr;
     }
 
     /**
-     * Set rBezeichnung
+     * Set Bezeichnung
      *
-     * @param string $rBezeichnung
+     * @param string $Bezeichnung
      *
      * @return raeume
      */
-    public function setRBezeichnung($rBezeichnung)
+    public function setBezeichnung($Bezeichnung)
     {
-        $this->rBezeichnung = $rBezeichnung;
+        $this->Bezeichnung = $Bezeichnung;
 
         return $this;
     }
 
     /**
-     * Get rBezeichnung
+     * Get Bezeichnung
      *
      * @return string
      */
-    public function getRBezeichnung()
+    public function getBezeichnung()
     {
-        return $this->rBezeichnung;
+        return $this->Bezeichnung;
     }
 
     /**
-     * Set rNotiz
+     * Set Notiz
      *
-     * @param string $rNotiz
+     * @param string $Notiz
      *
      * @return raeume
      */
-    public function setRNotiz($rNotiz)
+    public function seNotiz($Notiz)
     {
-        $this->rNotiz = $rNotiz;
+        $this->Notiz = $Notiz;
 
         return $this;
     }
 
     /**
-     * Get rNotiz
+     * Get Notiz
      *
      * @return string
      */
-    public function getRNotiz()
+    public function getNotiz()
     {
-        return $this->rNotiz;
+        return $this->Notiz;
     }
 }
 

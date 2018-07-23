@@ -18,4 +18,10 @@ AppBundle\Entity\komponente_hat_attribute:
         wert:
             type: string
             length: '45'
-    lifecycleCallbacks: {  }
+    manyToOne:
+    komponentenattribute:
+      targetEntity: komponentenattribute
+      joinColumn:
+        name: komponentenattributeId
+        referencedColumnName: id
+ 

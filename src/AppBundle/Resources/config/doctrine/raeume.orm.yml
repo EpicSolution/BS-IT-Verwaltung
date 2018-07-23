@@ -9,17 +9,15 @@ AppBundle\Entity\raeume:
             generator:
                 strategy: AUTO
     fields:
-        rId:
-            type: integer
-            unique: true
-            column: r_id
-        rNr:
-            type: text
-            column: r_nr
-        rBezeichnung:
-            type: text
-            column: r_bezeichnung
-        rNotiz:
-            type: text
-            column: r_notiz
-    lifecycleCallbacks: {  }
+        Nr:
+            type: string
+            length: '20'
+            column: nr
+        Bezeichnung:
+            type: string
+            length: '45'
+            column: bezeichnung
+        Notiz:
+            type: string
+            length: '255'
+            column: notiz
