@@ -49,5 +49,10 @@ $ php bin/console assets:install
 ```bash
 $ php bin/console fos:user:create
 ```
+### Datenbank anlegen
+```bash
+$ php bin/console doctrine:database:create
+$ php bin/console doctrine:schema:create
+```
 
 
