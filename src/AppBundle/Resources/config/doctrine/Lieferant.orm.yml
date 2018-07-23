@@ -1,0 +1,34 @@
+AppBundle\Entity\Lieferant:
+  type:  entity
+  table: lieferant
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    firmenname:
+      type: string
+      length: 45
+    strasse:
+      type: string
+      length: 45
+    plz:
+      type: string
+      length: 5
+    ort:
+      type: string
+      length: 45
+    tel:
+      type: string
+      length: 20
+    mobil:
+      type: string
+      length: 20
+      nullable: true
+    fax:
+      type: string
+      length: 20
+      nullable: true
+    email:
+      type: string
+      length: 45
