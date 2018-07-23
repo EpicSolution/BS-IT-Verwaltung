@@ -19,8 +19,8 @@
   bottom: 0px;
   left: 0px;
   position: absolute;
-  top: 51px;
-  width: 200px;
+  top: 3.4rem;
+  width: 16rem;
   z-index: 8;
   overflow: hidden;
   -webkit-transition: all 0.1s ease-in-out;
@@ -29,7 +29,7 @@
 }
 
 .navbar-primary.collapsed {
-  width: 60px;
+  width: 4rem;
 }
 
 .navbar-primary.collapsed .glyphicon {
@@ -98,5 +98,38 @@
 }
 
 .collapsed + .main-content {
-  margin-left: 60px;
+  margin-left: 4rem;
 }
+
+/*Styles der einzelenen Elemente in der Side Nav*/
+/*Hier werden einige Bootstrap Standard Styles überschrieben*/
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.card{
+  background-color: #333 !important;
+}
+
+.card-header {
+  padding: .5rem .25rem !important;
+}
+
+.card-body {
+  padding: .25rem !important;
+  background-color: #444 !important;
+}
+
+.btn-link{
+  font-size: 1.35rem !important;
+  font-weight: bold !important;
+}
+
+/*Helfer Styles*/
+.textbolder{
+  font-weight: bold !important;
+  font-size: 1.5rem !important;
+}
+
+
