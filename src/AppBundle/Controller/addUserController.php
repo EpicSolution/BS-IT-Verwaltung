@@ -40,7 +40,7 @@ class addUserController extends Controller
             $manager->flush();
         }
 
-        return $this->render('add_user.html.twig', [
+        return $this->render('user/add_user.html.twig', [
             'form'  => $form->createView()
         ]);
     }
