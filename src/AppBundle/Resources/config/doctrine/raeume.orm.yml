@@ -1,6 +1,6 @@
 AppBundle\Entity\raeume:
     type: entity
-    table: null
+    table: raeume
     repositoryClass: AppBundle\Repository\raeumeRepository
     id:
         id:
@@ -21,3 +21,10 @@ AppBundle\Entity\raeume:
             type: string
             length: '255'
             column: notiz
+    oneToMany:
+        raeume:
+            targetEntity: Komponenten
+            mappedBy: raeume_id
+        software_in_raum:
+            targetEntity: software_in_raum
+            mappedBy: raeumeId

@@ -1,6 +1,6 @@
 AppBundle\Entity\komponente_hat_attribute:
     type: entity
-    table: null
+    table: komponente_hat_attribute
     repositoryClass: AppBundle\Repository\komponente_hat_attributeRepository
     id:
         id:
@@ -19,9 +19,15 @@ AppBundle\Entity\komponente_hat_attribute:
             type: string
             length: '45'
     manyToOne:
-    komponentenattribute:
-      targetEntity: komponentenattribute
-      joinColumn:
-        name: komponentenattributeId
-        referencedColumnName: id
+        komponentenattribute:
+        targetEntity: komponentenattribute
+        joinColumn:
+            name: komponentenattributeId
+            referencedColumnName: id
+        komponentenid:
+        targetEntity: komponenten
+        joinColumn:
+            name: komponentenId
+            referencedColumnName: id
+
  

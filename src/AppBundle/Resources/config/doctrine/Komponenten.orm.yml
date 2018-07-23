@@ -6,8 +6,6 @@ AppBundle\Entity\Komponenten:
       type: integer
       generator: { strategy: auto }
   fields:
-    raeume_id:
-      type: integer
     lieferant_id:
       type: integer
     einkaufsdatum:
@@ -26,4 +24,24 @@ AppBundle\Entity\Komponenten:
           inversedBy: komponenten
           joinColumn:
               name: komponentenarten_id
-              referencedColumnName: id    
+              referencedColumnName: id 
+      lieferanten_id:
+          targetEntity: lieferant
+          inversedBy: komponenten
+          joinColumn:
+              name: lieferant_id
+              referencedColumnName: id
+      raeume_id:
+          targetEntity: raeume
+          inversedBy: komponenten
+          joinColumn:
+              name: raeume_id
+              referencedColumnName: id
+  oneToMany:
+        komponente_hat_attribute:
+            targetEntity: komponente_hat_attribute
+            mappedBy: komponenten_id
+        software_in_raum:
+            targetEntity: software_in_raum
+            mappedBy: komponentenId
+

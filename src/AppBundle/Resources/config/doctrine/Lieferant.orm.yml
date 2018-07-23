@@ -1,6 +1,6 @@
-AppBundle\Entity\Lieferant:
+AppBundle\Entity\lieferant:
   type:  entity
-  table: lieferant
+  table: Lieferant
   id:
     id:
       type: integer
@@ -32,3 +32,7 @@ AppBundle\Entity\Lieferant:
     email:
       type: string
       length: 45
+oneToMany:
+      komponenten:
+          targetEntity: Komponenten
+          mappedBy: lieferant_id

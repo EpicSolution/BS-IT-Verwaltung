@@ -1,15 +1,15 @@
 AppBundle\Entity\wird_beschrieben_durch:
     type: entity
-    table: null
+    table: wird_beschrieben_durch
     repositoryClass: AppBundle\Repository\wird_beschrieben_durchRepository
     manyToOne:
-    komponentenattribute:
-      targetEntity: komponentenattribute
-      joinColumn:
-        name: komponentenattributeId
-        referencedColumnName: id
-    komponentenartid:
-      targetEntity: komponentenart
-      joinColumn:
-        name: komponentenartId
-        referencedColumnName: id
+      komponentenattribute:
+        targetEntity: komponentenattribute
+        joinColumn:
+          name: komponentenattributeId
+          referencedColumnName: id
+      komponentenartid:
+        targetEntity: komponentenarten
+        joinColumn:
+          name: komponentenartId
+          referencedColumnName: id
