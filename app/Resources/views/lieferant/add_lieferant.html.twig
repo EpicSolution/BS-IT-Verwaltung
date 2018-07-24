@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <a href="{{ url('list_lieferant') }}" class="float-right btn btn-success">
+        <i class="fas"></i>
+        <span>Lieferanten anzeigen</span>
+    </a>
+    <h2>Lieferant hinzufügen</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
