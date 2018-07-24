@@ -9,7 +9,7 @@
             </div>
         {% endfor %}
     {% endfor %}
-    <a href="{{ app.request.headers.get('referer') }}" class="float-right btn btn-secondary">
+    <a href="{{ url('list_user') }}" class="float-right btn btn-secondary">
         <i class="fas fa-chevron-left"></i>
         <span>Zurück</span>
     </a>
