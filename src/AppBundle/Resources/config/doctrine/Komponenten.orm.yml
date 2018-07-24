@@ -6,6 +6,9 @@ AppBundle\Entity\Komponenten:
       type: integer
       generator: { strategy: auto }
   fields:
+    Ident:
+      type: string
+      length: 1024
     lieferant_id:
       type: integer
     einkaufsdatum:

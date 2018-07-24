@@ -12,28 +12,28 @@ class Lieferant
     protected $id;
 
     /** @var string */
-    protected $firmenname;
+    protected $firmenname = "";
     
     /** @var string */
-    protected $strasse;
+    protected $strasse = "";
     
     /** @var string */
-    protected $plz;
+    protected $plz = "";
     
     /** @var string */
-    protected $ort;
+    protected $ort = "";
     
     /** @var string */
-    protected $tel;
+    protected $tel = "";
     
     /** @var string */
-    protected $mobil;
+    protected $mobil = "";
     
     /** @var string */
-    protected $fax;
+    protected $fax = "";
     
     /** @var string */
-    protected $email;
+    protected $email = "";
 
     /** @var ArrayCollection */
     private $komponenten;

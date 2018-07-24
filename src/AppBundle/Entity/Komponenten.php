@@ -8,6 +8,9 @@ class Komponenten
     /** @var int */
     protected $id;
     
+    /** @var string */
+    protected $Ident;
+
     /** @var int */
     protected $raeume_id;
 
@@ -119,6 +122,16 @@ class Komponenten
     {
         $this->hersteller = $hersteller;
     }    
+
+    public function getIdent(): int
+    {
+        return $this->Ident;
+    }
+
+    public function setIdent(int $Ident)
+    {
+        $this->Ident = $Ident;
+    }  
 
     public function getKomponentenartenId(): Komponentenarten
     {
