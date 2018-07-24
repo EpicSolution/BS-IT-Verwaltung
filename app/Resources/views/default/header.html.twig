@@ -1,8 +1,14 @@
 <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">IT-Verwaltung</a>
+            <a class="navbar-brand" href="/">IT-Verwaltung</a>
+            
         </div>
+        <!--  LOGOUT BUTTON  -->
+        <a href="/logout" class="btn btn-outline-primary my-2 my-sm-0">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
     </div>
 </nav>
 <nav class="navbar-primary">
@@ -23,18 +29,12 @@
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionNav">
                         <div class="card-body">
                             <ul>
-                                <li>
+                                <!--li>
                                     <a href="#">
                                         <i class="fas fa-desktop"></i>
                                         <span class="nav-label">Komponenten</span>
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fas fa-tablet-alt"></i>
-                                        <span class="nav-label">Komponentenarten</span>
-                                    </a>
-                                </li>
+                                </li-->
                                 <!--li>
                                     <a href="#">
                                         <i class="fas fa-palette"></i>
@@ -43,20 +43,26 @@
                                 </li-->
                                 <li>
                                     <a href="#">
-                                        <i class="fas fa-warehouse"></i>
-                                        <span class="nav-label">Räume</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
                                         <i class="fas fa-user-tie"></i>
                                         <span class="nav-label">Lieferanten</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
+                                        <i class="fas fa-warehouse"></i>
+                                        <span class="nav-label">Räume</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('list_user') }}">
                                         <i class="fas fa-users"></i>
                                         <span class="nav-label">Benutzer</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-tablet-alt"></i>
+                                        <span class="nav-label">Komponentenarten</span>
                                     </a>
                                 </li>
                             </ul>
@@ -67,37 +73,17 @@
             <!-- STAMMDATEN ENDE  -->
             <!---------------------------------------------------->
             <!-- NEUBESCHAFFUNG START  -->
-            <!--div class="accordion" id="accordionNav2">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="nav-label">Neubeschaffung</span>
-                        </button>
-                        </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionNav2">
-                        <div class="card-body">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class="fas fa-desktop"></i>
-                                        <span class="nav-label">Komponenten</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div-->
+            <a href="#" class="btn btn-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="nav-label">Neubeschaffung</span>
+            </a>
             <!-- NEUBESCHAFFUNG ENDE  -->
             <!---------------------------------------------------->
             <!-- AUSMUSTERUNG START  -->
-            <!--a href="#" class="btn btn-link">
+            <a href="#" class="btn btn-link">
                 <i class="fas fa-recycle"></i>
                 <span class="nav-label">Ausmusterung</span>
-            </a-->
+            </a>
             <!-- AUSMUSTERUNG ENDE   -->
             <!---------------------------------------------------->
             <!-- REPORTING START  -->
@@ -116,8 +102,16 @@
 <script>
     $('.btn-expand-collapse').click(function(e) {
         $('.navbar-primary').toggleClass('collapsed');
+        $('.main-content').toggleClass('collapsed');
     });
 </script>
 {% endblock %}
 
 
+
+
+<!-- 
+- TODO 2018 07 23 
+- > Navigation erneut nach neuen Anforderrungen anpassen
+-
+ -->
