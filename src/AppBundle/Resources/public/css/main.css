@@ -140,3 +140,11 @@ ul {
 }
 
 
+/* STYLES DER LOGIN SEITE */
+.login-button{
+  width: 100% !important;
+  height: 3rem !important;
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  border-radius: 0rem !important;
+}

@@ -1,5 +1,19 @@
 {% extends 'base.html.twig' %}
 {% block header %} {% endblock %}
 {% block body %}
-    {% block fos_user_content %}{% endblock %}
+<div class="row">
+    <div class="col-lg-5">
+        <div class="card" >
+            <img class="card-img-top" src="" alt="EPIC SOLUTIONS">
+            <div class="card-body" style="background-color: #fff !important;border-radius: .15rem;">
+                <h5 class="card-title">Login</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Bitte loggen sie sich ein.</h6>
+                <div class="card-text">
+                    {% block fos_user_content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
