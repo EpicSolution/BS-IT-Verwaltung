@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <a href="{{ url('add_lieferant') }}" class="float-right btn btn-success">
+        <i class="fas fa-plus-circle"></i>
+        <span>Lieferanten erstellen</span>
+    </a>
+    <h1>Lieferanten Liste</h1>
+    <table class="table table-striped">
+        <thead>
+            {% for data in lieferantHeader %}
+                <th scope="col">{{ data }}</th>
+            {% endfor %}
+            <th scope="col">Aktion</th>
+        </thead>
+        <tbody>
+            {% for lieferant in lieferanten %}
+                <tr>
+                   <th scope="col">{{ lieferant.id }}</th>
+                   <td>{{ lieferant.firmenname }}</td>
+                   <td>
+                       <div class="btn-group">
+                            <a href="{{ url('delete_lieferant', {'id': lieferant.id}) }}" class="btn btn-danger" role="button">
+                                <span>Löschen</span>
+                            </a>
+                            <a href="{{ url('edit_lieferant', {'id': lieferant.id}) }}" class="btn btn-info" role="button">
+                                <span>Bearbeiten</span>
+                            </a>
+                       </div>
+                   </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
