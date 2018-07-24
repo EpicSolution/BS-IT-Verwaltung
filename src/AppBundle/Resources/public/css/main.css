@@ -3,7 +3,10 @@
 /* Styles der Navigation */
 .navbar-global {
   background-color: #191919;
-  position: fixed;
+  position: fixed !important;
+  width: 100% !important;
+  margin-top: -0.3rem !important;
+  z-index: 8 !important;
 }
 
 .navbar-global .navbar-brand {
