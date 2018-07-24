@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace AppBundle\Controller;
 
+
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Lieferant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,10 +17,10 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EditLieferantController extends Controller
+class DeleteLieferantController extends Controller
 {
     /**
-     * @Route("/edit/lieferant/{id}", name="edit_Lieferant", requirements  = { "id" = "\d+" })
+     * @Route("/delete/lieferant/{id}", name="delete_Lieferant", requirements  = { "id" = "\d+" })
      * @todo umgang mit Fehlermeldungen einbauen
      */
     public function editAction(Request $request, string $id)
@@ -29,7 +31,7 @@ class EditLieferantController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $lieferant = $form->getData();
             $lieferantManager = $this->getDoctrine()->getManager();
-            $lieferantManager->persist($lieferant);
+            $lieferantManager->remove($lieferant);
             $lieferantManager->flush();
         }
 

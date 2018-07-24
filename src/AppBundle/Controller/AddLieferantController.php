@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 class AddLieferantController extends Controller
 {
     /**
-     * @Route("/addLieferant", name="add_lieferant")
+     * @Route("/add/lieferant", name="add_lieferant")
      */
     public function addLieferantAction(Request $request): Response
     {
