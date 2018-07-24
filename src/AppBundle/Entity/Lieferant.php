@@ -41,7 +41,7 @@ class Lieferant
     {
         $this->komponenten = new ArrayCollection();
     }
-
+  
     public function getId(): int
     {
         return $this->id;
