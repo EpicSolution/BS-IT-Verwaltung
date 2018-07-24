@@ -43,7 +43,7 @@ class RoomDetailsController extends Controller
     */
     public function updateRoomAction(Request $request, string $id): Response
     {
-        $room = null;//$this->getDoctrine()->getRepository(Raeume::class)->find($id);
+        $room = $this->getDoctrine()->getRepository(Raeume::class)->find($id);
         $form = $this->getForm($room);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -62,7 +62,7 @@ class RoomDetailsController extends Controller
     private function getForm($user = null): FormInterface
     {
         if ($user == null) {
-            //$user = new Raeume();
+            $user = new Raeume();
         }
         $form = $this->createFormBuilder($user)
             ->add('nr', TextType::class, [
