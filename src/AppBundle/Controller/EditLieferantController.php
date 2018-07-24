@@ -21,9 +21,13 @@ class EditLieferantController extends Controller
      * @Route("/edit/lieferant/{id}", name="edit_lieferant", requirements  = { "id" = "\d+" })
      * @todo umgang mit Fehlermeldungen einbauen
      */
-    public function editAction(Request $request, string $id)
+    public function editAction(Request $request, string $id): Response
     {
         $lieferant = $this->getDoctrine()->getRepository(Lieferant::class)->find($id);
+        if (empty($lieferant)) {
+            $this->addFlash('danger', 'Lieferant existiert nicht');
+            return $this->redirectToRoute('list_lieferant');
+        }
         $form = $this->getForm($lieferant);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

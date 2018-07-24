@@ -36,7 +36,7 @@ class LieferantListController extends Controller
     public function deleteLieferantAction(string $id): Response
     {
         $this->deleteLieferant($id);
-        $this->addFlash('success', 'Benutzer wurde erfolgreich gelöscht');
+        $this->addFlash('success', 'Lieferant wurde erfolgreich gelöscht');
         
         return $this->redirectToRoute('list_lieferant');
     }
