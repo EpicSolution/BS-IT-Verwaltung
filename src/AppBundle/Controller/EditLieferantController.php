@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 class EditLieferantController extends Controller
 {
     /**
-     * @Route("/edit/lieferant/{id}", name="edit_Lieferant", requirements  = { "id" = "\d+" })
+     * @Route("/edit/lieferant/{id}", name="edit_lieferant", requirements  = { "id" = "\d+" })
      * @todo umgang mit Fehlermeldungen einbauen
      */
     public function editAction(Request $request, string $id)
