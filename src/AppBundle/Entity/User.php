@@ -1,12 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/*
- * Created by solutionDrive GmbH
- *
- * @copyright 2018 solutionDrive GmbH
- */
-
 namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
@@ -30,5 +24,4 @@ class User extends BaseUser
     {
         parent::__construct();
     }
-
 }
