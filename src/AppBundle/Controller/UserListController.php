@@ -20,6 +20,7 @@ class UserListController extends Controller
 {
     /**
      * @Route("/listUser", name="list_user")
+     * @todo umgang mit Fehlermeldungen einbauen
      */
     public function showUsersAction(Request $request): Response
     {
@@ -39,19 +40,12 @@ class UserListController extends Controller
     /**
      * @Route("/delete/user/{id}", name="delete_user", requirements  = { "id" = "\d+" })
      */
-    public function deleteUserAction(string $id)
+    public function deleteUserAction(string $id): Response
     {
         $this->deleteUser($id);
-        $userHeader = [];
-        $users = $this->getAllUsers();
-        if (!empty($users)) {
-            $userHeader = $this->getUserHeader();
-        }
-
-        return $this->render('user/user_list.html.twig', [
-            'users' => $users,
-            'userHeader' => $userHeader
-        ]);
+        $this->addFlash('success', 'Benutzer wurde erfolgreich gelöscht');
+        
+        return $this->redirectToRoute('list_user');
     }
 
     /**
