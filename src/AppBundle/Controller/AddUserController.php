@@ -25,7 +25,8 @@ use Symfony\Component\HttpFoundation\Response;
 class AddUserController extends Controller
 {
     /**
-     * @Route("/addUser", name="add_user")
+     * @Route("/add/user", name="add_user")
+     * @todo umgang mit Fehlermeldungen einbauen
      */
     public function addUserAction(Request $request): Response
     {
@@ -38,6 +39,7 @@ class AddUserController extends Controller
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($user);
             $manager->flush();
+            $this->addFlash('success', 'Benutzer wurde erfolgreich hinzugefügt');
         }
 
         return $this->render('user/add_user.html.twig', [
@@ -68,7 +70,11 @@ class AddUserController extends Controller
                     'Lehrer' => 'ROLE_TEACHER'
                 ],
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-success'
+                ]
+            ])
             ->getForm();
 
         return $form;

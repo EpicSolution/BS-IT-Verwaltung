@@ -26,6 +26,7 @@ class EditUserController extends Controller
 {
     /**
      * @Route("/edit/user/{id}", name="edit_user", requirements  = { "id" = "\d+" })
+     * @todo umgang mit Fehlermeldungen einbauen
      */
     public function editAction(Request $request, string $id)
     {
@@ -36,8 +37,9 @@ class EditUserController extends Controller
             $user = $form->getData();
             $userManager = $this->get('fos_user.user_manager');
             $userManager->updateUser($user);
+            $this->addFlash('success', 'Benutzer wurde erfolgreich geändert');
         }
-        
+
         return $this->render('user/edit_user.html.twig', [
             'form' => $form->createView()
         ]);
@@ -58,7 +60,11 @@ class EditUserController extends Controller
                     'Lehrer' => 'ROLE_TEACHER'
                 ],
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-success'
+                ]
+            ])
             ->getForm();
 
         return $form;
