@@ -42,9 +42,9 @@ AppBundle\Entity\Komponenten:
               referencedColumnName: id
   oneToMany:
         komponente_hat_attribute:
-            targetEntity: komponente_hat_attribute
+            targetEntity: Komponente_hat_attribute
             mappedBy: komponenten_id
         software_in_raum:
-            targetEntity: software_in_raum
+            targetEntity: Software_in_raum
             mappedBy: komponentenId
 

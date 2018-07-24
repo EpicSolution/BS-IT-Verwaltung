@@ -14,5 +14,5 @@ AppBundle\Entity\Komponentenarten:
           targetEntity: Komponenten
           mappedBy: Komponentenarten
       komponentenarten:
-          targetEntity: wird_beschrieben_durch
+          targetEntity: Wird_beschrieben_durch
           mappedBy: komponentenartId    

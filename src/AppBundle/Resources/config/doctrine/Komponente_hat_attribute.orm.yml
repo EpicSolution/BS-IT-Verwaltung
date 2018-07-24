@@ -1,7 +1,7 @@
-AppBundle\Entity\komponente_hat_attribute:
+AppBundle\Entity\Komponente_hat_attribute:
     type: entity
     table: komponente_hat_attribute
-    repositoryClass: AppBundle\Repository\komponente_hat_attributeRepository
+    repositoryClass: AppBundle\Repository\Komponente_hat_attributeRepository
     id:
         id:
             type: integer
@@ -20,14 +20,13 @@ AppBundle\Entity\komponente_hat_attribute:
             length: '45'
     manyToOne:
         komponentenattribut:
-            targetEntity: komponentenattribute
+            targetEntity: Komponentenattribute
             joinColumn:
                 name: komponentenattribute_Id
                 referencedColumnName: id
         komponentenid:
-            targetEntity: komponenten
+            targetEntity: Komponenten
             joinColumn:
                 name: komponenten_Id
                 referencedColumnName: id
 
- 

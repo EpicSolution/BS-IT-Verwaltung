@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 
 namespace AppBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
 
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Lieferant
 {
@@ -12,28 +12,28 @@ class Lieferant
     protected $id;
 
     /** @var string */
-    protected $firmenname = "";
+    protected $firmenname;
     
     /** @var string */
-    protected $strasse = "";
+    protected $strasse;
     
     /** @var string */
-    protected $plz = "";
+    protected $plz;
     
     /** @var string */
-    protected $ort = "";
+    protected $ort;
     
     /** @var string */
-    protected $tel = "";
+    protected $tel;
     
     /** @var string */
-    protected $mobil = "";
+    protected $mobil;
     
     /** @var string */
-    protected $fax = "";
+    protected $fax;
     
     /** @var string */
-    protected $email = "";
+    protected $email;
 
     /** @var ArrayCollection */
     private $komponenten;
@@ -62,72 +62,72 @@ class Lieferant
         return $this->firmenname;
     }
 
-    public function setStrasse(string $strasse)
+    public function setStrasse(?string $strasse)
     {
         $this->strasse = $strasse;
     }
 
-    public function getStrasse(): string
+    public function getStrasse(): ?string
     {
         return $this->strasse;
     }
 
-    public function setPlz(string $plz)
+    public function setPlz(?string $plz)
     {
         $this->plz = $plz;
     }
 
-    public function getPlz(): string
+    public function getPlz(): ?string
     {
         return $this->plz;
     }
 
-    public function setOrt(string $ort)
+    public function setOrt(?string $ort)
     {
         $this->ort = $ort;
     }
 
-    public function getOrt(): string
+    public function getOrt(): ?string
     {
         return $this->ort;
     }
     
-    public function setTel(string $tel)
+    public function setTel(?string $tel)
     {
         $this->tel = $tel;
     }
 
-    public function getTel(): string
+    public function getTel(): ?string
     {
         return $this->tel;
     }
 
-    public function setMobil(string $mobil)
+    public function setMobil(?string $mobil)
     {
         $this->mobil = $mobil;
     }
 
-    public function getMobil(): string
+    public function getMobil(): ?string
     {
         return $this->mobil;
     }
 
-    public function setFax(string $fax)
+    public function setFax(?string $fax)
     {
         $this->fax = $fax;
     }
 
-    public function getFax(): string
+    public function getFax(): ?string
     {
         return $this->fax;
     }
 
-    public function setEmail(string $email)
+    public function setEmail(?string $email)
     {
         $this->email = $email;
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }

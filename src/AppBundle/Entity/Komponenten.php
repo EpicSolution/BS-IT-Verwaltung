@@ -2,7 +2,9 @@
 declare(strict_types=1);
 
 namespace AppBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
+
 class Komponenten
 {
     /** @var int */
@@ -29,13 +31,13 @@ class Komponenten
     /** @var string */
     protected $hersteller;
 
-    /** @var ArrayCollection */
+    /** @var Komponentenarten */
     private $komponentenarten_id;
     
-    /** @var ArrayCollection */
+    /** @var Lieferant */
     private $lieferanten_id;
     
-    /** @var ArrayCollection */
+    /** @var Raeume */
     private $raeume_id1;    
     
     /** @var ArrayCollection */
@@ -46,9 +48,6 @@ class Komponenten
 
     public function __construct()
     {
-        $this->komponentenarten_id = new ArrayCollection();
-        $this->lieferanten_id = new ArrayCollection();
-        $this->raeume_id = new ArrayCollection();
         $this->komponente_hat_attribute = new ArrayCollection();
         $this->software_in_raum = new ArrayCollection();
     }
@@ -100,35 +99,35 @@ class Komponenten
 
     public function setGewaehrleistungsdauer(int $gewaehrleistungsdauer)
     {
-        $this->gewaehrleistungsdauer = $id;
+        $this->gewaehrleistungsdauer = $gewaehrleistungsdauer;
     }
 
-    public function getNotiz(): int
+    public function getNotiz(): string
     {
         return $this->notiz;
     }
 
-    public function setNotiz(int $notiz)
+    public function setNotiz(string $notiz)
     {
         $this->notiz = $notiz;
     }
 
-    public function getHersteller(): int
+    public function getHersteller(): string
     {
         return $this->hersteller;
     }
 
-    public function setHersteller(int $hersteller)
+    public function setHersteller(string $hersteller)
     {
         $this->hersteller = $hersteller;
     }    
 
-    public function getIdent(): int
+    public function getIdent(): string
     {
         return $this->Ident;
     }
 
-    public function setIdent(int $Ident)
+    public function setIdent(string $Ident)
     {
         $this->Ident = $Ident;
     }  
@@ -143,81 +142,41 @@ class Komponenten
         $this->komponentenarten_id = $komponentenarten_id;
     }
 
-        /**
-     * @return ArrayCollection
-     */
-    public function getkomponentenarten_id(): ArrayCollection
-    {
-        return $this->komponentenarten_id;
-    }
-
-    /**
-     * @param ArrayCollection $komponentenarten_id
-     */
-    public function setkomponentenarten_id(ArrayCollection $komponentenarten_id): void
-    {
-        $this->komponentenarten_id = $komponentenarten_id;
-    }
-
-        /**
-     * @return ArrayCollection
-     */
-    public function getlieferanten_id(): ArrayCollection
+    public function getlieferanten_id(): Lieferant
     {
         return $this->lieferanten_id;
     }
 
-    /**
-     * @param ArrayCollection $lieferanten_id
-     */
-    public function setlieferanten_id(ArrayCollection $lieferanten_id): void
+    public function setlieferanten_id(Lieferant $lieferanten_id): void
     {
         $this->lieferanten_id = $lieferanten_id;
     }
 
-        /**
-     * @return ArrayCollection
-     */
-    public function getraeume_id1(): ArrayCollection
+    public function getraeume_id1(): Raeume
     {
         return $this->raeume_id1;
     }
 
-    /**
-     * @param ArrayCollection $raeume_id1
-     */
-    public function setraeume_id1(ArrayCollection $raeume_id1): void
+    public function setraeume_id1(Raeume $raeume_id1): void
     {
         $this->raeume_id1 = $raeume_id1;
     }
 
-        /**
-     * @return ArrayCollection
-     */
     public function getkomponente_hat_attribute(): ArrayCollection
     {
         return $this->komponente_hat_attribute;
     }
 
-    /**
-     * @param ArrayCollection $komponente_hat_attribute
-     */
     public function setkomponente_hat_attribute(ArrayCollection $komponente_hat_attribute): void
     {
         $this->komponente_hat_attribute = $komponente_hat_attribute;
     }
 
-        /**
-     * @return ArrayCollection
-     */
     public function getsoftware_in_raum(): ArrayCollection
     {
         return $this->software_in_raum;
     }
 
-    /**
-     * @param ArrayCollection $software_in_raum
-     */
     public function setsoftware_in_raum(ArrayCollection $software_in_raum): void
     {
         $this->software_in_raum = $software_in_raum;

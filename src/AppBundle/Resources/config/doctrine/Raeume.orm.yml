@@ -1,7 +1,7 @@
-AppBundle\Entity\raeume:
+AppBundle\Entity\Raeume:
     type: entity
     table: raeume
-    repositoryClass: AppBundle\Repository\raeumeRepository
+    repositoryClass: AppBundle\Repository\RaeumeRepository
     id:
         id:
             type: integer
@@ -26,5 +26,5 @@ AppBundle\Entity\raeume:
             targetEntity: Komponenten
             mappedBy: raeume_id
         software_in_raum:
-            targetEntity: software_in_raum
+            targetEntity: Software_in_raum
             mappedBy: raeumeId

@@ -1,7 +1,7 @@
-AppBundle\Entity\wird_beschrieben_durch:
+AppBundle\Entity\Wird_beschrieben_durch:
     type: entity
     table: wird_beschrieben_durch
-    repositoryClass: AppBundle\Repository\wird_beschrieben_durchRepository
+    repositoryClass: AppBundle\Repository\Wird_beschrieben_durchRepository
     id:
         komponentenattributeId:
             type: integer
@@ -11,12 +11,12 @@ AppBundle\Entity\wird_beschrieben_durch:
             column: komponentenartenId    
     manyToOne:
       komponentenattribut:
-        targetEntity: komponentenattribute
+        targetEntity: Komponentenattribute
         joinColumn:
           name: komponentenattributeId
           referencedColumnName: id
       komponentenarten:
-        targetEntity: komponentenarten
+        targetEntity: Komponentenarten
         joinColumn:
           name: komponentenartenId
           referencedColumnName: id
