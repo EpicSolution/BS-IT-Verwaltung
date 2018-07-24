@@ -35,7 +35,7 @@ AppBundle\Entity\Komponenten:
               name: lieferant_id
               referencedColumnName: id
       raeume_id1:
-          targetEntity: raeume
+          targetEntity: Raeume
           inversedBy: komponenten
           joinColumn:
               name: raeume_id
