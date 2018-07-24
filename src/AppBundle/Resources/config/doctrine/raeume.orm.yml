@@ -1,0 +1,30 @@
+AppBundle\Entity\raeume:
+    type: entity
+    table: raeume
+    repositoryClass: AppBundle\Repository\raeumeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        Nr:
+            type: string
+            length: '20'
+            column: nr
+        Bezeichnung:
+            type: string
+            length: '45'
+            column: bezeichnung
+        Notiz:
+            type: string
+            length: '255'
+            column: notiz
+    oneToMany:
+        raeume:
+            targetEntity: Komponenten
+            mappedBy: raeume_id
+        software_in_raum:
+            targetEntity: software_in_raum
+            mappedBy: raeumeId

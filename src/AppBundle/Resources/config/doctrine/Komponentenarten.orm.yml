@@ -1,0 +1,18 @@
+AppBundle\Entity\Komponentenarten:
+  type:  entity
+  table: komponentenarten
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    komponentenart:
+      type: string
+      legnth: 45
+  oneToMany:
+      komponenten:
+          targetEntity: Komponenten
+          mappedBy: Komponentenarten
+      komponentenarten:
+          targetEntity: wird_beschrieben_durch
+          mappedBy: komponentenartId    
