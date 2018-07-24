@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AppBundle\Entity;
 
-
 class Lieferant
 {
     /** @var int */
@@ -123,4 +122,5 @@ class Lieferant
     {
         return $this->email;
     }
+
 }
