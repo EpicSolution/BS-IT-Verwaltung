@@ -72,26 +72,50 @@
             </div>
             <!-- STAMMDATEN ENDE  -->
             <!---------------------------------------------------->
-            <!-- NEUBESCHAFFUNG START  -->
-            <a href="#" class="btn btn-link">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="nav-label">Neubeschaffung</span>
-            </a>
-            <!-- NEUBESCHAFFUNG ENDE  -->
-            <!---------------------------------------------------->
-            <!-- AUSMUSTERUNG START  -->
-            <a href="#" class="btn btn-link">
-                <i class="fas fa-recycle"></i>
-                <span class="nav-label">Ausmusterung</span>
-            </a>
-            <!-- AUSMUSTERUNG ENDE   -->
-            <!---------------------------------------------------->
-            <!-- REPORTING START  -->
-            <a href="#" class="btn btn-link">
-                <i class="fas fa-file-alt"></i>
-                <span class="nav-label">Reporting</span>
-            </a>
-            <!-- REPORTING ENDE   -->
+            <!-- KOMPONENTENVERWALTUNG START  -->
+            <div class="accordion" id="accordionNav2">
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            <i class=" textbolder fas fa-hdd"></i>
+                            <span class="nav-label">Komponenten</span>
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionNav2">
+                        <div class="card-body">
+                            <ul>
+                                <li>
+                                    <!-- NEUBESCHAFFUNG START  -->
+                                    <a href="#">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span class="nav-label">Neubeschaffung</span>
+                                    </a>
+                                    <!-- NEUBESCHAFFUNG ENDE  -->
+                                </li>
+                                <li>
+                                    <!-- AUSMUSTERUNG START  -->
+                                    <a href="#">
+                                        <i class="fas fa-recycle"></i>
+                                        <span class="nav-label">Ausmusterung</span>
+                                    </a>
+                                    <!-- AUSMUSTERUNG ENDE   -->
+                                </li>
+                                <li>
+                                    <!-- REPORTING START  -->
+                                    <a href="#">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span class="nav-label">Reporting</span>
+                                    </a>
+                                    <!-- REPORTING ENDE   -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- KOMPONENTENVERWALTUNG ENDE  -->
             <!---------------------------------------------------->
         </li>
     </ul>
