@@ -1,6 +1,6 @@
 AppBundle\Entity\Lieferant:
   type:  entity
-  table: Lieferant
+  table: lieferant
   id:
     id:
       type: integer
