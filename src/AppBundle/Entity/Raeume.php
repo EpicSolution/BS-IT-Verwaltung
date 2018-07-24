@@ -3,10 +3,7 @@
 namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * raeume
- */
-class raeume
+class Raeume
 {
     /**
      * @var int
@@ -40,114 +37,62 @@ class raeume
         $this->software_in_raum = new ArrayCollection();
     }
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
-     /**
-     * Set Nr
-     *
-     * @param string $Nr
-     *
-     * @return raeume
-     */
-    public function setNr($Nr)
+
+    public function setNr(int $Nr): self
     {
         $this->Nr = $Nr;
 
         return $this;
     }
 
-    /**
-     * Get Nr
-     *
-     * @return string
-     */
-    public function getNr()
+    public function getNr(): string
     {
         return $this->Nr;
     }
 
-    /**
-     * Set Bezeichnung
-     *
-     * @param string $Bezeichnung
-     *
-     * @return raeume
-     */
-    public function setBezeichnung($Bezeichnung)
+    public function setBezeichnung(string $Bezeichnung): self
     {
         $this->Bezeichnung = $Bezeichnung;
 
         return $this;
     }
 
-    /**
-     * Get Bezeichnung
-     *
-     * @return string
-     */
-    public function getBezeichnung()
+    public function getBezeichnung(): string
     {
         return $this->Bezeichnung;
     }
 
-    /**
-     * Set Notiz
-     *
-     * @param string $Notiz
-     *
-     * @return raeume
-     */
-    public function seNotiz($Notiz)
+    public function setNotiz(string $Notiz): self
     {
         $this->Notiz = $Notiz;
 
         return $this;
     }
 
-    /**
-     * Get Notiz
-     *
-     * @return string
-     */
-    public function getNotiz()
+    public function getNotiz(): string
     {
         return $this->Notiz;
     }
 
-            /**
-     * @return ArrayCollection
-     */
     public function getraeume(): ArrayCollection
     {
         return $this->raeume;
     }
 
-    /**
-     * @param ArrayCollection $raeume
-     */
     public function setraeume(ArrayCollection $raeume): void
     {
         $this->raeume = $raeume;
     }
 
-            /**
-     * @return ArrayCollection
-     */
     public function getsoftware_in_raum(): ArrayCollection
     {
         return $this->software_in_raum;
     }
 
-    /**
-     * @param ArrayCollection $software_in_raum
-     */
     public function setsoftware_in_raum(ArrayCollection $software_in_raum): void
     {
         $this->software_in_raum = $software_in_raum;

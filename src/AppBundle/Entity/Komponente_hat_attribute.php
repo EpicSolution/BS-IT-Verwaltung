@@ -1,11 +1,10 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
-/**
- * komponente_hat_attribute
- */
-class komponente_hat_attribute
+
+class Komponente_hat_attribute
 {
     /**
      * @var int
@@ -39,115 +38,62 @@ class komponente_hat_attribute
         $this->komponentenid = new ArrayCollection();
     }
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * Set komponentenId
-     *
-     * @param integer $komponentenId
-     *
-     * @return komponente_hat_attribute
-     */
-    public function setKomponentenId($komponentenId)
+    public function setKomponentenId(int $komponentenId): self
     {
         $this->komponentenId = $komponentenId;
 
         return $this;
     }
 
-    /**
-     * Get komponentenId
-     *
-     * @return int
-     */
-    public function getKomponentenId()
+    public function getKomponentenId(): int
     {
         return $this->komponentenId;
     }
 
-    /**
-     * Set komponentenattributeId
-     *
-     * @param integer $komponentenattributeId
-     *
-     * @return komponente_hat_attribute
-     */
-    public function setKomponentenattributeId($komponentenattributeId)
+    public function setKomponentenattributeId(int $komponentenattributeId): self
     {
         $this->komponentenattributeId = $komponentenattributeId;
 
         return $this;
     }
 
-    /**
-     * Get komponentenattributeId
-     *
-     * @return int
-     */
-    public function getKomponentenattributeId()
+    public function getKomponentenattributeId(): int
     {
         return $this->komponentenattributeId;
     }
 
-    /**
-     * Set wert
-     *
-     * @param string $wert
-     *
-     * @return komponente_hat_attribute
-     */
-    public function setWert($wert)
+    public function setWert(string $wert): self
     {
         $this->wert = $wert;
 
         return $this;
     }
 
-    /**
-     * Get wert
-     *
-     * @return string
-     */
-    public function getWert()
+    public function getWert(): string
     {
         return $this->wert;
     }
     
-    /**
-     * @return ArrayCollection
-     */
     public function getkomponentenattribut(): ArrayCollection
     {
         return $this->komponentenattribut;
     }
 
-    /**
-     * @param ArrayCollection $komponentenattribut
-     */
     public function setkomponentenattribut(ArrayCollection $komponentenattribut): void
     {
         $this->komponentenattribut = $komponentenattribut;
     }
 
-    /**
-     * @return ArrayCollection
-     */
     public function getkomponentenid1(): ArrayCollection
     {
         return $this->komponentenid;
     }
 
-    /**
-     * @param ArrayCollection $komponentenid
-     */
     public function setkomponentenid1(ArrayCollection $komponentenid): void
     {
         $this->komponentenid = $komponentenid;

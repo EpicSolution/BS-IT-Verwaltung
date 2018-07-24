@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-
 class Komponentenarten
 {
     /** @var int */
@@ -46,7 +45,7 @@ class Komponentenarten
         $this->id = $id;
     }
 
-    public function getKomponentenart(): int
+    public function getKomponentenart(): string
     {
         return $this->komponentenart;
     }
@@ -55,5 +54,14 @@ class Komponentenarten
     {
         $this->komponentenart = $komponentenart;
     }
-    
+
+    public function getKomponentenarten(): ArrayCollection
+    {
+        return $this->komponentenarten;
+    }
+
+    public function setKomponentenarten(ArrayCollection $komponentenarten): void
+    {
+        $this->komponentenarten = $komponentenarten;
+    }
 }

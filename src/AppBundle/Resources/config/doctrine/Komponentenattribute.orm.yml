@@ -1,7 +1,7 @@
-AppBundle\Entity\komponentenattribute:
+AppBundle\Entity\Komponentenattribute:
     type: entity
     table: komponentenattribute
-    repositoryClass: AppBundle\Repository\komponentenattributeRepository
+    repositoryClass: AppBundle\Repository\KomponentenattributeRepository
     id:
         id:
             type: integer
@@ -14,8 +14,8 @@ AppBundle\Entity\komponentenattribute:
             length: '25'
     oneToMany:
         komponentenattribute_hat:
-            targetEntity: komponente_hat_attribute
+            targetEntity: Komponente_hat_attribute
             mappedBy: komponentenattributeId
         komponentenattribute_beschr:
-            targetEntity: wird_beschrieben_durch
+            targetEntity: Wird_beschrieben_durch
             mappedBy: komponentenattributeId
