@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 
 namespace AppBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Lieferant
 {
@@ -33,6 +33,14 @@ class Lieferant
     
     /** @var string */
     protected $email;
+
+    /** @var ArrayCollection */
+    private $komponenten;
+
+    public function __construct()
+    {
+        $this->komponenten = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -122,5 +130,21 @@ class Lieferant
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getkomponenten(): ArrayCollection
+    {
+        return $this->komponenten;
+    }
+
+    /**
+     * @param ArrayCollection $komponenten
+     */
+    public function setkomponenten(ArrayCollection $komponenten): void
+    {
+        $this->komponenten = $komponenten;
     }
 }
