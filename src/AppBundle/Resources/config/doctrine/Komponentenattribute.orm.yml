@@ -1,0 +1,21 @@
+AppBundle\Entity\Komponentenattribute:
+    type: entity
+    table: komponentenattribute
+    repositoryClass: AppBundle\Repository\KomponentenattributeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        bezeichnung:
+            type: string
+            length: '25'
+    oneToMany:
+        komponentenattribute_hat:
+            targetEntity: Komponente_hat_attribute
+            mappedBy: komponentenattributeId
+        komponentenattribute_beschr:
+            targetEntity: Wird_beschrieben_durch
+            mappedBy: komponentenattributeId

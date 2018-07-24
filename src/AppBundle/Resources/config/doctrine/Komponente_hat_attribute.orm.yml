@@ -1,0 +1,32 @@
+AppBundle\Entity\Komponente_hat_attribute:
+    type: entity
+    table: komponente_hat_attribute
+    repositoryClass: AppBundle\Repository\Komponente_hat_attributeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        komponentenId:
+            type: integer
+            column: komponenten_id
+        komponentenattributeId:
+            type: integer
+            column: komponentenattribute_id
+        wert:
+            type: string
+            length: '45'
+    manyToOne:
+        komponentenattribut:
+            targetEntity: Komponentenattribute
+            joinColumn:
+                name: komponentenattribute_Id
+                referencedColumnName: id
+        komponentenid:
+            targetEntity: Komponenten
+            joinColumn:
+                name: komponenten_Id
+                referencedColumnName: id
+

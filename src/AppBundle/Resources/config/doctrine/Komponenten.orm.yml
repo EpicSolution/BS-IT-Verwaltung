@@ -1,0 +1,50 @@
+AppBundle\Entity\Komponenten:
+  type:  entity
+  table: komponenten
+  id:
+    id:
+      type: integer
+      generator: { strategy: auto }
+  fields:
+    Ident:
+      type: string
+      length: 1024
+    lieferant_id:
+      type: integer
+    einkaufsdatum:
+      type: date
+    gewaehrleistungsdauer:
+      type: integer
+    notiz:
+      type: string
+      length: 1024
+    hersteller:
+      type: string
+      length: 45
+  manyToOne:
+      komponentenarten_id:
+          targetEntity: Komponentenarten
+          inversedBy: komponenten
+          joinColumn:
+              name: komponentenarten_id
+              referencedColumnName: id 
+      lieferanten_id:
+          targetEntity: Lieferant
+          inversedBy: komponenten
+          joinColumn:
+              name: lieferant_id
+              referencedColumnName: id
+      raeume_id1:
+          targetEntity: Raeume
+          inversedBy: komponenten
+          joinColumn:
+              name: raeume_id
+              referencedColumnName: id
+  oneToMany:
+        komponente_hat_attribute:
+            targetEntity: Komponente_hat_attribute
+            mappedBy: komponenten_id
+        software_in_raum:
+            targetEntity: Software_in_raum
+            mappedBy: komponentenId
+
