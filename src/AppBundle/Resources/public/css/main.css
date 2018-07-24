@@ -3,6 +3,7 @@
 /* Styles der Navigation */
 .navbar-global {
   background-color: #191919;
+  position: fixed;
 }
 
 .navbar-global .navbar-brand {
