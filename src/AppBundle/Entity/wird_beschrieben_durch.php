@@ -23,15 +23,15 @@ class wird_beschrieben_durch
     private $komponentenattributeId;
 
     /** @var ArrayCollection */
-    private $komponentenattribute;
+    private $komponentenattribut;
 
     /** @var ArrayCollection */
-    private $komponenten;
+    private $komponentenarten;
 
     public function __construct()
     {
-        $this->komponentenattribute = new ArrayCollection();
-        $this->raeume = new ArrayCollection();
+        $this->komponentenattribut = new ArrayCollection();
+        $this->komponentenarten = new ArrayCollection();
     }
 
     /**
@@ -95,33 +95,33 @@ class wird_beschrieben_durch
                 /**
      * @return ArrayCollection
      */
-    public function getkomponentenattribute(): ArrayCollection
+    public function getkomponentenattribut(): ArrayCollection
     {
-        return $this->komponentenattribute;
+        return $this->komponentenattribut;
     }
 
     /**
-     * @param ArrayCollection $komponentenattribute
+     * @param ArrayCollection $komponentenattribut
      */
-    public function setkomponentenattribute(ArrayCollection $komponentenattribute): void
+    public function setkomponentenattribut(ArrayCollection $komponentenattribut): void
     {
-        $this->komponentenattribute = $komponentenattribute;
+        $this->komponentenattribut = $komponentenattribut;
     }
 
                 /**
      * @return ArrayCollection
      */
-    public function getkomponenten(): ArrayCollection
+    public function getkomponentenarten(): ArrayCollection
     {
-        return $this->komponenten;
+        return $this->komponentenarten;
     }
 
     /**
      * @param ArrayCollection $komponenten
      */
-    public function setkomponenten(ArrayCollection $komponenten): void
+    public function setkomponentenarten(ArrayCollection $komponentenarten): void
     {
-        $this->komponenten = $komponenten;
+        $this->komponentenarten = $komponentenarten;
     }
 }
 

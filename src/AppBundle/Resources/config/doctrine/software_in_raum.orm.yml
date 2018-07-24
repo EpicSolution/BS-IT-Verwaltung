@@ -2,7 +2,7 @@ AppBundle\Entity\software_in_raum:
     type: entity
     table: software_in_raum
     repositoryClass: AppBundle\Repository\software_in_raumRepository
-    fields:
+    id:
         komponentenId:
             type: integer
             column: komponenten_id
@@ -14,12 +14,12 @@ AppBundle\Entity\software_in_raum:
           targetEntity: raeume
           inversedBy: software_in_raum
           joinColumn:
-              name: raeumeId
+              name: raeume_Id
               referencedColumnName: id 
       komponenten:
-          targetEntity: raeume
+          targetEntity: komponenten
           inversedBy: software_in_raum
           joinColumn:
-              name: komponentenId
+              name: komponenten_Id
               referencedColumnName: id 
         

@@ -28,14 +28,14 @@ class komponente_hat_attribute
     private $wert;
 
     /** @var ArrayCollection */
-    private $komponentenattribute;
+    private $komponentenattribut;
 
     /** @var ArrayCollection */
     private $komponentenid;
 
     public function __construct()
     {
-        $this->komponentenattribute = new ArrayCollection();
+        $this->komponentenattribut = new ArrayCollection();
         $this->komponentenid = new ArrayCollection();
     }
 
@@ -124,17 +124,17 @@ class komponente_hat_attribute
     /**
      * @return ArrayCollection
      */
-    public function getkomponentenattribute(): ArrayCollection
+    public function getkomponentenattribut(): ArrayCollection
     {
-        return $this->komponentenattribute;
+        return $this->komponentenattribut;
     }
 
     /**
-     * @param ArrayCollection $komponentenattribute
+     * @param ArrayCollection $komponentenattribut
      */
-    public function setkomponentenattribute(ArrayCollection $komponentenattribute): void
+    public function setkomponentenattribut(ArrayCollection $komponentenattribut): void
     {
-        $this->komponentenattribute = $komponentenattribute;
+        $this->komponentenattribut = $komponentenattribut;
     }
 
     /**

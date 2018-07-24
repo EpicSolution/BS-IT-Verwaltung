@@ -19,15 +19,15 @@ AppBundle\Entity\komponente_hat_attribute:
             type: string
             length: '45'
     manyToOne:
-        komponentenattribute:
-        targetEntity: komponentenattribute
-        joinColumn:
-            name: komponentenattributeId
-            referencedColumnName: id
+        komponentenattribut:
+            targetEntity: komponentenattribute
+            joinColumn:
+                name: komponentenattribute_Id
+                referencedColumnName: id
         komponentenid:
-        targetEntity: komponenten
-        joinColumn:
-            name: komponentenId
-            referencedColumnName: id
+            targetEntity: komponenten
+            joinColumn:
+                name: komponenten_Id
+                referencedColumnName: id
 
  
