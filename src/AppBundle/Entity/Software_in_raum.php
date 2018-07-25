@@ -5,32 +5,16 @@ namespace AppBundle\Entity;
 class Software_in_raum
 {
     /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var int
+     * @var Komponenten
      */
     private $komponentenId;
 
     /**
-     * @var int
+     * @var Raeume
      */
     private $raeumeId;
-    
-    /** @var Raeume */
-    private $raeume;
 
-    /** @var Komponenten */
-    private $komponenten;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function setKomponentenId(int $komponentenId): self
+    public function setKomponentenId(Komponenten $komponentenId): self
     {
         $this->komponentenId = $komponentenId;
 
@@ -38,41 +22,21 @@ class Software_in_raum
     }
 
 
-    public function getKomponentenId(): int
+    public function getKomponentenId(): Komponenten
     {
         return $this->komponentenId;
     }
 
-    public function setRaeumeId(int $raeumeId): self
+    public function setRaeumeId(Raeume $raeumeId): self
     {
         $this->raeumeId = $raeumeId;
 
         return $this;
     }
 
-    public function getRaeumeId(): int
+    public function getRaeumeId(): Raeume
     {
         return $this->raeumeId;
-    }
-
-    public function getraeume(): Raeume
-    {
-        return $this->raeume;
-    }
-
-    public function setraeume(Raeume $raeume): void
-    {
-        $this->raeume = $raeume;
-    }
-
-    public function getkomponenten(): Komponenten
-    {
-        return $this->komponenten;
-    }
-
-    public function setkomponenten(Komponenten $komponenten): void
-    {
-        $this->komponenten = $komponenten;
     }
 }
 

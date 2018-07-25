@@ -12,7 +12,7 @@ AppBundle\Entity\Komponentenarten:
   oneToMany:
       komponenten:
           targetEntity: Komponenten
-          mappedBy: Komponentenarten
-      komponentenarten:
+          mappedBy: komponentenarten_id
+      wirdBeschriebenDurch:
           targetEntity: Wird_beschrieben_durch
-          mappedBy: komponentenartId    
+          mappedBy: komponentenartenId

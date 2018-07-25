@@ -3,20 +3,20 @@ AppBundle\Entity\Wird_beschrieben_durch:
     table: wird_beschrieben_durch
     repositoryClass: AppBundle\Repository\Wird_beschrieben_durchRepository
     id:
-        komponentenattributeId:
-            type: integer
-            column: komponentenattributeId
+        komponentenattributId:
+            associationKey: true
         komponentenartenId:
-            type: integer
-            column: komponentenartenId    
+            associationKey: true
     manyToOne:
-      komponentenattribut:
+      komponentenattributId:
         targetEntity: Komponentenattribute
+        inversedBy: komponentenattribute_beschr
         joinColumn:
-          name: komponentenattributeId
+          name: komponentenattribute_id
           referencedColumnName: id
-      komponentenarten:
+      komponentenartenId:
         targetEntity: Komponentenarten
+        inversedBy: wirdBeschriebenDurch
         joinColumn:
-          name: komponentenartenId
+          name: komponentenarten_id
           referencedColumnName: id

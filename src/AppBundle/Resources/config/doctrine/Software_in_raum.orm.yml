@@ -4,19 +4,17 @@ AppBundle\Entity\Software_in_raum:
     repositoryClass: AppBundle\Repository\Software_in_raumRepository
     id:
         komponentenId:
-            type: integer
-            column: komponenten_id
+            associationKey: true
         raeumeId:
-            type: integer
-            column: raeume_id
+            associationKey: true
     manyToOne:
-      raeume:
+      raeumeId:
           targetEntity: Raeume
           inversedBy: software_in_raum
           joinColumn:
               name: raeume_Id
               referencedColumnName: id 
-      komponenten:
+      komponentenId:
           targetEntity: Komponenten
           inversedBy: software_in_raum
           joinColumn:
