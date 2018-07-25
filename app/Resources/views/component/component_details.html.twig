@@ -4,18 +4,19 @@
 
     <script>
         $(document).ready(function() {
-            $('#').change(function () {
-                val art = $('#').val();
+            $('#form_komponentenarten_id').change(function () {
+                var art = $('#form_komponentenarten_id').val();
                 $.ajax({
-                    url: "/api/getWeather",
+                    url: "D:/Projekte/test.html",
                     data: {
-                        zipcode: 97201
+                        id: art
                     },
                     success: function( result ) {
-                      $( "#weather-temp" ).html( "<strong>" + result + "</strong> degrees" );
+                      $( "#comp_art_specific" ).html(results);
                     }
                 });
-            })
+            });
+            $('#form_komponentenarten_id').change();
         });
     </script>
 
