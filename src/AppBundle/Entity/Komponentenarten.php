@@ -50,7 +50,7 @@ class Komponentenarten
         return $this->komponentenart;
     }
 
-    public function setKomponentenart(int $komponentenart)
+    public function setKomponentenart(string $komponentenart)
     {
         $this->komponentenart = $komponentenart;
     }
