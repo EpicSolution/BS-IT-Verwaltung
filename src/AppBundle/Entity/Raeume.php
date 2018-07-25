@@ -83,9 +83,11 @@ class Raeume
         return $this->raeume;
     }
 
-    public function setraeume(ArrayCollection $raeume): void
+    public function setraeume(ArrayCollection $raeume): self
     {
         $this->raeume = $raeume;
+
+        return $this;
     }
 
     public function getsoftware_in_raum(): ArrayCollection
@@ -93,7 +95,7 @@ class Raeume
         return $this->software_in_raum;
     }
 
-    public function setsoftware_in_raum(ArrayCollection $software_in_raum): void
+    public function setsoftware_in_raum(ArrayCollection $software_in_raum): self
     {
         $this->software_in_raum = $software_in_raum;
     }

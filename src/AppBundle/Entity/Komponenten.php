@@ -14,13 +14,7 @@ class Komponenten
     /** @var string */
     protected $Ident;
 
-    /** @var int */
-    protected $raeume_id;
-
-    /** @var int */
-    protected $lieferant_id;
-
-    /** @var int */
+    /** @var date */
     protected $einkaufsdatum;
 
     /** @var int */
@@ -39,7 +33,7 @@ class Komponenten
     private $lieferanten_id;
     
     /** @var Raeume */
-    private $raeume_id1;    
+    private $raeume_id;    
     
     /** @var PersistentCollection */
     private $komponente_hat_attribute;
@@ -63,37 +57,17 @@ class Komponenten
         $this->id = $id;
     }
 
-    public function getRaeume_id(): int
-    {
-        return $this->raeume_id;
-    }
-
-    public function setRaeume_id(int $raeume_id)
-    {
-        $this->raeume_id = $raeume_id;
-    }
-
-    public function getLieferant_id(): int
-    {
-        return $this->lieferant_id;
-    }
-
-    public function setLieferant_id(int $lieferant_id)
-    {
-        $this->lieferant_id = $lieferant_id;
-    }
-
-    public function getEinkaufsdatum(): int
+    public function getEinkaufsdatum(): ?date
     {
         return $this->einkaufsdatum;
     }
 
-    public function setEinkaufsdatum(int $einkaufsdatum)
+    public function setEinkaufsdatum(date $einkaufsdatum)
     {
         $this->einkaufsdatum = $einkaufsdatum;
     }
 
-    public function getGewaehrleistungsdauer(): int
+    public function getGewaehrleistungsdauer(): ?int
     {
         return $this->gewaehrleistungsdauer;
     }
@@ -103,7 +77,7 @@ class Komponenten
         $this->gewaehrleistungsdauer = $gewaehrleistungsdauer;
     }
 
-    public function getNotiz(): string
+    public function getNotiz(): ?string
     {
         return $this->notiz;
     }
@@ -113,7 +87,7 @@ class Komponenten
         $this->notiz = $notiz;
     }
 
-    public function getHersteller(): string
+    public function getHersteller(): ?string
     {
         return $this->hersteller;
     }
@@ -123,7 +97,7 @@ class Komponenten
         $this->hersteller = $hersteller;
     }    
 
-    public function getIdent(): string
+    public function getIdent(): ?string
     {
         return $this->Ident;
     }
@@ -133,7 +107,7 @@ class Komponenten
         $this->Ident = $Ident;
     }  
 
-    public function getKomponentenartenId(): Komponentenarten
+    public function getKomponentenartenId(): ?Komponentenarten
     {
         return $this->komponentenarten_id;
     }
@@ -143,7 +117,7 @@ class Komponenten
         $this->komponentenarten_id = $komponentenarten_id;
     }
 
-    public function getlieferanten_id(): Lieferant
+    public function getlieferanten_id(): ?Lieferant
     {
         return $this->lieferanten_id;
     }
@@ -153,14 +127,14 @@ class Komponenten
         $this->lieferanten_id = $lieferanten_id;
     }
 
-    public function getraeume_id1(): Raeume
+    public function getraeume_id(): ?Raeume
     {
-        return $this->raeume_id1;
+        return $this->raeume_id;
     }
 
-    public function setraeume_id1(Raeume $raeume_id1): void
+    public function setraeume_id(Raeume $raeume_id): void
     {
-        $this->raeume_id1 = $raeume_id1;
+        $this->raeume_id = $raeume_id;
     }
 
     public function getkomponente_hat_attribute(): PersistentCollection
