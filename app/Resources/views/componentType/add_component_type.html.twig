@@ -20,5 +20,13 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>
+        var addNewFieldButton = $('#form_neu');
 
+        addNewFieldButton.click(function () {
+            var form = $(this).closest('form');
+
+            console.log(form);
+        })
+    </script>
 {% endblock %}
