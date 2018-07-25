@@ -87,3 +87,18 @@
 .login-help{
     font-size: 12px;
 }
+
+.login-button{
+    width: 100% !important;
+    height: 3rem !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    border-radius: 0rem !important;
+    -webkit-box-shadow: .15rem 0.19rem .01rem .1rem rgba(0,94,195,1);
+    -moz-box-shadow: .15rem 0.19rem .01rem .1rem rgba(0,94,195,1);
+    box-shadow: .15rem 0.19rem .01rem .1rem rgba(0,94,195,1);
+    border-bottom-left-radius: .75rem !important;
+    border-bottom-right-radius: .75rem !important;
+    border-top-left-radius: .75rem !important;
+    border-top-right-radius: .75rem !important;
+}

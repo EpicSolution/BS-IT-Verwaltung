@@ -61,6 +61,9 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        dql:
+            string_functions:
+                regexp: DoctrineExtensions\Query\Mysql\Regexp
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -77,3 +80,5 @@ fos_user:
     from_email:
         address: "test@mail.com"
         sender_name: "test@mail.com"
+
+
