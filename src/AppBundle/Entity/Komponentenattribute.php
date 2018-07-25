@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Komponentenarten;
+use Doctrine\Common\Collections\Collection;
 
 class Komponentenattribute
 {
@@ -46,7 +47,7 @@ class Komponentenattribute
         return $this;
     }
 
-    public function getBezeichnung(): string
+    public function getBezeichnung(): ?string
     {
         return $this->bezeichnung;
     }
@@ -63,16 +64,9 @@ class Komponentenattribute
         return $this;
     }
 
-    public function getKomponentenarten(): ArrayCollection
+    public function getKomponentenarten(): Collection
     {
         return $this->komponentenarten;
-    }
-
-    public function addKomponentenarten(Komponentenarten $komponentenarten)
-    {
-        if (!$this->komponentenarten->contains($komponentenarten)) {
-            $this->komponentenarten->add($komponentenarten);
-        }
     }
 }
 
