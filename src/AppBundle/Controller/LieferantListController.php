@@ -3,18 +3,20 @@ declare(strict_types=1);
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Lieferant;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use AppBundle\Service\KomponentenSucheService;
+use AppBundle\Enum\KomponentenSuche as Suche;
+
 class LieferantListController extends Controller
 {
+
     /**
      * @Route("/listLieferant", name="list_lieferant")
-     * @todo umgang mit Fehlermeldungen einbauen
      */
     public function showLieferantAction(Request $request): Response
     {
@@ -46,7 +48,7 @@ class LieferantListController extends Controller
      */
     private function getLieferantHeader(): array
     {
-        return ['id', 'name'];
+        return ['Name', 'Strasse', 'Telefon'];
     }
 
     /**
