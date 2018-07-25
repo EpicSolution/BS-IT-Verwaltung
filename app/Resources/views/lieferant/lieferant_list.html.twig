@@ -24,8 +24,9 @@
         <tbody>
             {% for lieferant in lieferanten %}
                 <tr>
-                   <th scope="col">{{ lieferant.id }}</th>
-                   <td>{{ lieferant.firmenname }}</td>
+                   <th scope="col">{{ lieferant.firmenname }}</th>
+                   <td>{{ lieferant.strasse }} </td>
+                   <td>{{ lieferant.tel }} </td>
                    <td>
                        <div class="btn-group">
                             <a href="{{ url('delete_lieferant', {'id': lieferant.id}) }}" class="btn btn-danger" role="button">

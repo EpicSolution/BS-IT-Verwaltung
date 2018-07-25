@@ -46,7 +46,7 @@ class LieferantListController extends Controller
      */
     private function getLieferantHeader(): array
     {
-        return ['id', 'name'];
+        return ['Name', 'Strasse', 'Telefon'];
     }
 
     /**
