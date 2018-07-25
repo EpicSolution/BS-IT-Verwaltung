@@ -14,6 +14,7 @@ use AppBundle\Form\ComponentAttributeType;
 use AppBundle\Model\ComponentTypeModel;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -29,13 +30,23 @@ class AddComponentController extends Controller
         $componentTypeModel = new ComponentTypeModel();
         $form = $this->createForm(FormType::class, $componentTypeModel)
             ->add('komponentenart', TextType::class)
-            ->add('bezeichnung', ComponentAttributeType::class)
-            ->add('neu', SubmitType::class)
+            ->add('bezeichnunge', CollectionType::class, [
+                'entry_type' => TextType::class,
+                'allow_add' => true
+            ])
             ->add('submit', SubmitType::class)
         ;
         $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($form->getData());
+        }
         return $this->render('componentType/add_component_type.html.twig', [
            'form'   => $form->createView()
         ]);
+    }
+
+    public function getExtraFieldAction()
+    {
     }
 }

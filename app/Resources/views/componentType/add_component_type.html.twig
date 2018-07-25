@@ -15,7 +15,13 @@
     </a>
     <h1>Komponentenarten hinzufügen</h1>
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ dump(form) }}
+    <div id="form-page">
+        {{ form_row(form.komponentenart) }}
+        {{ form_row(form.bezeichnunge) }}
+    </div>
+    {{ form_row(form.submit) }}
+    <a href="#" id="form_neu" class="btn btn-info">Neu</a>
     {{ form_end(form) }}
 {% endblock %}
 
@@ -32,8 +38,7 @@
                 type: form.attr('method'),
                 data: data,
                 success: function(html) {
-                    console.log(html);
-                    alert('yeahh');
+                    $("#form-page").append($(html).find('#form_bezeichnung'));
                 }
             });
         });

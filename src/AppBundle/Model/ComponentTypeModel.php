@@ -15,8 +15,8 @@ class ComponentTypeModel
     /** @var string $komponentenart */
     private $komponentenart;
 
-    /** @var string $bezeichnung */
-    private $bezeichnung;
+    /** @var array $bezeichnunge */
+    private $bezeichnunge;
 
     public function getKomponentenart(): ?string
     {
@@ -28,13 +28,13 @@ class ComponentTypeModel
         $this->komponentenart = $komponentenart;
     }
 
-    public function getBezeichnung(): ?string
+    public function getBezeichnunge(): ?array
     {
-        return $this->bezeichnung;
+        return $this->bezeichnunge;
     }
 
-    public function setBezeichnung(string $bezeichnung): void
+    public function setBezeichnunge(array $bezeichnunge): void
     {
-        $this->bezeichnung = $bezeichnung;
+        $this->bezeichnunge = $bezeichnunge;
     }
 }
