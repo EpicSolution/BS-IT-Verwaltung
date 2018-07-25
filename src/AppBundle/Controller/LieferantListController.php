@@ -10,14 +10,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use AppBundle\Service\KomponentenSucheService;
+
 class LieferantListController extends Controller
 {
+
+    public function test() 
+    {
+        $k = $this->get(KomponentenSucheService::class);
+        $k->findByBezeichnung('test');
+    }
     /**
      * @Route("/listLieferant", name="list_lieferant")
      * @todo umgang mit Fehlermeldungen einbauen
      */
     public function showLieferantAction(Request $request): Response
     {
+
+        $this->test();
         $lieferantHeader = [];
         $lieferant = $this->getAllLieferanten();
         if (!empty($lieferant)) {
