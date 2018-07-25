@@ -21,30 +21,56 @@ class KomponentenSucheService
     }
 
 
+
     /**
      * @Return Komponenten[]
      */
-    public function findByBezeichnung(string $bez, int $raum_nr = null, int $komp_art = null, int $mode = Suche::loose) : ?array
+    public function findByBezeichnung(string $bez = null, int $raum_nr = null, int $komp_art = null, int $mode = Suche::loose) : ?array
     {
+        if ($bez == null && $raum_nr == null && $komp_art == null) {
+            return null;
+        }
+        
         $qb = $this->em->createQueryBuilder()
         ->select('k')
-        ->from(Komponenten::class, 'k')
-        ->setParameter('ident', $bez)
-        ->setParameter('raum', $raum_nr)
-        ->setParameter('komp_art', $komp_art);
+        ->from(Komponenten::class, 'k');
 
-        switch($mode) {
-            case Suche::loose:
-                $qb->andWhere('REGEXP(k.Ident, :ident) = 1')
-                ->andWhere('REGEXP(k.raeume_id, :raum) = 1')
-                ->andWhere('REGEXP(k.komponentenarten_id, :komp_art) = 1');
-            case Suche::exact:
-                $qb->andWhere('k.Ident = :ident')
-                ->andWhere('k.raeume_id = :raum')
-                ->andWhere('k.komp_art = :komp_art');
+        if ($bez != null) {
+            $qb->setParameter('ident', $bez);
+            switch($mode){
+                case Suche::loose:
+                    $qb->andWhere('REGEXP(k.Ident, :ident) = 1');
+                    break;
+                case Suche::exact:
+                    $qb->andWhere('k.Ident = :ident');
+                    break;
+            }
         }
 
-        $qb->getQuery()->getArrayResult();
+        if ($raum_nr != null) {
+            $qb->setParameter('raum', $raum_nr);
+            switch($mode) {
+                case Suche::loose:
+                    $qb->andWhere('REGEXP(IDENTITY(k.raeume_id), :raum) = 1');
+                    break;
+                case Suche::exact:
+                    $qb->andWhere('k.raeume_id = :raum');
+                    break;
+            }
+        }
+        
+        if ($komp_art != null) {
+            $qb->setParameter('komp_art', $komp_art);
+            switch($mode) {
+                case Suche::loose:
+                    $qb->andWhere('REGEXP(IDENTITY(k.komponentenarten_id), :komp_art) = 1');
+                    break;
+                case Suche::exact:
+                    $qb->andWhere('k.komponentenarten_id = :komp_art');
+                    break;
+            }
+        }
+        return $qb->getQuery()->getArrayResult();
     }
 
     /**
@@ -66,28 +92,6 @@ class KomponentenSucheService
         }
 
         $qb->setParameter('hersteller', $hersteller);
-        return $qb->getQuery()->getArrayResult();
-    }
-
-    /**
-     * @Return Komponenten[]
-     */
-    public function findByRaum(int $raum, int $mode = Suche::exact): array
-    {
-        $qb = $this->em->createQueryBuilder()
-        ->select('k')
-        ->from(Komponenten::class, 'k');
-
-        switch($mode) {
-            case Suche::exact:
-                $qb->andWhere('k.raeume_id = :raum');
-                break;
-            case Suche::loose:
-                $qb->andWhere('REGEXP(k.raeume_id = :raum) = 1');
-                break;
-        }
-
-        $qb->setParameter('raum', $raum);
         return $qb->getQuery()->getArrayResult();
     }
 

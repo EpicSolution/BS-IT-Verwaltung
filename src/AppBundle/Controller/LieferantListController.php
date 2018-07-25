@@ -15,20 +15,11 @@ use AppBundle\Enum\KomponentenSuche as Suche;
 class LieferantListController extends Controller
 {
 
-    public function test() 
-    {
-        $k = $this->get(KomponentenSucheService::class);
-        $result = $k->findByBezeichnung('Epic', 1, 2);
-        dump($result);
-    }
     /**
      * @Route("/listLieferant", name="list_lieferant")
-     * @todo umgang mit Fehlermeldungen einbauen
      */
     public function showLieferantAction(Request $request): Response
     {
-
-        $this->test();
         $lieferantHeader = [];
         $lieferant = $this->getAllLieferanten();
         if (!empty($lieferant)) {
