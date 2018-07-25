@@ -8,11 +8,14 @@ declare(strict_types=1);
 namespace AppBundle\Controller;
 use AppBundle\Entity\Komponenten;
 use AppBundle\Entity\Komponentenarten;
+use AppBundle\Entity\Raeume;
+use AppBundle\Entity\Lieferant;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormInterface;
@@ -68,10 +71,34 @@ class ComponentDetailsController extends Controller
             $component = new Komponenten();
         }
         $form = $this->createFormBuilder($component)
+            ->add('Ident', TextType::class, [
+                'required' => true
+            ])
             ->add('komponentenarten_id', EntityType::class, [
                 'class' => Komponentenarten::class,
                 'label' => 'Art',
                 'required' => true
+            ])
+            ->add('raeume_id', EntityType::class, [
+                'class' => Raeume::class,
+                'label' => 'Raum',
+                'required' => true
+            ])
+            ->add('lieferant_id', EntityType::class, [
+                'class' => Lieferant::class,
+                'label' => 'Lieferant',
+                'required' => true
+            ])
+            ->add('einkaufsdatum', DateType::class, [
+                'widget' => 'single_text',
+                'required' => false
+            ])
+            ->add('gewaehrleistungsdauer', NumberType::class, [
+                'required' => false,
+                'label' => 'Gewährleistungsdauer',
+            ])
+            ->add('hersteller', TextType::class, [
+                'required' => false
             ])
             ->add('notiz', TextareaType::class, [
                 'required' => false

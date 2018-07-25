@@ -14,7 +14,7 @@ class Komponenten
     /** @var string */
     protected $Ident;
 
-    /** @var int */
+    /** @var Raeume */
     protected $raeume_id;
 
     /** @var int */
@@ -63,22 +63,22 @@ class Komponenten
         $this->id = $id;
     }
 
-    public function getRaeume_id(): ?int
+    public function getRaeumeId(): ?Raeume
     {
         return $this->raeume_id;
     }
 
-    public function setRaeume_id(int $raeume_id)
+    public function setRaeumeId(int $raeume_id)
     {
         $this->raeume_id = $raeume_id;
     }
 
-    public function getLieferant_id(): ?int
+    public function getLieferantId(): ?int
     {
         return $this->lieferant_id;
     }
 
-    public function setLieferant_id(int $lieferant_id)
+    public function setLieferantId(int $lieferant_id)
     {
         $this->lieferant_id = $lieferant_id;
     }
@@ -88,7 +88,7 @@ class Komponenten
         return $this->einkaufsdatum;
     }
 
-    public function setEinkaufsdatum(int $einkaufsdatum)
+    public function setEinkaufsdatum(?int $einkaufsdatum)
     {
         $this->einkaufsdatum = $einkaufsdatum;
     }
@@ -98,7 +98,7 @@ class Komponenten
         return $this->gewaehrleistungsdauer;
     }
 
-    public function setGewaehrleistungsdauer(int $gewaehrleistungsdauer)
+    public function setGewaehrleistungsdauer(?int $gewaehrleistungsdauer)
     {
         $this->gewaehrleistungsdauer = $gewaehrleistungsdauer;
     }
@@ -108,7 +108,7 @@ class Komponenten
         return $this->notiz;
     }
 
-    public function setNotiz(string $notiz)
+    public function setNotiz(?string $notiz)
     {
         $this->notiz = $notiz;
     }
@@ -118,7 +118,7 @@ class Komponenten
         return $this->hersteller;
     }
 
-    public function setHersteller(string $hersteller)
+    public function setHersteller(?string $hersteller)
     {
         $this->hersteller = $hersteller;
     }
@@ -148,7 +148,7 @@ class Komponenten
         return $this->lieferanten_id;
     }
 
-    public function setlieferanten_id(Lieferant $lieferanten_id): void
+    public function setlieferanten_id(?Lieferant $lieferanten_id): void
     {
         $this->lieferanten_id = $lieferanten_id;
     }
@@ -158,7 +158,7 @@ class Komponenten
         return $this->raeume_id1;
     }
 
-    public function setraeume_id1(Raeume $raeume_id1): void
+    public function setraeume_id1(?Raeume $raeume_id1): void
     {
         $this->raeume_id1 = $raeume_id1;
     }

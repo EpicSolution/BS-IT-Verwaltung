@@ -66,7 +66,7 @@ class Raeume
         return $this->Bezeichnung;
     }
 
-    public function setNotiz(string $Notiz): self
+    public function setNotiz(?string $Notiz): self
     {
         $this->Notiz = $Notiz;
 
@@ -96,6 +96,11 @@ class Raeume
     public function setsoftware_in_raum(ArrayCollection $software_in_raum): void
     {
         $this->software_in_raum = $software_in_raum;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getNr();
     }
 }
 

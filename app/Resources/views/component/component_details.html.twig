@@ -3,7 +3,20 @@
 {% block body %}
 
     <script>
-
+        $(document).ready(function() {
+            $('#').change(function () {
+                val art = $('#').val();
+                $.ajax({
+                    url: "/api/getWeather",
+                    data: {
+                        zipcode: 97201
+                    },
+                    success: function( result ) {
+                      $( "#weather-temp" ).html( "<strong>" + result + "</strong> degrees" );
+                    }
+                });
+            })
+        });
     </script>
 
     <div class="container">
