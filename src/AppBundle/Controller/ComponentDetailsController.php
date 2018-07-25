@@ -74,12 +74,13 @@ class ComponentDetailsController extends Controller
     {
         $attrs = $this->getDoctrine()->getRepository(Wird_beschrieben_durch::class)->findBy(["komponentenartenId" => $id]);
 
-        $inputs = "Hello";
+        $inputs = "";
 
         $attrRep = $this->getDoctrine()->getRepository(Komponentenattribute::class);
 
         foreach ($attrs as $attr) {
             $attr = $attrRep->find($attr->getKomponentenattributeHat());
+            $inputs .= "<input name='".$attr->getId()."' placeholder='".$attr->getBezeichnung()."'></input>";
         }
 
         $response = new Response($inputs);
