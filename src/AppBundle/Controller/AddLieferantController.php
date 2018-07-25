@@ -31,6 +31,7 @@ class AddLieferantController extends Controller
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($lieferant);
             $manager->flush();
+            $this->addFlash('success', 'Lieferant wurde hinzugefügt');
         }
 
         return $this->render('lieferant/add_lieferant.html.twig', [
@@ -44,14 +45,35 @@ class AddLieferantController extends Controller
 
         $form = $this->createFormBuilder($lieferant)
         ->add('Firmenname', TextType::class)
-        ->add('Strasse', TextType::class)
-        ->add('Plz', TextType::class)
-        ->add('Ort', TextType::class)
-        ->add('Tel', TextType::class)
-        ->add('Mobil', TextType::class)
-        ->add('Fax', TextType::class)
-        ->add('Email', TextType::class)
-        ->add('submit', SubmitType::class)
+        ->add('Strasse', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Plz', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Ort', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Tel', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Mobil', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Fax', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Email', EmailType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Anlegen', SubmitType::class)
         ->getForm();
 
         return $form;
