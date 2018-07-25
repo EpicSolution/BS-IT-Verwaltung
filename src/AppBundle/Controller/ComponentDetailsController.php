@@ -70,6 +70,7 @@ class ComponentDetailsController extends Controller
         $form = $this->createFormBuilder($component)
             ->add('komponentenarten_id', EntityType::class, [
                 'class' => Komponentenarten::class,
+                'label' => 'Art',
                 'required' => true
             ])
             ->add('notiz', TextareaType::class, [
