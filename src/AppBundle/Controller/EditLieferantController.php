@@ -48,13 +48,34 @@ class EditLieferantController extends Controller
         ->add('Firmenname', TextType::class, [
             'required' => true
         ])
-        ->add('Strasse', TextType::class)
-        ->add('Plz', TextType::class)
-        ->add('Ort', TextType::class)
-        ->add('Tel', TextType::class)
-        ->add('Mobil', TextType::class)
-        ->add('Fax', TextType::class)
-        ->add('Email', TextType::class)
+        ->add('Strasse', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Plz', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Ort', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Tel', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Mobil', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Fax', TextType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
+        ->add('Email', EmailType::class, [
+            'required' => false,
+            'empty_data' => ''
+        ])
         ->add('submit', SubmitType::class)
         ->getForm();
 
