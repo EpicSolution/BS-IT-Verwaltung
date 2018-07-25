@@ -12,7 +12,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Komponentenarten;
 use AppBundle\Entity\Komponentenattribute;
-use AppBundle\Entity\Wird_beschrieben_durch;
+use AppBundle\Entity\test;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\PersistentCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,15 +59,15 @@ class ComponentTypeListController extends Controller
         $componentenAttributes = [];
         /** @var Komponentenarten $component */
         foreach ($components as $component) {
-            /** @var PersistentCollection $componentEntityCollection */
-            $componentEntityCollection = $component->getWirdBeschriebenDurch();
+            /** @var ArrayCollection $componentEntityCollection */
+            $componentEntityCollection = $component->getComponentAttributes();
 
             $componentEntities = $componentEntityCollection->getValues();
-            dump($componentEntities);
-            /** @var Wird_beschrieben_durch $componentEntity */
+            /** @var Komponentenattribute $componentEntity */
             foreach ($componentEntities as $componentEntity) {
+                dump($componentEntity);
                 /** @var Komponentenattribute $componentenAttributes */
-                $componentenAttributes[] = $componentEntity->getKomponentenattributId();
+                $componentenAttributes[] = $componentEntity->getBezeichnung();
 
             }
         }

@@ -33,36 +33,17 @@ class AddComponentController extends Controller
         $componentType = new Komponentenarten();
         $form = $this->createForm(ComponentType::class, $componentType);
         $form->handleRequest($request);
-
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Komponentenarten $formData */
+            $formData = $form->getData();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($formData);
+            $manager->flush();
+            $this->addFlash('success', 'Komponente wurde erfolgreich hinzugefügt');
+        }
+        dump($form);
         return $this->render('componentType/add_component_type.html.twig', [
             'form' => $form->createView()
         ]);
-    }
-    /**
-     *
-     */
-    public function addComponentTypeAction2(Request $request)
-    {
-        $componentTypeModel = new ComponentTypeModel();
-        $form = $this->createForm(FormType::class, $componentTypeModel)
-            ->add('komponentenart', TextType::class)
-            ->add('bezeichnunge', CollectionType::class, [
-                'entry_type' => TextType::class,
-                'allow_add' => true
-            ])
-            ->add('submit', SubmitType::class)
-        ;
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            dump($form->getData());
-        }
-        return $this->render('componentType/add_component_type2.html.twig', [
-           'form'   => $form->createView()
-        ]);
-    }
-
-    public function getExtraFieldAction()
-    {
     }
 }

@@ -16,7 +16,7 @@
     <h1>Komponentenarten hinzufügen</h1>
     {{ form_start(form) }}
     {{ form_row(form.komponentenart) }}
-    <ul class="komponentenattribute" data-prototype="{{ form_widget(form.komponentenattribute.vars.prototype)|e('html_attr') }}">
+    <ul class="componentattributes" data-prototype="{{ form_widget(form.componentattributes.vars.prototype)|e('html_attr') }}">
     </ul>
     {{ form_row(form.submit) }}
     {{ form_end(form) }}
@@ -30,7 +30,7 @@
 
         $(document).ready(function() {
             // Get the ul that holds the collection of tags
-            $collectionHolder = $('ul.komponentenattribute');
+            $collectionHolder = $('ul.componentattributes');
 
             // add the "add a tag" anchor and li to the tags ul
             $collectionHolder.append($newLinkLi);

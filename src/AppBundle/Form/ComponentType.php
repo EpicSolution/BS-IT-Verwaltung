@@ -26,10 +26,11 @@ class ComponentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('komponentenart', TextType::class)
-            ->add('komponentenattribute', CollectionType::class, [
+            ->add('componentattributes', CollectionType::class, [
                 'entry_type' => ComponentAttributeType::class,
                 'allow_add' => true,
-                'entry_options' => array('label' => false),
+                'label' => false,
+                'entry_options' => ['label' => false],
                 'by_reference' => false,
             ])
             ->add('submit', SubmitType::class);
