@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\PersistentCollection;
 
 class Komponentenarten
 {
@@ -16,13 +17,12 @@ class Komponentenarten
     /** @var ArrayCollection  */
     protected $komponenten;
 
-    /** @var ArrayCollection  */
-    protected $komponentenarten;
+    /** @var PersistentCollection  */
+    protected $wirdBeschriebenDurch;
 
     public function __construct()
     {
         $this->komponenten = new ArrayCollection();
-        $this->komponentenarten = new ArrayCollection();
     }
 
     public function getKomponenten(): ArrayCollection
@@ -55,13 +55,13 @@ class Komponentenarten
         $this->komponentenart = $komponentenart;
     }
 
-    public function getKomponentenarten(): ArrayCollection
+    public function getWirdBeschriebenDurch(): PersistentCollection
     {
-        return $this->komponentenarten;
+        return $this->wirdBeschriebenDurch;
     }
 
-    public function setKomponentenarten(ArrayCollection $komponentenarten): void
+    public function setWirdBeschriebenDurch(PersistentCollection $wirdBeschriebenDurch): void
     {
-        $this->komponentenarten = $komponentenarten;
+        $this->wirdBeschriebenDurch = $wirdBeschriebenDurch;
     }
 }

@@ -7,71 +7,43 @@ class Wird_beschrieben_durch
     /**
      * @var int
      */
-    private $id;
-
-    /**
-     * @var int
-     */
     private $komponentenartenId;
 
     /**
      * @var int
      */
-    private $komponentenattributeId;
+    private $komponentenattributId;
 
-    /** @var Komponentenattribute */
-    private $komponentenattribut;
-
-    /** @var Komponentenarten */
-    private $komponentenarten;
-
-    public function getId(): int
+    /**
+     * @return int
+     */
+    public function getKomponentenartenId(): Komponentenarten
     {
-        return $this->id;
+        return $this->komponentenartenId;
     }
 
-    public function setKomponentenartenId(int $komponentenartenId): self
+    /**
+     * @param int $komponentenartenId
+     */
+    public function setKomponentenartenId(Komponentenarten $komponentenartenId)
     {
         $this->komponentenartenId = $komponentenartenId;
-
-        return $this;
     }
 
-    public function getKomponentenartenId(): int
+    /**
+     * @return int
+     */
+    public function getKomponentenattributId(): Komponentenattribute
     {
-        return $this->komponentenarten->getId();
+        return $this->komponentenattributId;
     }
 
-    public function setKomponentenattributeId(int $komponentenattributeId): self
+    /**
+     * @param int $komponentenattributId
+     */
+    public function setKomponentenattributId(Komponentenattribute $komponentenattributId)
     {
-        $this->komponentenattributeId = $komponentenattributeId;
-
-        return $this;
-    }
-
-    public function getKomponentenattributeId(): int
-    {
-        return $this->komponentenattribut->getId();
-    }
-
-    public function getkomponentenattribut(): Komponentenattribute
-    {
-        return $this->komponentenattribut;
-    }
-
-    public function setkomponentenattribut(Komponentenattribute $komponentenattribut): void
-    {
-        $this->komponentenattribut = $komponentenattribut;
-    }
-
-    public function getkomponentenarten(): Komponentenarten
-    {
-        return $this->komponentenarten;
-    }
-
-    public function setkomponentenarten(Komponentenarten $komponentenarten): void
-    {
-        $this->komponentenarten = $komponentenarten;
+        $this->komponentenattributId = $komponentenattributId;
     }
 }
 

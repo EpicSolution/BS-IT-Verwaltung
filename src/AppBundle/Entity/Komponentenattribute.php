@@ -55,9 +55,11 @@ class Komponentenattribute
         return $this->komponentenattribute_hat;
     }
 
-    public function setKomponentenattributeHat(ArrayCollection $komponentenattribute_hat): void
+    public function setKomponentenattributeHat(ArrayCollection $komponentenattribute_hat): self
     {
         $this->komponentenattribute_hat = $komponentenattribute_hat;
+
+        return $this;
     }
 
     public function getKomponentenattributeBeschr(): ArrayCollection
@@ -65,9 +67,11 @@ class Komponentenattribute
         return $this->komponentenattribute_beschr;
     }
 
-    public function setKomponentenattributeBeschr(ArrayCollection $komponentenattribute_beschr): void
+    public function setKomponentenattributeBeschr(ArrayCollection $komponentenattribute_beschr): self
     {
         $this->komponentenattribute_beschr = $komponentenattribute_beschr;
+
+        return $this;
     }
 }
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\PersistentCollection;
 
 class Komponenten
 {
@@ -40,7 +41,7 @@ class Komponenten
     /** @var Raeume */
     private $raeume_id1;    
     
-    /** @var ArrayCollection */
+    /** @var PersistentCollection */
     private $komponente_hat_attribute;
     
     /** @var ArrayCollection */
@@ -162,12 +163,12 @@ class Komponenten
         $this->raeume_id1 = $raeume_id1;
     }
 
-    public function getkomponente_hat_attribute(): ArrayCollection
+    public function getkomponente_hat_attribute(): PersistentCollection
     {
         return $this->komponente_hat_attribute;
     }
 
-    public function setkomponente_hat_attribute(ArrayCollection $komponente_hat_attribute): void
+    public function setkomponente_hat_attribute(PersistentCollection $komponente_hat_attribute): void
     {
         $this->komponente_hat_attribute = $komponente_hat_attribute;
     }
