@@ -97,8 +97,8 @@
     -webkit-box-shadow: .15rem 0.19rem .01rem .1rem rgba(0,94,195,1);
     -moz-box-shadow: .15rem 0.19rem .01rem .1rem rgba(0,94,195,1);
     box-shadow: .15rem 0.19rem .01rem .1rem rgba(0,94,195,1);
-    border-bottom-left-radius: .25rem !important;
-    border-bottom-right-radius: .25rem !important;
-    border-top-left-radius: .25rem !important;
-    border-top-right-radius: .25rem !important;
+    border-bottom-left-radius: .75rem !important;
+    border-bottom-right-radius: .75rem !important;
+    border-top-left-radius: .75rem !important;
+    border-top-right-radius: .75rem !important;
 }
