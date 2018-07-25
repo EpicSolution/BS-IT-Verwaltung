@@ -20,12 +20,12 @@ class Komponentenattribute
     private $komponentenattribute_hat;
 
     /** @var ArrayCollection */
-    private $komponentenattribute_beschr;
+    private $komponentenarten;
 
     public function __construct()
     {
         $this->komponentenattribute_hat = new ArrayCollection();
-        $this->komponentenattribute_beschr = new ArrayCollection();
+        $this->komponentenarten = new ArrayCollection();
     }
 
     /**
@@ -62,12 +62,12 @@ class Komponentenattribute
         return $this;
     }
 
-    public function getKomponentenattributeBeschr(): ArrayCollection
+    public function getKomponentenarten(): ArrayCollection
     {
         return $this->komponentenattribute_beschr;
     }
 
-    public function setKomponentenattributeBeschr(ArrayCollection $komponentenattribute_beschr): self
+    public function setKomponentenarten(ArrayCollection $komponentenattribute_beschr): self
     {
         $this->komponentenattribute_beschr = $komponentenattribute_beschr;
 

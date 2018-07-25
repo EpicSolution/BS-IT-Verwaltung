@@ -16,6 +16,7 @@ AppBundle\Entity\Komponentenattribute:
         komponentenattribute_hat:
             targetEntity: Komponente_hat_attribute
             mappedBy: komponentenattributeId
-        komponentenattribute_beschr:
-            targetEntity: Wird_beschrieben_durch
-            mappedBy: komponentenattributeId
+    manyToMany:
+        komponentenarten:
+            targetEntity: Komponentenarten
+            mappedBy: komponentenattribute

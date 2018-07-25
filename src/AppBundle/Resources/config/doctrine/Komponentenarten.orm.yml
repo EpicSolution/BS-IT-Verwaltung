@@ -13,6 +13,15 @@ AppBundle\Entity\Komponentenarten:
       komponenten:
           targetEntity: Komponenten
           mappedBy: komponentenarten_id
-      wirdBeschriebenDurch:
-          targetEntity: Wird_beschrieben_durch
-          mappedBy: komponentenartenId
+  manyToMany:
+      komponentenattribute:
+          targetEntity: Komponentenattribute
+          inversedBy: komponentenarten
+          joinTable:
+              name: wird_beschrieben_durch
+              JoinColumns:
+                  komponentenarten_id:
+                      referencedColumnName: id
+              inverseJoinColumns:
+                  komponentenattribut_id:
+                      referencedColumnName: id

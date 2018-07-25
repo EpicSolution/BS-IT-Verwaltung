@@ -18,11 +18,12 @@ class Komponentenarten
     protected $komponenten;
 
     /** @var PersistentCollection  */
-    protected $wirdBeschriebenDurch;
+    protected $komponentenattribute;
 
     public function __construct()
     {
         $this->komponenten = new ArrayCollection();
+        $this->komponentenattribute = new ArrayCollection();
     }
 
     public function getKomponenten(): ArrayCollection
@@ -55,13 +56,13 @@ class Komponentenarten
         $this->komponentenart = $komponentenart;
     }
 
-    public function getWirdBeschriebenDurch(): PersistentCollection
+    public function getKomponentenattribute(): PersistentCollection
     {
-        return $this->wirdBeschriebenDurch;
+        return $this->komponentenattribute;
     }
 
-    public function setWirdBeschriebenDurch(PersistentCollection $wirdBeschriebenDurch): void
+    public function setKomponentenattribute(PersistentCollection $komponentenattribute): void
     {
-        $this->wirdBeschriebenDurch = $wirdBeschriebenDurch;
+        $this->komponentenattribute = $komponentenattribute;
     }
 }
