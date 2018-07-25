@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <a href="{{ app.request.headers.get('referer') }}" class="float-right btn btn-secondary">
+            <i class="fas fa-chevron-left"></i>
+            <span>Zurück</span>
+        </a>
+        
+        <h2>Wartung</h2>
+<table class="table table-striped">
+        <thead>
+            {% for data in komponenteHeader %}
+                <th scope="col">{{ data }}</th>
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for komponente in komponentes %}
+                {{dump(komponente.raeume_id)}}
+                <tr>
+                   <td>{{ komponente.raeume_id }}</td>
+                   <td>{{ komponente.ident }}</td>
+                   <td>{{ komponente.notiz }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
