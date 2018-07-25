@@ -1,5 +1,12 @@
 .login-page {
     background: #d2d6de;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+7,000000+100&0.65+22,0+70 */
+    background: -moz-linear-gradient(45deg, rgba(0,0,0,0.65) 7%, rgba(0,0,0,0.65) 22%, rgba(0,0,0,0) 70%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(0,0,0,0.65) 7%,rgba(0,0,0,0.65) 22%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(0,0,0,0.65) 7%,rgba(0,0,0,0.65) 22%,rgba(0,0,0,0) 70%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 .login-container {
     padding: 30px;
@@ -79,4 +86,19 @@
 
 .login-help{
     font-size: 12px;
+}
+
+.login-button{
+    width: 100% !important;
+    height: 3rem !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    border-radius: 0rem !important;
+    -webkit-box-shadow: .15rem 0.19rem .01rem .1rem rgba(0,94,195,1);
+    -moz-box-shadow: .15rem 0.19rem .01rem .1rem rgba(0,94,195,1);
+    box-shadow: .15rem 0.19rem .01rem .1rem rgba(0,94,195,1);
+    border-bottom-left-radius: .25rem !important;
+    border-bottom-right-radius: .25rem !important;
+    border-top-left-radius: .25rem !important;
+    border-top-right-radius: .25rem !important;
 }
