@@ -2,13 +2,13 @@ AppBundle\Entity\Komponentenarten:
   type:  entity
   table: komponentenarten
   id:
-    id:
-      type: integer
-      generator: { strategy: auto }
+      id:
+          type: integer
+          generator: { strategy: auto }
   fields:
-    komponentenart:
-      type: string
-      legnth: 45
+      komponentenart:
+          type: string
+          legnth: 45
   oneToMany:
       komponenten:
           targetEntity: Komponenten
@@ -16,12 +16,5 @@ AppBundle\Entity\Komponentenarten:
   manyToMany:
       komponentenattribute:
           targetEntity: Komponentenattribute
-          inversedBy: komponentenarten
-          joinTable:
-              name: wird_beschrieben_durch
-              JoinColumns:
-                  komponentenarten_id:
-                      referencedColumnName: id
-              inverseJoinColumns:
-                  komponentenattribut_id:
-                      referencedColumnName: id
+          mappedBy: komponentenarten
+          cascade: [persist]
