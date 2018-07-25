@@ -15,6 +15,7 @@ class Komponenten
     protected $Ident;
 
     /** @var date */
+
     protected $einkaufsdatum;
 
     /** @var int */
@@ -127,7 +128,7 @@ class Komponenten
         $this->lieferanten_id = $lieferanten_id;
     }
 
-    public function getraeume_id(): ?Raeume
+    public function getraeume_id(): Raeume
     {
         return $this->raeume_id;
     }
