@@ -15,32 +15,69 @@
     </a>
     <h1>Komponentenarten hinzufügen</h1>
     {{ form_start(form) }}
-    {{ dump(form) }}
-    <div id="form-page">
-        {{ form_row(form.komponentenart) }}
-        {{ form_row(form.bezeichnunge) }}
-    </div>
+    {{ form_row(form.komponentenart) }}
+    <ul class="komponentenattribute" data-prototype="{{ form_widget(form.komponentenattribute.vars.prototype)|e('html_attr') }}">
+    </ul>
     {{ form_row(form.submit) }}
-    <a href="#" id="form_neu" class="btn btn-info">Neu</a>
     {{ form_end(form) }}
 {% endblock %}
 
 {% block javascripts %}
     <script>
-        var addNewFieldButton = $('#form_neu');
+        var $collectionHolder;
+        var $addTagButton = $('<button type="button" class="add_attribute_link">Add a Attribute</button>');
+        var $newLinkLi = $('<li></li>').append($addTagButton);
 
-        addNewFieldButton.click(function () {
-            var form = $(this).closest('form');
-            var data = {};
-            data['isClick'] = true;
-            $.ajax({
-                url: form.attr('action'),
-                type: form.attr('method'),
-                data: data,
-                success: function(html) {
-                    $("#form-page").append($(html).find('#form_bezeichnung'));
-                }
+        $(document).ready(function() {
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('ul.komponentenattribute');
+
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addTagButton.on('click', function(e) {
+                // add a new tag form (see next code block)
+                addTagForm($collectionHolder, $newLinkLi);
             });
         });
+
+        function addTagForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            var newForm = prototype;
+            // You need this only if you didn't set 'label' => false in your tags field in TaskType
+            // Replace '__name__label__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            // newForm = newForm.replace(/__name__label__/g, index);
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            newForm = newForm.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newFormLi.append('<a href="#" class="remove-tag">x</a>');
+            $newLinkLi.before($newFormLi);
+
+            // handle the removal, just for this example
+            $('.remove-tag').click(function(e) {
+                e.preventDefault();
+
+                $(this).parent().remove();
+
+                return false;
+            });
+        }
     </script>
 {% endblock %}

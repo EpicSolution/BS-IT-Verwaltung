@@ -10,6 +10,9 @@ declare(strict_types=1);
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Komponentenarten;
+use AppBundle\Entity\Komponentenattribute;
+use AppBundle\Form\ComponentType;
 use AppBundle\Form\ComponentAttributeType;
 use AppBundle\Model\ComponentTypeModel;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,6 +30,19 @@ class AddComponentController extends Controller
      */
     public function addComponentTypeAction(Request $request)
     {
+        $componentType = new Komponentenarten();
+        $form = $this->createForm(ComponentType::class, $componentType);
+        $form->handleRequest($request);
+
+        return $this->render('componentType/add_component_type.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+    /**
+     *
+     */
+    public function addComponentTypeAction2(Request $request)
+    {
         $componentTypeModel = new ComponentTypeModel();
         $form = $this->createForm(FormType::class, $componentTypeModel)
             ->add('komponentenart', TextType::class)
@@ -41,7 +57,7 @@ class AddComponentController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             dump($form->getData());
         }
-        return $this->render('componentType/add_component_type.html.twig', [
+        return $this->render('componentType/add_component_type2.html.twig', [
            'form'   => $form->createView()
         ]);
     }

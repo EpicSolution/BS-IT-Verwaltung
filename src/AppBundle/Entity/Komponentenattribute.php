@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Komponentenarten;
 
 class Komponentenattribute
 {
@@ -64,14 +65,14 @@ class Komponentenattribute
 
     public function getKomponentenarten(): ArrayCollection
     {
-        return $this->komponentenattribute_beschr;
+        return $this->komponentenarten;
     }
 
-    public function setKomponentenarten(ArrayCollection $komponentenattribute_beschr): self
+    public function addKomponentenarten(Komponentenarten $komponentenarten)
     {
-        $this->komponentenattribute_beschr = $komponentenattribute_beschr;
-
-        return $this;
+        if (!$this->komponentenarten->contains($komponentenarten)) {
+            $this->komponentenarten->add($komponentenarten);
+        }
     }
 }
 

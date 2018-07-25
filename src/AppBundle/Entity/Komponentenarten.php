@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\PersistentCollection;
+use AppBundle\Entity\Komponentenattribute;
 
 class Komponentenarten
 {
@@ -17,7 +17,7 @@ class Komponentenarten
     /** @var ArrayCollection  */
     protected $komponenten;
 
-    /** @var PersistentCollection  */
+    /** @var ArrayCollection  */
     protected $komponentenattribute;
 
     public function __construct()
@@ -46,7 +46,7 @@ class Komponentenarten
         $this->id = $id;
     }
 
-    public function getKomponentenart(): string
+    public function getKomponentenart(): ?string
     {
         return $this->komponentenart;
     }
@@ -56,13 +56,18 @@ class Komponentenarten
         $this->komponentenart = $komponentenart;
     }
 
-    public function getKomponentenattribute(): PersistentCollection
+    public function getKomponentenattribute(): ArrayCollection
     {
         return $this->komponentenattribute;
     }
 
-    public function setKomponentenattribute(PersistentCollection $komponentenattribute): void
+    public function addKomponentenattribute(ArrayCollection $komponentenattribute): void
     {
-        $this->komponentenattribute = $komponentenattribute;
+        $this->komponentenattribute->add($komponentenattribute);
+    }
+
+    public function addKomponentenattribut(Komponentenattribute $komponentenattribute)
+    {
+        $komponentenattribute->addKomponentenarten($this);
     }
 }
