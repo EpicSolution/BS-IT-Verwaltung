@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Lieferant;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Service\KomponentenSucheService;
+use AppBundle\Enum\KomponentenSuche as Suche;
 
 class LieferantListController extends Controller
 {
@@ -18,7 +18,8 @@ class LieferantListController extends Controller
     public function test() 
     {
         $k = $this->get(KomponentenSucheService::class);
-        $k->findByBezeichnung('test');
+        $result = $k->findByBezeichnung('Epic', 1, 2);
+        dump($result);
     }
     /**
      * @Route("/listLieferant", name="list_lieferant")
