@@ -25,8 +25,17 @@
 
         addNewFieldButton.click(function () {
             var form = $(this).closest('form');
-
-            console.log(form);
-        })
+            var data = {};
+            data['isClick'] = true;
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: data,
+                success: function(html) {
+                    console.log(html);
+                    alert('yeahh');
+                }
+            });
+        });
     </script>
 {% endblock %}
