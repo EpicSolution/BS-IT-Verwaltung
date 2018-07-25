@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <a href="{{ url('add_user') }}" class="float-right btn btn-success">
+        <i class="fas fa-plus-circle"></i>
+        <span>Komponentenart erstellen</span>
+    </a>
+    <h1>Komponentenarten Liste</h1>
+    <table class="table table-striped">
+        <thead>
+        {% for data in componentHeader %}
+            <th scope="col">{{ data }}</th>
+        {% endfor %}
+        <th scope="col">Aktion</th>
+        </thead>
+        <tbody>
+        {% for component in components %}
+            <tr>
+                <th scope="col">{{ component.id }}</th>
+                <td>{{ component.komponentenart }}</td>
+                <td>
+                {% for componentAttribute in componentAttributes %}
+                    {{ componentAttribute.bezeichnung }}
+                {% endfor %}
+                </td>
+                <td>
+                    <div class="btn-group">
+                        {#
+                        <a href="{{ url('edit_user', {'id': user.id}) }}" class="btn btn-info" role="button">
+                            <span>Bearbeiten</span>
+                        </a>#}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
