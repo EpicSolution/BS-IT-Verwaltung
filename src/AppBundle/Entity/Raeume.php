@@ -49,7 +49,7 @@ class Raeume
         return $this;
     }
 
-    public function getNr(): string
+    public function getNr(): ?string
     {
         return $this->Nr;
     }
@@ -61,7 +61,7 @@ class Raeume
         return $this;
     }
 
-    public function getBezeichnung(): string
+    public function getBezeichnung(): ?string
     {
         return $this->Bezeichnung;
     }
@@ -73,7 +73,7 @@ class Raeume
         return $this;
     }
 
-    public function getNotiz(): string
+    public function getNotiz(): ?string
     {
         return $this->Notiz;
     }
