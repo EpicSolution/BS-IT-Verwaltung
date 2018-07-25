@@ -15,12 +15,6 @@ class Komponenten
     protected $Ident;
 
     /** @var int */
-    protected $raeume_id;
-
-    /** @var int */
-    protected $lieferant_id;
-
-    /** @var int */
     protected $einkaufsdatum;
 
     /** @var int */
@@ -39,7 +33,7 @@ class Komponenten
     private $lieferanten_id;
     
     /** @var Raeume */
-    private $raeume_id1;    
+    private $raeume_id;
     
     /** @var PersistentCollection */
     private $komponente_hat_attribute;
@@ -61,26 +55,6 @@ class Komponenten
     public function setId(int $id)
     {
         $this->id = $id;
-    }
-
-    public function getRaeume_id(): int
-    {
-        return $this->raeume_id;
-    }
-
-    public function setRaeume_id(int $raeume_id)
-    {
-        $this->raeume_id = $raeume_id;
-    }
-
-    public function getLieferant_id(): int
-    {
-        return $this->lieferant_id;
-    }
-
-    public function setLieferant_id(int $lieferant_id)
-    {
-        $this->lieferant_id = $lieferant_id;
     }
 
     public function getEinkaufsdatum(): int
@@ -153,14 +127,14 @@ class Komponenten
         $this->lieferanten_id = $lieferanten_id;
     }
 
-    public function getraeume_id1(): Raeume
+    public function getraeume_id(): Raeume
     {
-        return $this->raeume_id1;
+        return $this->raeume_id;
     }
 
-    public function setraeume_id1(Raeume $raeume_id1): void
+    public function setraeume_id(Raeume $raeume_id): void
     {
-        $this->raeume_id1 = $raeume_id1;
+        $this->raeume_id = $raeume_id;
     }
 
     public function getkomponente_hat_attribute(): PersistentCollection
