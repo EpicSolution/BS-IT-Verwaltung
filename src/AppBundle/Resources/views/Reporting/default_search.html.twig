@@ -14,13 +14,20 @@
     <h2> {{art}} </h2>
     <table class="table table-striped">
         <thead>
-                {% for val in headers %}
-                    {{dump(val)}}
-                <th scope="col"></th>
+                {% for val in headers[art] %}
+                <th scope="col">{{ val }}</th>
                 {% endfor %}
             <th scope="col">Aktion</th>
         </thead>
         <tbody>
+        {{dump(values)}}
+        {% for val in values[art] %}
+            <tr>
+                <td>
+                    <div> {{val}} </div>
+                </td>
+            </tr>
+        {% endfor %}
             {# {% for lieferant in lieferanten %}
                 <tr>
                    <th scope="col">{{ lieferant.id }}</th>

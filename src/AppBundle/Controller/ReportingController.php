@@ -34,7 +34,8 @@ class ReportingController extends Controller
         return $this->render('AppBundle:Reporting:default_search.html.twig',
          array(
             "artenliste" => $artenliste,
-            "headers" => $header
+            "headers" => $header,
+            "values" => $values
          ));
 
         
@@ -62,11 +63,14 @@ class ReportingController extends Controller
                             ->getQuery()->getResult();
         $ret = [];
         foreach($komponenten as $komp){
+            $ret['id'] = $komp->getId();
+            $ret['raum'] = $komp->getraeume_id1()->getId();
+            $ret['notiz'] = $komp->getNotiz();
             foreach($komp->getkomponente_hat_attribute() as $attr){
-                $ret[] = $attr->getBezeichnung();
+                $ret[$attr->getKomponentenattributeId()->getBezeichnung()] = $attr->getWert();
             }
         }
-        return ret;
+        return $ret;
 
     }
     function getKomponentenHeaderForArt(Komponentenarten $art){

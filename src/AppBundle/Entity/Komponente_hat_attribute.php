@@ -38,26 +38,26 @@ class Komponente_hat_attribute
         return $this->id;
     }
 
-    public function setKomponentenId(int $komponentenId): self
+    public function setKomponentenId(Komponenten $komponentenId): self
     {
         $this->komponentenId = $komponentenId;
 
         return $this;
     }
 
-    public function getKomponentenId(): int
+    public function getKomponentenId(): Komponenten
     {
         return $this->komponentenId;
     }
 
-    public function setKomponentenattributeId(int $komponentenattributeId): self
+    public function setKomponentenattributeId(KomponentenAttribute $komponentenattributeId): self
     {
         $this->komponentenattributeId = $komponentenattributeId;
 
         return $this;
     }
 
-    public function getKomponentenattributeId(): int
+    public function getKomponentenattributeId(): KomponentenAttribute
     {
         return $this->komponentenattributeId;
     }
