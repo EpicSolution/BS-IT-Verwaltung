@@ -99,5 +99,10 @@ class Raeume
     {
         $this->software_in_raum = $software_in_raum;
     }
+
+    public function __toString()
+    {
+        return $this->getNr().' '.$this->getBezeichnung();
+    }
 }
 

@@ -4,13 +4,13 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Komponenten;
 use AppBundle\Entity\Raeume;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Entity\Header;
 
 class verschiebeCompService
 {   
     private $em;
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em; 
     }
