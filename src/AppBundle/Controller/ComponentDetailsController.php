@@ -8,6 +8,8 @@ declare(strict_types=1);
 namespace AppBundle\Controller;
 use AppBundle\Entity\Komponenten;
 use AppBundle\Entity\Komponentenarten;
+use AppBundle\Entity\Wird_beschrieben_durch;
+use AppBundle\Entity\Komponentenattribute;
 use AppBundle\Entity\Raeume;
 use AppBundle\Entity\Lieferant;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -63,6 +65,26 @@ class ComponentDetailsController extends Controller
         return $this->render('component/component_details.html.twig', [
             'form'  => $form->createView(), 'action' => 'ändern'
         ]);
+    }
+
+    /**
+    * @Route("/getCompAttr/{id}", name="get_CompAttr", requirements  = { "id" = "\d+" })
+    */
+    public function getCompAttr(Request $request, string $id): Response
+    {
+        $attrs = $this->getDoctrine()->getRepository(Wird_beschrieben_durch::class)->findBy(["komponentenartenId" => $id]);
+
+        $inputs = "Hello";
+
+        $attrRep = $this->getDoctrine()->getRepository(Komponentenattribute::class);
+
+        foreach ($attrs as $attr) {
+            $attr = $attrRep->find($attr->getKomponentenattributeHat());
+        }
+
+        $response = new Response($inputs);
+        $response->headers->set('Content-Type', 'text');
+        return $response;
     }
 
     private function getForm($component = null): FormInterface

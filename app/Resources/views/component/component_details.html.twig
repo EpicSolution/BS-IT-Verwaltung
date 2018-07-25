@@ -2,24 +2,6 @@
 
 {% block body %}
 
-    <script>
-        $(document).ready(function() {
-            $('#form_komponentenarten_id').change(function () {
-                var art = $('#form_komponentenarten_id').val();
-                $.ajax({
-                    url: "D:/Projekte/test.html",
-                    data: {
-                        id: art
-                    },
-                    success: function( result ) {
-                      $( "#comp_art_specific" ).html(results);
-                    }
-                });
-            });
-            $('#form_komponentenarten_id').change();
-        });
-    </script>
-
     <div class="container">
 
         {% for label, messages in app.flashes %}
@@ -38,10 +20,32 @@
         <h2>Komponente {{ action }}</h2>
         {{ form_start(form) }}
            {{ form_widget(form) }}
-           <div id="comp_art_specific">
-
-           </div>
+           <div id="comp_art_specific"></div>
         {{ form_end(form) }}
 
     </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#form_komponentenarten_id').change(function () {
+                var art = $('#form_komponentenarten_id').val();
+                $.ajax({
+                    url: "getCompAttr/" + art,
+                    success: function( result ) {
+                      $( "#comp_art_specific" ).html(result);
+                    }
+                });
+            });
+
+            //$('form').html($('form').html() + "<div id='comp_art_specific'></div>");
+
+            $('#form_komponentenarten_id').change();
+        });
+    </script>
+
 {% endblock %}
