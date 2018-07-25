@@ -35,6 +35,7 @@ class EditLieferantController extends Controller
             $lieferantManager = $this->getDoctrine()->getManager();
             $lieferantManager->persist($lieferant);
             $lieferantManager->flush();
+            $this->addFlash('success', 'Lieferant wurde bearbeitet');
         }
 
         return $this->render('lieferant/edit_lieferant.html.twig', [
@@ -76,7 +77,7 @@ class EditLieferantController extends Controller
             'required' => false,
             'empty_data' => ''
         ])
-        ->add('submit', SubmitType::class)
+        ->add('Speichern', SubmitType::class)
         ->getForm();
 
         return $form;

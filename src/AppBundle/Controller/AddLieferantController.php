@@ -31,6 +31,7 @@ class AddLieferantController extends Controller
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($lieferant);
             $manager->flush();
+            $this->addFlash('success', 'Lieferant wurde hinzugefügt');
         }
 
         return $this->render('lieferant/add_lieferant.html.twig', [
@@ -72,7 +73,7 @@ class AddLieferantController extends Controller
             'required' => false,
             'empty_data' => ''
         ])
-        ->add('submit', SubmitType::class)
+        ->add('Anlegen', SubmitType::class)
         ->getForm();
 
         return $form;
