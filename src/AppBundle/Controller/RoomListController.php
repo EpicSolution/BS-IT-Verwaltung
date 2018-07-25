@@ -24,7 +24,7 @@ class RoomListController extends Controller
         if (!empty($rooms)) {
             $roomHeader = $this->getRoomHeader();
         }
-        return $this->render('room/room_list.html.twig', [
+        return $this->render('rooms/room_list.html.twig', [
             'rooms' => $rooms,
             'roomHeader' => $roomHeader
         ]);
@@ -35,7 +35,7 @@ class RoomListController extends Controller
     public function deleteRoomAction(string $id): Response
     {
         $this->deleteRoom($id);
-        $this->addFlash('success', 'Räume wurde erfolgreich gelöscht');
+        $this->addFlash('success', 'Raum wurde erfolgreich gelöscht');
 
         return $this->redirectToRoute('list_room');
     }
@@ -51,7 +51,7 @@ class RoomListController extends Controller
      */
     private function getAllRooms(): array
     {
-        $roomRepository = $this->getDoctrine()->getRepository('AppBundle:Repository:RaeumeRepository');
+        $roomRepository = $this->getDoctrine()->getRepository('AppBundle:Raeume');
         return $roomRepository->findAll();
     }
     /**
@@ -61,6 +61,7 @@ class RoomListController extends Controller
     {
         $room = $this->getDoctrine()->getRepository(Raeume::class)->find($id);
         $roomManager = $this->getDoctrine()->getManager();
-        $roomManager->deleteRoom($room);
+        $roomManager->remove($room);
+        $roomManager->flush();
     }
 }

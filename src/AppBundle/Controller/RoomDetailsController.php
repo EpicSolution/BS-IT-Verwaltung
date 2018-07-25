@@ -39,7 +39,7 @@ class RoomDetailsController extends Controller
     }
 
     /**
-    * @Route("/updateRoom", name="update_room", requirements  = { "id" = "\d+" })
+    * @Route("/editRoom/{id}", name="edit_room", requirements  = { "id" = "\d+" })
     */
     public function updateRoomAction(Request $request, string $id): Response
     {
