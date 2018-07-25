@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Lieferant
 {
     /** @var int */
@@ -33,6 +35,13 @@ class Lieferant
     /** @var string */
     protected $email;
 
+    /** @var ArrayCollection */
+    private $komponenten;
+
+    public function __construct()
+    {
+        $this->komponenten = new ArrayCollection();
+    }
     public function getId(): int
     {
         return $this->id;
@@ -48,79 +57,93 @@ class Lieferant
         $this->firmenname = $firmenname;
     }
 
-    public function getFirmenname(): string
+    public function getFirmenname(): ?string
     {
         return $this->firmenname;
     }
 
-    public function setStrasse(string $strasse)
+    public function setStrasse(?string $strasse)
     {
         $this->strasse = $strasse;
     }
 
-    public function getStrasse(): string
+    public function getStrasse(): ?string
     {
         return $this->strasse;
     }
 
-    public function setPlz(string $plz)
+    public function setPlz(?string $plz)
     {
         $this->plz = $plz;
     }
 
-    public function getPlz(): string
+    public function getPlz(): ?string
     {
         return $this->plz;
     }
 
-    public function setOrt(string $ort)
+    public function setOrt(?string $ort)
     {
         $this->ort = $ort;
     }
 
-    public function getOrt(): string
+    public function getOrt(): ?string
     {
         return $this->ort;
     }
     
-    public function setTel(string $tel)
+    public function setTel(?string $tel)
     {
         $this->tel = $tel;
     }
 
-    public function getTel(): string
+    public function getTel(): ?string
     {
         return $this->tel;
     }
 
-    public function setMobil(string $mobil)
+    public function setMobil(?string $mobil)
     {
         $this->mobil = $mobil;
     }
 
-    public function getMobil(): string
+    public function getMobil(): ?string
     {
         return $this->mobil;
     }
 
-    public function setFax(string $fax)
+    public function setFax(?string $fax)
     {
         $this->fax = $fax;
     }
 
-    public function getFax(): string
+    public function getFax(): ?string
     {
         return $this->fax;
     }
 
-    public function setEmail(string $email)
+    public function setEmail(?string $email)
     {
         $this->email = $email;
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
+            /**
+     * @return ArrayCollection
+     */
+    public function getkomponenten(): ArrayCollection
+    {
+        return $this->komponenten;
+    }
 
+    /**
+     * @param ArrayCollection $komponenten
+     */
+    public function setkomponenten(ArrayCollection $komponenten): void
+    {
+        $this->komponenten = $komponenten;
+    }
 }
