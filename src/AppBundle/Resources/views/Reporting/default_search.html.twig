@@ -21,13 +21,17 @@
         </thead>
         <tbody>
         {{dump(values)}}
-        {% for val in values[art] %}
-            <tr>
-                <td>
-                    <div> {{val}} </div>
-                </td>
-            </tr>
+        {% for val in values%}
+        <tr>
+            {% for val in values[art] %}
+                
+                    <td>
+                        {{val}} 
+                    </td>
+            {% endfor %}
+        </tr>
         {% endfor %}
+
             {# {% for lieferant in lieferanten %}
                 <tr>
                    <th scope="col">{{ lieferant.id }}</th>

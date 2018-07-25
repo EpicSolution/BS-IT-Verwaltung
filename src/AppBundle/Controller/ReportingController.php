@@ -64,7 +64,7 @@ class ReportingController extends Controller
         $ret = [];
         foreach($komponenten as $komp){
             $ret['id'] = $komp->getId();
-            $ret['raum'] = $komp->getraeume_id1()->getId();
+            $ret['raum'] = $komp->getraeume_id()->getId();
             $ret['notiz'] = $komp->getNotiz();
             foreach($komp->getkomponente_hat_attribute() as $attr){
                 $ret[$attr->getKomponentenattributeId()->getBezeichnung()] = $attr->getWert();

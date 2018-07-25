@@ -42,7 +42,7 @@ class Raeume
         return $this->id;
     }
 
-    public function setNr(int $Nr): self
+    public function setNr(string $Nr): self
     {
         $this->Nr = $Nr;
 
