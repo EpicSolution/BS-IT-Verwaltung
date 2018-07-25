@@ -57,7 +57,7 @@ class Lieferant
         $this->firmenname = $firmenname;
     }
 
-    public function getFirmenname(): string
+    public function getFirmenname(): ?string
     {
         return $this->firmenname;
     }
