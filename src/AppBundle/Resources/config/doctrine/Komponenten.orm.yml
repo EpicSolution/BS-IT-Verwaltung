@@ -9,8 +9,6 @@ AppBundle\Entity\Komponenten:
     Ident:
       type: string
       length: 1024
-    lieferant_id:
-      type: integer
     einkaufsdatum:
       type: date
     gewaehrleistungsdauer:
@@ -34,7 +32,7 @@ AppBundle\Entity\Komponenten:
           joinColumn:
               name: lieferant_id
               referencedColumnName: id
-      raeume_id1:
+      raeume_id:
           targetEntity: Raeume
           inversedBy: komponenten
           joinColumn:

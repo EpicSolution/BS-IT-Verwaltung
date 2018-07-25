@@ -35,4 +35,4 @@ AppBundle\Entity\Lieferant:
   oneToMany:
       komponenten:
           targetEntity: Komponenten
-          mappedBy: lieferant_id
+          mappedBy: lieferanten_id
