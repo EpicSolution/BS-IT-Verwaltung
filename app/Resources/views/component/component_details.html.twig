@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'boostrap_4_form_layout.html.twig' %}
 
 {% block body %}
-
-    <div class="container">
 
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -18,12 +17,60 @@
         </a>
 
         <h2>Komponente {{ action }}</h2>
-        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col-lg-12">
+                {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-row">
+                                {{form_row(form.Ident)}}
+                            </div>
+                            <div class="form-row">
+                                {{form_row(form.komponentenarten_id)}}
+                            </div>
+                            <div class="form-row">
+                                {{form_row(form.raeume_id)}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-row">
+                                {{form_row(form.lieferanten_id)}}
+                            </div>
+                            <div class="form-row">
+                                {{form_row(form.einkaufsdatum)}}
+                            </div>
+                            <div class="form-row">
+                                {{form_row(form.gewaehrleistungsdauer)}}
+                            </div>
+                            <div class="form-row">
+                                {{form_row(form.hersteller)}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-row">
+                                {{form_row(form.notiz)}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-row">
+                                <div id="form_control"></div>
+                            </div>
+                        </div>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        {# {{ form_start(form) }}
            {{ form_widget(form) }}
            <div id="comp_art_specific"></div>
-        {{ form_end(form) }}
+        {{ form_end(form) }} #}
 
-    </div>
 {% endblock %}
 
 {% block javascripts %}
@@ -43,8 +90,9 @@
                     }
                 });
             });
-            $('#form').append("<div id='comp_art_specific'></div>");
-            $('#form').append('<div class="form-group"><button type="submit" id="form_submit" name="form[submit]" class="btn btn-success btn">Submit</button></div>');
+
+            $('#form_control').append("<div id='comp_art_specific'></div>");
+            $('#form_control').append('<div class="form-group"><button type="submit" id="form_submit" name="form[submit]" class="btn btn-primary btn">Anlegen</button></div>');
 
             $('#form_komponentenarten_id').change();
         });

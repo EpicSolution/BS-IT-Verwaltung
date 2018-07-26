@@ -34,8 +34,12 @@ class RoomListController extends Controller
      */
     public function deleteRoomAction(string $id): Response
     {
-        $this->deleteRoom($id);
-        $this->addFlash('success', 'Raum wurde erfolgreich gelöscht');
+        try {
+            $this->deleteRoom($id);
+            $this->addFlash('success', 'Raum wurde erfolgreich gelöscht');
+        } catch (\Exception $err) {
+            $this->addFlash('danger', 'Raum konnte nicht gelöscht werden! (Eventuell wird dieser noch wo anders Referenziert?)');
+        }
 
         return $this->redirectToRoute('list_room');
     }
