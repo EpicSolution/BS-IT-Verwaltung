@@ -66,7 +66,7 @@ class Raeume
         return $this->Bezeichnung;
     }
 
-    public function setNotiz(string $Notiz): self
+    public function setNotiz(?string $Notiz): self
     {
         $this->Notiz = $Notiz;
 
@@ -98,6 +98,11 @@ class Raeume
     {
         $this->software_in_raum = $software_in_raum;
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getNr();
     }
 }
 

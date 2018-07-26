@@ -21,6 +21,7 @@ AppBundle\Entity\Raeume:
             type: string
             length: '255'
             column: notiz
+            nullable: TRUE
     oneToMany:
         raeume:
             targetEntity: Komponenten
