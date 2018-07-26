@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\PersistentCollection;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class Komponentenarten
 {
@@ -23,14 +25,15 @@ class Komponentenarten
     public function __construct()
     {
         $this->komponenten = new ArrayCollection();
+        $this->wirdBeschriebenDurch = new ArrayCollection();
     }
 
-    public function getKomponenten(): ArrayCollection
+    public function getKomponenten(): Collection
     {
         return $this->komponenten;
     }
 
-    public function setKomponenten(ArrayCollection $komponenten)
+    public function setKomponenten(CollectionType $komponenten)
     {
         $this->komponenten = $komponenten;
     }
@@ -50,7 +53,7 @@ class Komponentenarten
         return $this->komponentenart;
     }
 
-    public function setKomponentenart(int $komponentenart)
+    public function setKomponentenart(string $komponentenart)
     {
         $this->komponentenart = $komponentenart;
     }
@@ -65,5 +68,10 @@ class Komponentenarten
         $this->wirdBeschriebenDurch = $wirdBeschriebenDurch;
 
         return $this;
+    }
+    public function __toString(): string
+    {
+        return $this->getKomponentenart();
+
     }
 }
