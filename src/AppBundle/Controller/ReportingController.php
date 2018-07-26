@@ -55,23 +55,26 @@ class ReportingController extends Controller
     function getKomponentenValuesForArt(Komponentenarten $art){
         $em = $this->getDoctrine()->getEntityManager();
         $qb = $em->createQueryBuilder();
-        // $komponenten = $qb->select('k')
-        //                     ->from('AppBundle:Komponenten','k')
-        //                     ->join('k.komponentenarten_id', 'art')
-        //                     ->where('art.id = :id')
-        //                     ->setParameter('id', $art->getId())
-        //                     ->getQuery()->getResult();
-        $komponentenrepo = $this->getDoctrine()->getRepository(Komponenten::class);
+        $komponenten = $qb->select('k')
+                            ->from('AppBundle:Komponenten','k')
+                            ->join('k.komponentenarten_id', 'art')
+                            ->where('art.id = :id')
+                            ->setParameter('id', $art->getId())
+                            ->getQuery()->getResult();
+        // $komponentenrepo = $this->getDoctrine()->getRepository(Komponenten::class);
 
-        $komponenten = $komponentenrepo->findAll();
+        // $komponenten = $komponentenrepo->findAll();
         $ret = [];
         foreach($komponenten as $komp){
-            $ret['id'] = $komp->getId();
-            $ret['raum'] = $komp->getraeume_id()->getId();
-            $ret['notiz'] = $komp->getNotiz();
+            $id = $komp->getId();
+            $ret[$id] =[];
+            $ret[$id]['id'] = $komp->getId();
+            $ret[$id]['raum'] = $komp->getraeume_id()->getId();
+            $ret[$id]['notiz'] = $komp->getNotiz();
+            $ret[$id]['art'] = $art->getKomponentenart();
             foreach($komp->getkomponente_hat_attribute() as $attr){
                 $var = $attr->getKomponentenattributeId();
-                $ret[$var->getBezeichnung()] = $attr->getWert();
+                $ret[$id][$var->getBezeichnung()] = $attr->getWert();
             }
         }
         return $ret;
@@ -89,7 +92,7 @@ class ReportingController extends Controller
     }
 
     function getDefaultHeaders(){
-        return ['id', 'raum' , 'notiz'];
+        return ['id', 'raum' ,'art', 'notiz'];
     }
 
 }

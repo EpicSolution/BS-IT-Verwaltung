@@ -10,7 +10,7 @@
         {% endfor %}
     {% endfor %}
     <h1>Komponentenverwaltung</h1>
-    {% for  art in artenliste %}
+    {% for art, komp in values %}
     <h2> {{art}} </h2>
     <table class="table table-striped">
         <thead>
@@ -20,34 +20,19 @@
             <th scope="col">Aktion</th>
         </thead>
         <tbody>
-        {{dump(values)}}
-        {% for val in values%}
-        <tr>
-            {% for val in values[art] %}
-                
-                    <td>
-                        {{val}} 
-                    </td>
-            {% endfor %}
-        </tr>
+        {% for id,rows in komp %}
+            <tr>
+                    {% for val in headers[art] %}
+                        <td>
+                            {{values[art][id][val]}} 
+                        </td>
+                    {% endfor %}
+
+            </tr>
+
         {% endfor %}
 
-            {# {% for lieferant in lieferanten %}
-                <tr>
-                   <th scope="col">{{ lieferant.id }}</th>
-                   <td>{{ lieferant.firmenname }}</td>
-                   <td>
-                       <div class="btn-group">
-                            <a href="{{ url('delete_lieferant', {'id': lieferant.id}) }}" class="btn btn-danger" role="button">
-                                <span>Löschen</span>
-                            </a>
-                            <a href="{{ url('edit_lieferant', {'id': lieferant.id}) }}" class="btn btn-info" role="button">
-                                <span>Bearbeiten</span>
-                            </a>
-                       </div>
-                   </td>
-                </tr>
-            {% endfor %} #}
+           
         </tbody>
     </table>
     {% endfor %}
