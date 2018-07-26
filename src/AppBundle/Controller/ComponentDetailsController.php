@@ -35,7 +35,6 @@ class ComponentDetailsController extends Controller
     public function addComponentAction(Request $request): Response
     {
         $attributes = [];
-        dump($request);
         $form = $this->getForm();
 
         if ($request->getMethod() === "POST") {
@@ -53,6 +52,7 @@ class ComponentDetailsController extends Controller
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($component);
             $manager->flush();
+
             $attributeRep = $this->getDoctrine()->getRepository(Komponentenattribute::class);
             foreach ($attributes as $attributeID => $value) {
                 $attributeValues = new Komponente_hat_attribute();
@@ -63,6 +63,7 @@ class ComponentDetailsController extends Controller
                 $manager->persist($attributeValues);
                 $manager->flush();
             }
+
             $this->addFlash('success', 'Komponente wurde erfolgreich hinzugefügt');
         }
         return $this->render('component/component_details.html.twig', [
@@ -75,7 +76,17 @@ class ComponentDetailsController extends Controller
     */
     public function updateComponentAction(Request $request, string $id): Response
     {
+        $attributes = [];
         $component = $this->getDoctrine()->getRepository(Komponenten::class)->find($id);
+
+        if ($request->getMethod() === "POST") {
+            $content = $request->request->all()["form"];
+            $attributes = $content["attribute["];
+            unset($content["attribute["]);
+            unset($content["submit"]);
+            $request->request->set("form", $content);
+        }
+
         $form = $this->getForm($component);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -84,6 +95,27 @@ class ComponentDetailsController extends Controller
             $manager = $this->getDoctrine()->getManager();
             $manager->merge($component);
             $manager->flush();
+
+
+            $attributeRep = $this->getDoctrine()->getRepository(Komponentenattribute::class);
+
+            $vals = $attributeRep->findBy(["komponentenId" => $component]);
+            foreach ($vals as $val) {
+                $attributeRep->remove($val);
+            }
+            $attributeRep->flush();
+
+            foreach ($attributes as $attributeID => $value) {
+                $attributeValues = new Komponente_hat_attribute();
+                $attributeValues->setKomponentenId($component);
+                $attribute = $attributeRep->find($attributeID);
+                $attributeValues->setKomponentenattributeId($attribute);
+                $attributeValues->setWert($value);
+                $manager->persist($attributeValues);
+                $manager->flush();
+            }
+
+
             $this->addFlash('success', 'Komponente wurde erfolgreich geändert');
         }
         return $this->render('component/component_details.html.twig', [
