@@ -34,8 +34,10 @@
         $(document).ready(function() {
             $('#form_komponentenarten_id').change(function () {
                 var art = $('#form_komponentenarten_id').val();
+                var url = "getCompAttr/" + art;
+                $( "#comp_art_specific" ).html("");
                 $.ajax({
-                    url: "getCompAttr/" + art,
+                    url: url,
                     success: function( result ) {
                       $( "#comp_art_specific" ).html(result);
                     }
