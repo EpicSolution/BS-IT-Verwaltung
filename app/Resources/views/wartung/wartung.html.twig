@@ -9,14 +9,11 @@
                     <th scope="col">zu warten:</th>
                 </thead>
                 <tbody>
-                    {% for warten in zuwarten %}
-                        {{dump(warten)}}
-                        <tr>
-                        <td>{{ warten.raeume_id }}</td>
-                        <td>{{ warten.ident }}</td>
-                        <td>{{ warten.notiz }}</td>
-                        </tr>
-                    {% endfor %}
+                    <tr>
+                    <td>{{ zuwarten.raeume_id }}</td>
+                    <td>{{ zuwarten.Ident }}</td>
+                    <td>{{ zuwarten.notiz }}</td>
+                    </tr>
                 </tbody>
             </table>            
             <table class="table table-striped">                
@@ -30,9 +27,7 @@
                         <tr>
                         <td>{{ komponente.raeume_id }}</td>
                         <td>{{ komponente.ident }}</td>
-                        <td>{{ komponente.notiz }}</td>
-
-                        
+                        <td>{{ komponente.notiz }}</td>                       
                         </tr>
                     {% endfor %}
                 </tbody>

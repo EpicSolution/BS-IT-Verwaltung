@@ -12,10 +12,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormInterface;
-use Appbundle\Service\verschiebeCompService;
+use AppBundle\Service\verschiebeCompService;
+use Doctrine\ORM\EntityManagerInterface;
 
 class WartungController extends Controller
 {
+    private $se;
     /**
      * @Route("/wartung/{id}", name="wartung", requirements  = { "id" = "\d+" })
      */
@@ -35,19 +37,7 @@ class WartungController extends Controller
             'komponenteHeader' => $komponenteHeader
         ]);
     }
-    public function showKomponentesAction(Request $request): Response
-    {
-        $komponenteHeader = [];
-        $komponentes = $this->getAllKomponentes();
-        if (!empty($komponentes)) {
-            $komponenteHeader = $this->getKomponenteHeader();
-        }
-        $raeume = $this->getAllRaeume($komponentes);
-        return $this->render('wartung/wartung.html.twig', [
-            'komponentes' => $komponentes,
-            'komponenteHeader' => $komponenteHeader
-        ]);
-    }
+    
 
     /**
      * @return Komponente[]
@@ -92,13 +82,8 @@ class WartungController extends Controller
         $raeume[] = $komponente->getRaeume_id();
         return $raeume;
     }
-
-    public function __construct(verschiebeCompService $se)
-    {
-        $this->se = $se; 
-    }
     
-    public function tauscheComp(string $id_alt, string $raum_alt, string $wartraum, string $id_neu)
+    public function tauscheComp(string $id_alt, string $raum_alt, string $id_neu)
     {
 
         $request = $this->getRequest();
@@ -114,6 +99,7 @@ class WartungController extends Controller
 
     private function verschiebe_comp(string $id, string $raeume_id )
     {
+        $this->se = $this->get(verschiebeCompService::class);
         $this->se->verschiebeComp($id,$raeume_id);
-    }
+    }  
 }
