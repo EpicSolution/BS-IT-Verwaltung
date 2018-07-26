@@ -62,9 +62,11 @@ class Komponentenarten
         return $this->wirdBeschriebenDurch;
     }
 
-    public function setWirdBeschriebenDurch(PersistentCollection $wirdBeschriebenDurch): void
+    public function setWirdBeschriebenDurch(PersistentCollection $wirdBeschriebenDurch): self
     {
         $this->wirdBeschriebenDurch = $wirdBeschriebenDurch;
+
+        return $this;
     }
 
     public function __toString(): string

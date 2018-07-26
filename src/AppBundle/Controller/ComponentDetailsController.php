@@ -32,10 +32,16 @@ class ComponentDetailsController extends Controller
     public function addComponentAction(Request $request): Response
     {
         $form = $this->getForm();
+        $content = $request->request->all()["form"];
+        dump($content);
+
+        die();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Component $component */
             $component = $form->getData();
+            dump($component);
+            die();
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($component);
             $manager->flush();
@@ -76,11 +82,11 @@ class ComponentDetailsController extends Controller
 
         $inputs = "";
 
-        $attrRep = $this->getDoctrine()->getRepository(Komponentenattribute::class);
-
         foreach ($attrs as $attr) {
-            $attr = $attrRep->find($attr->getKomponentenattributeHat());
-            $inputs .= "<input name='".$attr->getId()."' placeholder='".$attr->getBezeichnung()."'></input>";
+
+            $attr = $attr->getKomponentenattributId();
+
+            $inputs .= "<input name='form[attribute[".$attr->getId()."]]' placeholder='".$attr->getBezeichnung()."'></input>";
         }
 
         $response = new Response($inputs);

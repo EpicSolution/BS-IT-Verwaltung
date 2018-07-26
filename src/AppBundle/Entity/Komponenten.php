@@ -62,17 +62,17 @@ class Komponenten
         return $this->raeume_id;
     }
 
-    public function setRaeumeId(int $raeume_id)
+    public function setRaeumeId(Raeume $raeume_id)
     {
         $this->raeume_id = $raeume_id;
     }
 
-    public function getEinkaufsdatum(): ?int
+    public function getEinkaufsdatum(): ?\DateTime
     {
         return $this->einkaufsdatum;
     }
 
-    public function setEinkaufsdatum(?int $einkaufsdatum)
+    public function setEinkaufsdatum(?\DateTime $einkaufsdatum)
     {
         $this->einkaufsdatum = $einkaufsdatum;
     }
@@ -135,16 +135,6 @@ class Komponenten
     public function setlieferantenId(?Lieferant $lieferanten_id): void
     {
         $this->lieferanten_id = $lieferanten_id;
-    }
-
-    public function getraeume_id(): Raeume
-    {
-        return $this->raeume_id;
-    }
-
-    public function setraeume_id(Raeume $raeume_id): void
-    {
-        $this->raeume_id = $raeume_id;
     }
 
     public function getkomponente_hat_attribute(): ?PersistentCollection
