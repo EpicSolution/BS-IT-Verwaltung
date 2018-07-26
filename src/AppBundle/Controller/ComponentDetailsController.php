@@ -12,6 +12,8 @@ use AppBundle\Entity\Wird_beschrieben_durch;
 use AppBundle\Entity\Komponentenattribute;
 use AppBundle\Entity\Raeume;
 use AppBundle\Entity\Lieferant;
+use AppBundle\Entity\Komponente_hat_attribute;
+use AppBundle\Repository\KomponentenattributeRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -31,20 +33,33 @@ class ComponentDetailsController extends Controller
      */
     public function addComponentAction(Request $request): Response
     {
+        $attributes = [];
         $form = $this->getForm();
-        $content = $request->request->all()["form"];
-        dump($content);
 
-        die();
+        if ($request->getMethod() === "POST") {
+            $content = $request->request->all()["form"];
+            $attributes = $content["attribute["];
+            unset($content["attribute["]);
+            $request->request->set("form", $content);
+        }
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Component $component */
             $component = $form->getData();
-            dump($component);
-            die();
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($component);
             $manager->flush();
+            $attributeRep = $this->getDoctrine()->getRepository(Komponentenattribute::class);
+            foreach ($attributes as $attributeID => $value) {
+                $attributeValues = new Komponente_hat_attribute();
+                $attributeValues->setKomponentenId($component);
+                $attribute = $attributeRep->find($attributeID);
+                $attributeValues->setKomponentenattributeId($attribute);
+                $attributeValues->setWert($value);
+                $manager->persist($attributeValues);
+                $manager->flush();
+            }
             $this->addFlash('success', 'Komponente wurde erfolgreich hinzugefügt');
         }
         return $this->render('component/component_details.html.twig', [
@@ -86,7 +101,7 @@ class ComponentDetailsController extends Controller
 
             $attr = $attr->getKomponentenattributId();
 
-            $inputs .= "<input name='form[attribute[".$attr->getId()."]]' placeholder='".$attr->getBezeichnung()."'></input>";
+            $inputs .= "<input name='form[attribute[][".$attr->getId()."]]' placeholder='".$attr->getBezeichnung()."'></input>";
         }
 
         $response = new Response($inputs);
@@ -108,6 +123,12 @@ class ComponentDetailsController extends Controller
                 'label' => 'Art',
                 'required' => true
             ])
+            /*->add('software_in_raum', EntityType::class, [
+                'class' => Raeume::class,
+                'label' => 'Raum',
+                'required' => true
+                ,'multiple' => true
+            ])*/
             ->add('raeume_id', EntityType::class, [
                 'class' => Raeume::class,
                 'label' => 'Raum',
