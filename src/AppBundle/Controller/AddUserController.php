@@ -54,12 +54,15 @@ class AddUserController extends Controller
         $form = $this->createFormBuilder($user)
             ->add('username', TextType::class, [
                 'required' => true,
+                'label' => 'Username',
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
+                'label' => 'E-mail',
             ])
             ->add('plainPassword', PasswordType::class, [
-                'required' => true
+                'required' => true,
+                'label' => 'Passwort',
             ])
             ->add('roles', ChoiceType::class, [
                 'multiple' => true,
@@ -69,11 +72,15 @@ class AddUserController extends Controller
                     'Verwalter' => 'ROLE_ADMINISTRATOR',
                     'Lehrer' => 'ROLE_TEACHER'
                 ],
+                'attr' => [
+                    'class' => 'selectpicker'
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-primary'
+                ],
+                'label' => 'Benutzer anlegen',
             ])
             ->getForm();
 

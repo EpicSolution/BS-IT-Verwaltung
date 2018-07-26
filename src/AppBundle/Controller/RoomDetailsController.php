@@ -67,17 +67,21 @@ class RoomDetailsController extends Controller
         $form = $this->createFormBuilder($user)
             ->add('nr', TextType::class, [
                 'required' => true,
+                'label' => 'Raum-Nr.',
             ])
             ->add('bezeichnung', TextType::class, [
                 'required' => true,
+                'label' => 'Raumbezeichnung',
             ])
             ->add('notiz', TextareaType::class, [
-                'required' => false
+                'required' => false,
+                'label' => 'Notiz',
             ])
             ->add('Speichern', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-primary'
+                ],
+                'label' => 'Raum Hinzufügen',
             ])
             ->getForm();
         return $form;
