@@ -142,14 +142,14 @@ class ComponentDetailsController extends Controller
             ])
             ->add('einkaufsdatum', DateType::class, [
                 'widget' => 'single_text',
-                'required' => false
+                'required' => true
             ])
             ->add('gewaehrleistungsdauer', NumberType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Gewährleistungsdauer',
             ])
             ->add('hersteller', TextType::class, [
-                'required' => false
+                'required' => true
             ])
             ->add('notiz', TextareaType::class, [
                 'required' => false
