@@ -9,9 +9,31 @@
             </div>
         {% endfor %}
     {% endfor %}
+            {{dump(raume)}}
+    <div>Raum:</div>
+    <select name="test">
+        <option selected value>  </option>
+
+        {% for raum in raume %}
+        <option value={{raum.id}}> {{raum.Bezeichnung}}  </option>
+        {% endfor %}
+    </select>
+    <div>Komponentenart:</div>
+    <select>
+        <option selected value> </option>
+        {% for art in arten %}
+        <option value={{art.id}}> {{art.komponentenart}}  </option>
+        {% endfor %}
+    </select>
+    </form
+    <a href="{{ url()}}">
+     <a href="#" class="float-right btn btn-success">
+        <i class="fas fa-plus-circle"></i>
+        <span>Komponente erstellen</span>
+    </a>
     <h1>Komponentenverwaltung</h1>
     {% for art, komp in values %}
-    <h2> {{art}} </h2>
+    <h2> Komponentenart: {{art}} </h2>
     <table class="table table-striped">
         <thead>
                 {% for val in headers[art] %}
