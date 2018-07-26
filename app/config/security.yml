@@ -16,7 +16,7 @@ security:
         - ROLE_SHOW_BASE_DATA
         - ROLE_ADD_COMPONENT
         - ROLE_DELETE_COMPONENT
-        - ROLE_AUSMUSTERN
+        - ROLE_WARTUNG
       ROLE_TRAINEE:
         - ROLE_ADMIN
         - ROLE_REPORTING
@@ -28,7 +28,7 @@ security:
         - ROLE_SHOW_BASE_DATA
         - ROLE_ADD_COMPONENT
         - ROLE_DELETE_COMPONENT
-        - ROLE_AUSMUSTERN
+        - ROLE_WARTUNG
       ROLE_ADMINISTRATOR:
         - ROLE_ADMIN
         - ROLE_SHOW_COMPONENTS
@@ -36,7 +36,18 @@ security:
         - ROLE_ADMIN
         - ROLE_SHOW_COMPONENTS
       ROLE_ADMIN:       ROLE_USER
-      ROLE_SUPER_ADMIN: ROLE_ADMIN
+      ROLE_SUPER_ADMIN:
+        - ROLE_ADMIN
+        - ROLE_REPORTING
+        - ROLE_EDIT_USER
+        - ROLE_EDIT_SUPPLIER
+        - ROLE_EDIT_ROOM
+        - ROLE_SHOW_COMPONENTS
+        - ROLE_EDIT_COMPONENTS
+        - ROLE_SHOW_BASE_DATA
+        - ROLE_ADD_COMPONENT
+        - ROLE_DELETE_COMPONENT
+        - ROLE_WARTUNG
 
   providers:
       fos_userbundle:
@@ -76,4 +87,5 @@ security:
       - { path: ^/delete/component/, role: ROLE_DELETE_COMPONENT}
       - { path: ^/addComponent, role: ROLE_ADD_COMPONENT}
       - { path: ^/editComponent/, role: ROLE_ADD_COMPONENT}
+      - { path: ^/wartung/, role: ROLE_WARTUNG}
       - { path: ^/, role: ROLE_USER }
