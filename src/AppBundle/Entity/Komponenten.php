@@ -14,7 +14,8 @@ class Komponenten
     /** @var string */
     protected $Ident;
 
-    /** @var int */
+    /** @var date */
+
     protected $einkaufsdatum;
 
     /** @var int */

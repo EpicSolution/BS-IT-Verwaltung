@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace AppBundle\Controller;
 use AppBundle\Entity\Komponenten;
 use AppBundle\Entity\Komponentenarten;
-use AppBundle\Entity\Software_in_raum;
 use AppBundle\Entity\Wird_beschrieben_durch;
 use AppBundle\Entity\Komponentenattribute;
 use AppBundle\Entity\Raeume;
@@ -52,7 +51,6 @@ class ComponentDetailsController extends Controller
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($component);
             $manager->flush();
-
             $attributeRep = $this->getDoctrine()->getRepository(Komponentenattribute::class);
             foreach ($attributes as $attributeID => $value) {
                 $attributeValues = new Komponente_hat_attribute();
@@ -63,7 +61,6 @@ class ComponentDetailsController extends Controller
                 $manager->persist($attributeValues);
                 $manager->flush();
             }
-
             $this->addFlash('success', 'Komponente wurde erfolgreich hinzugefügt');
         }
         return $this->render('component/component_add.html.twig', [
@@ -76,8 +73,9 @@ class ComponentDetailsController extends Controller
     */
     public function updateComponentAction(Request $request, string $id): Response
     {
-        $attributes = [];
         $component = $this->getDoctrine()->getRepository(Komponenten::class)->find($id);
+        $attributes = [];
+        $form = $this->getForm($component);
 
         if ($request->getMethod() === "POST") {
             $content = $request->request->all()["form"];
@@ -86,8 +84,6 @@ class ComponentDetailsController extends Controller
             unset($content["submit"]);
             $request->request->set("form", $content);
         }
-
-        $form = $this->getForm($component);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Component $component */
@@ -95,7 +91,6 @@ class ComponentDetailsController extends Controller
             $manager = $this->getDoctrine()->getManager();
             $manager->merge($component);
             $manager->flush();
-
 
             $attributeRep = $this->getDoctrine()->getRepository(Komponentenattribute::class);
             $valRep = $this->getDoctrine()->getRepository(Komponente_hat_attribute::class);
@@ -115,7 +110,6 @@ class ComponentDetailsController extends Controller
                 $manager->persist($attributeValues);
                 $manager->flush();
             }
-
 
             $this->addFlash('success', 'Komponente wurde erfolgreich geändert');
         }
@@ -181,8 +175,6 @@ class ComponentDetailsController extends Controller
 
     private function getForm($component = null): FormInterface
     {
-        /** @var Raeume $raume */
-        $raume = $this->getDoctrine()->getRepository(Raeume::class)->findAll();
         if ($component == null) {
             $component = new Komponenten();
         }
@@ -195,16 +187,16 @@ class ComponentDetailsController extends Controller
                 'label' => 'Art',
                 'required' => true
             ])
-            /*->add('id', EntityType::class, [
+            /*->add('software_in_raum', EntityType::class, [
                 'class' => Raeume::class,
                 'label' => 'Raum',
-                'required' => true,
-                'multiple' => true
+                'required' => true
+                ,'multiple' => true
             ])*/
             ->add('raeume_id', EntityType::class, [
                 'class' => Raeume::class,
                 'label' => 'Raum',
-                'required' => true,
+                'required' => true
             ])
             ->add('lieferanten_id', EntityType::class, [
                 'class' => Lieferant::class,
@@ -223,7 +215,8 @@ class ComponentDetailsController extends Controller
                 'required' => true
             ])
             ->add('notiz', TextareaType::class, [
-                'required' => false
+                'required' => false,
+                'empty_data' => ""
             ])
             ->getForm();
         return $form;

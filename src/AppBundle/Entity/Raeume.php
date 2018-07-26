@@ -100,9 +100,11 @@ class Raeume
         return $this;
     }
 
-    public function __toString(): string
+
+    public function __toString()
     {
         return $this->getBezeichnung();
+
     }
 }
 
