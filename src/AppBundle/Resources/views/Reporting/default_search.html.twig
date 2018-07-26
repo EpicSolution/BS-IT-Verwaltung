@@ -27,9 +27,20 @@
                             {{values[art][id][val]}} 
                         </td>
                     {% endfor %}
-
+                   <td>
+                       <div class="btn-group">
+                            <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-success" role="button">
+                                <span>Öffnen</span>
+                            </a>
+                            <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-info" role="button">
+                                <span>Wartung</span>
+                            </a>
+                            <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-danger" role="button">
+                                <span>Ausmustern</span>
+                            </a>
+                       </div>
+                   </td>
             </tr>
-
         {% endfor %}
 
            
