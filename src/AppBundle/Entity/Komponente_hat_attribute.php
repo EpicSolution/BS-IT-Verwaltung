@@ -30,7 +30,7 @@ class Komponente_hat_attribute
 
     public function __construct()
     {
-  
+
     }
 
     public function getId(): int
@@ -50,7 +50,9 @@ class Komponente_hat_attribute
         return $this->komponentenId;
     }
 
+
     public function setKomponentenattributeId(Komponentenattribute $komponentenattributeId): self
+
     {
         $this->komponentenattributeId = $komponentenattributeId;
 
@@ -73,9 +75,9 @@ class Komponente_hat_attribute
     {
         return $this->wert;
     }
-    
 
 
-  
+
+
 }
 
