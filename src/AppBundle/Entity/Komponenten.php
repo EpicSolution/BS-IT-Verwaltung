@@ -34,7 +34,7 @@ class Komponenten
     private $lieferanten_id;
 
     /** @var Raeume */
-    private $raeume_id;
+    protected $raeume_id;
 
     /** @var PersistentCollection */
     private $komponente_hat_attribute;

@@ -15,7 +15,7 @@ class verschiebeCompService
         $this->em = $em; 
     }
 
-    public function verschiebeComp(string $id, string $raeume_id)
+    public function verschiebeComp( $id,  $raeume_id)
     {
         $komponenten = $this->em->getRepository(Komponenten::class)->find($id);
         $raeume = $this->em->getRepository(Raeume::class)->find($raeume_id);

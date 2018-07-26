@@ -89,7 +89,7 @@ class WartungController extends Controller
         $raeume = [];
         /**@var Komponenten $komponente */
         foreach ($komponentes as $komponente) {
-            $raeume[] = $komponente->getraeume_id();
+            $raeume[] = $komponente->getRaeumeId();
         }
         return $raeume;
     }
@@ -97,7 +97,7 @@ class WartungController extends Controller
     private function getRaeume(Komponenten $komponente)
     {
         /**@var Komponenten $komponente */
-        $raeume = $komponente->getraeume_id();
+        $raeume = $komponente->getRaeumeId();
         return $raeume;
     }
     /**
@@ -107,7 +107,7 @@ class WartungController extends Controller
     {
         $repo = $this->getDoctrine()->getRepository(Komponenten::class);
         $komp = $repo->find($id_alt);
-        $raum = $komp->getraeume_id();
+        $raum = $komp->getRaeumeId();
         $raum_alt = $raum->getId();
 
         $em = $this->getDoctrine()->getManager();
@@ -115,13 +115,13 @@ class WartungController extends Controller
                     ->select('r.id')
                     ->from(Raeume::class, 'r')
                     ->andWhere('r.Bezeichnung LIKE :searchTerm')
-                    ->setParameter('searchTerm', '%wartung%')
+                    ->setParameter('searchTerm', 'Wartung')
                     ; 
         $wartraum =$query->getQuery()->getOneOrNullResult();
         if (empty($wartraum)) {
             $r = new Raeume();
-            $r->setNr(0);
-            $r->setBezeichnung('wartung');
+            $r->setNr('Wartung');
+             $r->setBezeichnung('Wartung');
             $r->setNotiz('Raum für zu wartende Komponenten');
             $em->persist($r);
             $em->flush();
@@ -149,7 +149,7 @@ class WartungController extends Controller
         return $this->redirectToRoute('wartung',array('id' => $id_alt));
     }
 
-    private function verschiebe_comp(int $id, int $raeume_id )
+    private function verschiebe_comp( $id,  $raeume_id )
     {
         $this->se = $this->get(verschiebeCompService::class);
         $this->se->verschiebeComp($id,$raeume_id);
