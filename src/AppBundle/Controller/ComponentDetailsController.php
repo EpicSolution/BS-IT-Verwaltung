@@ -40,11 +40,12 @@ class ComponentDetailsController extends Controller
             $content = $request->request->all()["form"];
             $attributes = $content["attribute["];
             unset($content["attribute["]);
+            unset($content["submit"]);
             $request->request->set("form", $content);
         }
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($request->getMethod() === "POST" && $form->isValid()) {
             /** @var Komponenten $component */
             $component = $form->getData();
             $manager = $this->getDoctrine()->getManager();
@@ -152,11 +153,6 @@ class ComponentDetailsController extends Controller
             ])
             ->add('notiz', TextareaType::class, [
                 'required' => false
-            ])
-            ->add('submit', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-success'
-                ]
             ])
             ->getForm();
         return $form;
