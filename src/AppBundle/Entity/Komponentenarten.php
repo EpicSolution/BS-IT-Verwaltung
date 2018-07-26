@@ -67,6 +67,7 @@ class Komponentenarten
         $this->wirdBeschriebenDurch = $wirdBeschriebenDurch;
 
         return $this;
+    }
 
     public function __toString(): string
     {
