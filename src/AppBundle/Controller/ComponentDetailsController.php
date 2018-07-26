@@ -39,8 +39,10 @@ class ComponentDetailsController extends Controller
 
         if ($request->getMethod() === "POST") {
             $content = $request->request->all()["form"];
-            $attributes = $content["attribute["];
-            unset($content["attribute["]);
+            if (isset($content["attribute["])) {
+                $attributes = $content["attribute["];
+                unset($content["attribute["]);
+            }
             unset($content["submit"]);
             $request->request->set("form", $content);
         }
@@ -50,6 +52,12 @@ class ComponentDetailsController extends Controller
             /** @var Komponenten $component */
             $component = $form->getData();
             $manager = $this->getDoctrine()->getManager();
+            if ($component->getKomponentenartenId()->getKomponentenart() === 'Software') {
+                $softwareAndRoom = new Software_in_raum();
+                $softwareAndRoom->setKomponentenId($component);
+                $softwareAndRoom->setRaeumeId($component->getRaeumeId());
+                $manager->persist($softwareAndRoom);
+            }
             $manager->persist($component);
             $manager->flush();
 
