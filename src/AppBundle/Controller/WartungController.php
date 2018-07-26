@@ -14,10 +14,16 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormInterface;
 use AppBundle\Service\verschiebeCompService;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query\AST\WhereClause;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+
 
 class WartungController extends Controller
 {
     private $se;
+    /**@var EntityManager $em */
+    public $em;
     /**
      * @Route("/wartung/{id}", name="wartung", requirements  = { "id" = "\d+" })
      */
@@ -26,7 +32,7 @@ class WartungController extends Controller
         $zuwarten = $this->getKomponente($id);
         $raeume = $this->getRaeume($zuwarten);
         $komponenteHeader = [];
-        $komponentes = $this->getAllKomponentes();
+        $komponentes = $this->getAllKomponentes($id);
         if (!empty($komponentes)) {
             $komponenteHeader = $this->getKomponenteHeader();
         }
@@ -42,10 +48,23 @@ class WartungController extends Controller
     /**
      * @return Komponente[]
      */
-    private function getAllKomponentes(): array
+    private function getAllKomponentes(string $id): array
     {
+        $list = [];
         $komponenteRepository = $this->getDoctrine()->getRepository('AppBundle:Komponenten');
-        return $komponenteRepository->findAll();
+        $repo_art = $this->getDoctrine()->getRepository(Komponenten::class);
+        $komp_art = $repo_art->find($id);
+        $art = $komp_art->getKomponentenartenId();
+        $array = $komponenteRepository->findBy(["komponentenarten_id"=>$art]);
+
+        foreach($array as $a)
+        {
+            if ($a->getId() != $id)
+            {
+                $list[] = $a;
+            }
+        }
+        return $list;
     }
     
     /**
@@ -70,36 +89,69 @@ class WartungController extends Controller
         $raeume = [];
         /**@var Komponenten $komponente */
         foreach ($komponentes as $komponente) {
-            $raeume[] = $komponente->getRaeume_id();
+            $raeume[] = $komponente->getraeume_id();
         }
         return $raeume;
     }
 
     private function getRaeume(Komponenten $komponente)
     {
-        $raeume = [];
         /**@var Komponenten $komponente */
-        $raeume[] = $komponente->getRaeume_id();
+        $raeume = $komponente->getraeume_id();
         return $raeume;
     }
-    
-    public function tauscheComp(string $id_alt, string $raum_alt, string $id_neu)
+    /**
+     * @Route("tauscheComp/{id_alt}/{id_neu}", name="tauscheComp", requirements  = { "id_alt" = "\d+", "id_neu" = "\d+" })
+     */
+    public function tauscheComp(string $id_alt, string $id_neu)
     {
+        $repo = $this->getDoctrine()->getRepository(Komponenten::class);
+        $komp = $repo->find($id_alt);
+        $raum = $komp->getraeume_id();
+        $raum_alt = $raum->getId();
 
-        $request = $this->getRequest();
-        $searchterm = $request->get('wartung');
-        $em = $this->getDoctrine()->getEntityManager();
-        $query = $em->createQuery("SELECT r.id FROM Raeume n WHERE n.bezeichnung LIKE '% :searchterm %'")
-                 ->setParameter('searchterm', $searchterm);    
-        $wartraum = $query->getResult();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQueryBuilder()
+                    ->select('r.id')
+                    ->from(Raeume::class, 'r')
+                    ->andWhere('r.Bezeichnung LIKE :searchTerm')
+                    ->setParameter('searchTerm', '%wartung%')
+                    ; 
+        $wartraum =$query->getQuery()->getOneOrNullResult();
+        if (empty($wartraum)) {
+            $r = new Raeume();
+            $r->setNr(0);
+            $r->setBezeichnung('wartung');
+            $r->setNotiz('Raum für zu wartende Komponenten');
+            $em->persist($r);
+            $em->flush();
+            $this->addFlash('success', 'Wartungsraum wurde hinzugefügt');
+ 
+            $query = $em->createQueryBuilder()
+                            ->select('r.id')
+                            ->from(Raeume::class, 'r')
+                            ->andWhere('r.Bezeichnung LIKE :searchTerm')
+                            ->setParameter('searchTerm', '%wartung%')
+            ; 
+            $wartraum =$query->getQuery()->getOneOrNullResult();
+        }
 
-        verschiebe_comp($id_alt,$wartraum);
-        verschiebe_comp($id_neu,$raum_alt);        
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
+        $wartraum = $propertyAccessor->getValue($wartraum, '[id]');
+        $id_alt = intval($id_alt);
+        $wartraum = intval($wartraum);
+        $id_neu = intval($id_neu);
+        $raum_alt = intval($raum_alt    );
+
+        $this->verschiebe_comp($id_alt,$wartraum);
+        $this->verschiebe_comp($id_neu,$raum_alt);    
+        
+        return $this->redirectToRoute('wartung',array('id' => $id_alt));
     }
 
-    private function verschiebe_comp(string $id, string $raeume_id )
+    private function verschiebe_comp(int $id, int $raeume_id )
     {
         $this->se = $this->get(verschiebeCompService::class);
         $this->se->verschiebeComp($id,$raeume_id);
-    }  
+    }     
 }

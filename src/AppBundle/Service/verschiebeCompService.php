@@ -14,6 +14,7 @@ class verschiebeCompService
     {
         $this->em = $em; 
     }
+
     public function verschiebeComp(string $id, string $raeume_id)
     {
         $komponenten = $this->em->getRepository(Komponenten::class)->find($id);
