@@ -7,6 +7,7 @@ use AppBundle\Entity\Komponentenarten;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class ReportingController extends Controller
 {
@@ -36,9 +37,17 @@ class ReportingController extends Controller
             "artenliste" => $artenliste,
             "headers" => $header,
             "values" => $values
-         ));
-
+         ));   
+    }
+    /**
+     * @Route("/delete/component", name="delete_component",requirements  = { "id" = "\d+" })
+     */
+    public function searchActionAusmustern() : Response
+    {
+        //Service einbinden
+        $this->addFlash('success', 'Komponente wurde ausgemustert');
         
+        return $this->redirectToRoute('search');
     }
 
     function getArtenListe() {
