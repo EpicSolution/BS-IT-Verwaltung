@@ -142,7 +142,6 @@ class ReportingController extends Controller
 
     function convertKomponentsToValues($komponenten){
         $ret = [];
-        dump($komponenten);
         if(!$komponenten){
             return [];
         }
