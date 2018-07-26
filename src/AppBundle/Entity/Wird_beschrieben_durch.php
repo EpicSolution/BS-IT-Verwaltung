@@ -10,7 +10,7 @@ class Wird_beschrieben_durch
     private $komponentenartenId;
 
     /**
-     * @var int
+     * @var Komponentenattribute
      */
     private $komponentenattributId;
 
@@ -31,7 +31,7 @@ class Wird_beschrieben_durch
     }
 
     /**
-     * @return int
+     * @return Komponentenattribute
      */
     public function getKomponentenattributId(): Komponentenattribute
     {
@@ -39,7 +39,7 @@ class Wird_beschrieben_durch
     }
 
     /**
-     * @param int $komponentenattributId
+     * @param Komponentenattribute $komponentenattributId
      */
     public function setKomponentenattributId(Komponentenattribute $komponentenattributId)
     {

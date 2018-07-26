@@ -62,7 +62,7 @@ class Lieferant
         return $this->firmenname;
     }
 
-    public function setStrasse(?string $strasse)
+    public function setStrasse(string $strasse)
     {
         $this->strasse = $strasse;
     }
@@ -72,7 +72,7 @@ class Lieferant
         return $this->strasse;
     }
 
-    public function setPlz(?string $plz)
+    public function setPlz(string $plz)
     {
         $this->plz = $plz;
     }
@@ -82,7 +82,7 @@ class Lieferant
         return $this->plz;
     }
 
-    public function setOrt(?string $ort)
+    public function setOrt(string $ort)
     {
         $this->ort = $ort;
     }
@@ -102,7 +102,7 @@ class Lieferant
         return $this->tel;
     }
 
-    public function setMobil(?string $mobil)
+    public function setMobil(string $mobil)
     {
         $this->mobil = $mobil;
     }
@@ -112,7 +112,7 @@ class Lieferant
         return $this->mobil;
     }
 
-    public function setFax(?string $fax)
+    public function setFax(string $fax)
     {
         $this->fax = $fax;
     }
@@ -122,7 +122,7 @@ class Lieferant
         return $this->fax;
     }
 
-    public function setEmail(?string $email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
@@ -142,9 +142,11 @@ class Lieferant
     /**
      * @param ArrayCollection $komponenten
      */
-    public function setkomponenten(ArrayCollection $komponenten): void
+    public function setkomponenten(ArrayCollection $komponenten): self
     {
         $this->komponenten = $komponenten;
+
+        return $this;
     }
 
     public function __toString(): string

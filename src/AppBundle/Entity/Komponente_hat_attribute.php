@@ -18,7 +18,7 @@ class Komponente_hat_attribute
     private $komponentenId;
 
     /**
-     * @var KomponentenAttribute
+     * @var Komponentenattribute
      */
     private $komponentenattributeId;
 
@@ -45,19 +45,21 @@ class Komponente_hat_attribute
         return $this;
     }
 
-    public function getKomponentenId(): int
+    public function getKomponentenId(): Komponenten
     {
         return $this->komponentenId;
     }
 
-    public function setKomponentenattributeId(KomponentenAttribute $komponentenattributeId): self
+
+    public function setKomponentenattributeId(Komponentenattribute $komponentenattributeId): self
+
     {
         $this->komponentenattributeId = $komponentenattributeId;
 
         return $this;
     }
 
-    public function getKomponentenattributeId(): int
+    public function getKomponentenattributeId(): Komponentenattribute
     {
         return $this->komponentenattributeId;
     }
