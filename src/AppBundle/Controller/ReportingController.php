@@ -11,7 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Service\verschiebeCompService;
-use AppBundle\Entity\Raeume;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -39,11 +38,11 @@ class ReportingController extends Controller
         }
         $raumarr = [];
         foreach($raume as $raum){
-            $raumarr[$raum->getId()] = $raum;
+            $raumarr[$raum->getBezeichnung()] = $raum;
         }
         $artenarr = [];
         foreach($arten as $art){
-            $artenarr[$art->getId()] = $art;
+            $artenarr[$art->getKomponentenart()] = $art;
         }
         $form = $this->getForm($raumarr, $artenarr);
         $komponenten = [];
@@ -185,21 +184,21 @@ class ReportingController extends Controller
         ->add('Raum', ChoiceType::class, array(
             'choices' => $raeume,
             'required' => false,
-            'choice_label' => function ($choiceValue, $key, $value) {
+            // 'choice_label' => function ($choiceValue, $key, $value) {
         
-                return $value;
+            //     return $value;
 
-            },
+            // },
         ))
         ->add('Komponentenart', ChoiceType::class, array(
             'choices' => $arten,
             'required' => false,
 
-           'choice_label' => function ($choiceValue, $key, $value) {
+        //    'choice_label' => function ($choiceValue, $key, $value) {
         
-                return $value;
+        //         return $value;
 
-            },
+        //     },
         ))
         ->add("Bezeichnung", TextType::class, [
             "required" => false
