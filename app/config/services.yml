@@ -4,3 +4,7 @@ services:
         class: AppBundle\Service\KomponentenSucheService
         arguments:
             - "@doctrine.orm.entity_manager"
+    AppBundle\Service\verschiebeCompService:
+        class: AppBundle\Service\verschiebeCompService
+        arguments:
+            - "@doctrine.orm.entity_manager"

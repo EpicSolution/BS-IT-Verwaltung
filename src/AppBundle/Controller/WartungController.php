@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AppBundle\Controller;
 use AppBundle\Entity\Komponenten;
+use AppBundle\Entity\Raeume;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -99,6 +100,14 @@ class WartungController extends Controller
     
     public function tauscheComp(string $id_alt, string $raum_alt, string $wartraum, string $id_neu)
     {
+
+        $request = $this->getRequest();
+        $searchterm = $request->get('wartung');
+        $em = $this->getDoctrine()->getEntityManager();
+        $query = $em->createQuery("SELECT r.id FROM Raeume n WHERE n.bezeichnung LIKE '% :searchterm %'")
+                 ->setParameter('searchterm', $searchterm);    
+        $wartraum = $query->getResult();
+
         verschiebe_comp($id_alt,$wartraum);
         verschiebe_comp($id_neu,$raum_alt);        
     }
