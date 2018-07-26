@@ -14,11 +14,11 @@ class verschiebeCompService
     {
         $this->em = $em; 
     }
-    public function verschiebeComp(integer $id, integer $raeume_id)
+    public function verschiebeComp(int $id, int $raeume_id)
     {
         $komponenten = $this->em->getRepository(Komponenten::class)->find($id);
         $raeume = $this->em->getRepository(Raeume::class)->find($raeume_id);
-        $komponenten->setraeume_id1($raeume);
+        $komponenten->setraeume_id($raeume);
         $this->em->flush();
     }
 }
