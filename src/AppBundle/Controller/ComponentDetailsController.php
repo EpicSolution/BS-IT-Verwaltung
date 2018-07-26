@@ -180,6 +180,7 @@ class ComponentDetailsController extends Controller
         }
         $form = $this->createFormBuilder($component)
             ->add('Ident', TextType::class, [
+                'label' => 'Bezeichnung',
                 'required' => true
             ])
             ->add('komponentenarten_id', EntityType::class, [
