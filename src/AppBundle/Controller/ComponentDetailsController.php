@@ -107,7 +107,7 @@ class ComponentDetailsController extends Controller
                 'label' => 'Raum',
                 'required' => true
             ])
-            ->add('lieferant_id', EntityType::class, [
+            ->add('lieferanten_id', EntityType::class, [
                 'class' => Lieferant::class,
                 'label' => 'Lieferant',
                 'required' => true

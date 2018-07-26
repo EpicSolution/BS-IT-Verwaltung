@@ -67,16 +67,6 @@ class Komponenten
         $this->raeume_id = $raeume_id;
     }
 
-    public function getLieferantId(): ?int
-    {
-        return $this->lieferant_id;
-    }
-
-    public function setLieferantId(int $lieferant_id)
-    {
-        $this->lieferant_id = $lieferant_id;
-    }
-
     public function getEinkaufsdatum(): ?int
     {
         return $this->einkaufsdatum;
@@ -137,12 +127,12 @@ class Komponenten
         $this->komponentenarten_id = $komponentenarten_id;
     }
 
-    public function getlieferanten_id(): ?Lieferant
+    public function getlieferantenId(): ?Lieferant
     {
         return $this->lieferanten_id;
     }
 
-    public function setlieferanten_id(?Lieferant $lieferanten_id): void
+    public function setlieferantenId(?Lieferant $lieferanten_id): void
     {
         $this->lieferanten_id = $lieferanten_id;
     }
