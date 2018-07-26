@@ -43,24 +43,30 @@
                                         <span class="nav-label">Komponentenattribute</span>
                                     </a>
                                 </li-->
-                                <li>
-                                    <a href="{{ url('list_lieferant') }}">
-                                        <i class="fas fa-user-tie"></i>
-                                        <span class="nav-label">Lieferanten</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('list_room') }}">
-                                        <i class="fas fa-warehouse"></i>
-                                        <span class="nav-label">Räume</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('list_user') }}">
-                                        <i class="fas fa-users"></i>
-                                        <span class="nav-label">Benutzer</span>
-                                    </a>
-                                </li>
+                                {% if is_granted('ROLE_EDIT_SUPPLIER') %}
+                                    <li>
+                                        <a href="{{ url('list_lieferant') }}">
+                                            <i class="fas fa-user-tie"></i>
+                                            <span class="nav-label">Lieferanten</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if is_granted('ROLE_EDIT_ROOM') %}
+                                    <li>
+                                        <a href="{{ url('list_room') }}">
+                                            <i class="fas fa-warehouse"></i>
+                                            <span class="nav-label">Räume</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if is_granted('ROLE_EDIT_USER') %}
+                                    <li>
+                                        <a href="{{ url('list_user') }}">
+                                            <i class="fas fa-users"></i>
+                                            <span class="nav-label">Benutzer</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
                                 <li>
                                     <a href="#">
                                         <i class="fas fa-tablet-alt"></i>
