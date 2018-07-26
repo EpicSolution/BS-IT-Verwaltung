@@ -25,6 +25,7 @@ class Komponentenarten
     public function __construct()
     {
         $this->komponenten = new ArrayCollection();
+        $this->wirdBeschriebenDurch = new ArrayCollection();
     }
 
     public function getKomponenten(): Collection
@@ -67,7 +68,8 @@ class Komponentenarten
         $this->wirdBeschriebenDurch = $wirdBeschriebenDurch;
 
         return $this;
-
+    }
+    
     public function __toString(): string
     {
         return $this->getKomponentenart();
