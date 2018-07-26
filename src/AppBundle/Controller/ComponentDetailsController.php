@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace AppBundle\Controller;
 use AppBundle\Entity\Komponenten;
 use AppBundle\Entity\Komponentenarten;
+use AppBundle\Entity\User;
 use AppBundle\Entity\Wird_beschrieben_durch;
 use AppBundle\Entity\Komponentenattribute;
 use AppBundle\Entity\Raeume;
@@ -147,8 +148,9 @@ class ComponentDetailsController extends Controller
     {
         $attrs = $this->getDoctrine()->getRepository(Wird_beschrieben_durch::class)->findBy(["komponentenartenId" => $id]);
         $comp_attrs_rep = $this->getDoctrine()->getRepository(Komponente_hat_attribute::class);
-
-
+        /** @var User $user */
+        $user = $this->getUser();
+        $disabled = (in_array('ROLE_ADMINISTRATOR', $user->getRoles()) || in_array('ROLE_TEACHER', $user->getRoles())) ? "disabled" : "";
         $inputs = "";
 
         foreach ($attrs as $attr) {
@@ -164,7 +166,7 @@ class ComponentDetailsController extends Controller
                 }
             }
 
-            $inputs .= "<div class='form-group'><label for='attr".$attr->getId()."'>".$attr->getBezeichnung()."</label><input type='text' class='form-control' id='attr".$attr->getId()."' name='form[attribute[][".$attr->getId()."]]' value='$value'></input></div>";
+            $inputs .= "<div class='form-group'><label for='attr".$attr->getId()."'>".$attr->getBezeichnung()."</label><input type='text' class='form-control' id='attr".$attr->getId()."' name='form[attribute[][".$attr->getId()."]]' value='$value' $disabled></input></div>";
         }
 
         $response = new Response($inputs);
@@ -175,18 +177,24 @@ class ComponentDetailsController extends Controller
 
     private function getForm($component = null): FormInterface
     {
+        /** @var User $user */
+        $user = $this->getUser();
+        $user->getRoles();
+        $disabled = in_array('ROLE_ADMINISTRATOR', $user->getRoles()) || in_array('ROLE_TEACHER', $user->getRoles());
         if ($component == null) {
             $component = new Komponenten();
         }
         $form = $this->createFormBuilder($component)
             ->add('Ident', TextType::class, [
                 'label' => 'Bezeichnung',
-                'required' => true
+                'required' => true,
+                'disabled' => $disabled
             ])
             ->add('komponentenarten_id', EntityType::class, [
                 'class' => Komponentenarten::class,
                 'label' => 'Art',
-                'required' => true
+                'required' => true,
+                'disabled' => $disabled
             ])
             /*->add('software_in_raum', EntityType::class, [
                 'class' => Raeume::class,
@@ -197,27 +205,33 @@ class ComponentDetailsController extends Controller
             ->add('raeume_id', EntityType::class, [
                 'class' => Raeume::class,
                 'label' => 'Raum',
-                'required' => true
+                'required' => true,
+                'disabled' => $disabled
             ])
             ->add('lieferanten_id', EntityType::class, [
                 'class' => Lieferant::class,
                 'label' => 'Lieferant',
-                'required' => true
+                'required' => true,
+                'disabled' => $disabled
             ])
             ->add('einkaufsdatum', DateType::class, [
                 'widget' => 'single_text',
-                'required' => true
+                'required' => true,
+                'disabled' => $disabled
             ])
             ->add('gewaehrleistungsdauer', NumberType::class, [
                 'required' => true,
                 'label' => 'Gewährleistungsdauer',
+                'disabled' => $disabled
             ])
             ->add('hersteller', TextType::class, [
-                'required' => true
+                'required' => true,
+                'disabled' => $disabled
             ])
             ->add('notiz', TextareaType::class, [
                 'required' => false,
-                'empty_data' => ""
+                'empty_data' => "",
+                'disabled' => $disabled
             ])
             ->getForm();
         return $form;

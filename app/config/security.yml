@@ -86,6 +86,5 @@ security:
       - { path: ^/komponenten, role: ROLE_SHOW_COMPONENTS}
       - { path: ^/delete/component/, role: ROLE_DELETE_COMPONENT}
       - { path: ^/addComponent, role: ROLE_ADD_COMPONENT}
-      - { path: ^/editComponent/, role: ROLE_ADD_COMPONENT}
       - { path: ^/wartung/, role: ROLE_WARTUNG}
       - { path: ^/, role: ROLE_USER }
