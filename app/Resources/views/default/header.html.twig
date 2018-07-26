@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/" style="font-weight: bolder;">
+            <a class="navbar-brand" href="{{ url('search') }}" style="font-weight: bolder;">
                 C I R A
             </a>
 
@@ -17,6 +17,7 @@
     <a href="#" class="btn-expand-collapse"><span class="glyphicon fas fa-arrows-alt-h"></span></a>
     <ul class="navbar-primary-menu">
         <li>
+            {% if is_granted('ROLE_SHOW_BASE_DATA') %}
             <!-- STAMMDATEN START  -->
             <div class="accordion" id="accordionNav">
                 <div class="card">
@@ -43,39 +44,46 @@
                                         <span class="nav-label">Komponentenattribute</span>
                                     </a>
                                 </li-->
-                                <li>
-                                    <a href="{{ url('list_lieferant') }}">
-                                        <i class="fas fa-user-tie"></i>
-                                        <span class="nav-label">Lieferanten</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('list_room') }}">
-                                        <i class="fas fa-warehouse"></i>
-                                        <span class="nav-label">Räume</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('list_user') }}">
-                                        <i class="fas fa-users"></i>
-                                        <span class="nav-label">Benutzer</span>
-                                    </a>
-                                </li>
-                                <li>
+                                {% if is_granted('ROLE_EDIT_SUPPLIER') %}
+                                    <li>
+                                        <a href="{{ url('list_lieferant') }}">
+                                            <i class="fas fa-user-tie"></i>
+                                            <span class="nav-label">Lieferanten</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if is_granted('ROLE_EDIT_ROOM') %}
+                                    <li>
+                                        <a href="{{ url('list_room') }}">
+                                            <i class="fas fa-warehouse"></i>
+                                            <span class="nav-label">Räume</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if is_granted('ROLE_EDIT_USER') %}
+                                    <li>
+                                        <a href="{{ url('list_user') }}">
+                                            <i class="fas fa-users"></i>
+                                            <span class="nav-label">Benutzer</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                <!-- li>
                                     <a href="#">
                                         <i class="fas fa-tablet-alt"></i>
                                         <span class="nav-label">Komponentenarten</span>
                                     </a>
-                                </li>
+                                </li-->
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- STAMMDATEN ENDE  -->
+            {% endif %}
             <!---------------------------------------------------->
             <!-- KOMPONENTENVERWALTUNG START  -->
-            <a href="#" class="btn btn-link">
+            <a href="{{ url('search') }}" class="btn btn-link">
                 <i class="fas fa-hdd"></i>
                 <span class="nav-label">Komponenten</span>
             </a>
@@ -94,12 +102,3 @@
     });
 </script>
 {% endblock %}
-
-
-
-
-<!--
-- TODO 2018 07 23
-- > Navigation erneut nach neuen Anforderrungen anpassen
--
- -->

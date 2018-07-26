@@ -20,8 +20,6 @@ class KomponentenSucheService
         $this->em = $entityManager;
     }
 
-
-
     /**
      * @Return Komponenten[]
      */
@@ -49,28 +47,14 @@ class KomponentenSucheService
 
         if ($raum_nr != null) {
             $qb->setParameter('raum', $raum_nr);
-            switch($mode) {
-                case Suche::loose:
-                    $qb->andWhere('REGEXP(IDENTITY(k.raeume_id), :raum) = 1');
-                    break;
-                case Suche::exact:
-                    $qb->andWhere('k.raeume_id = :raum');
-                    break;
-            }
+            $qb->andWhere('k.raeume_id = :raum');
         }
         
         if ($komp_art != null) {
             $qb->setParameter('komp_art', $komp_art);
-            switch($mode) {
-                case Suche::loose:
-                    $qb->andWhere('REGEXP(IDENTITY(k.komponentenarten_id), :komp_art) = 1');
-                    break;
-                case Suche::exact:
-                    $qb->andWhere('k.komponentenarten_id = :komp_art');
-                    break;
-            }
+            $qb->andWhere('k.komponentenarten_id = :komp_art');
         }
-        return $qb->getQuery()->getArrayResult();
+        return $qb->getQuery()->getResult();
     }
 
     /**

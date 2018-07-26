@@ -48,9 +48,18 @@ class EditUserController extends Controller
     private function getForm(User $user): FormInterface
     {
         $form = $this->createFormBuilder($user)
-            ->add('username', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('plainPassword', PasswordType::class)
+            ->add('username', TextType::class, [
+                'required' => true,
+                'label' => 'Username',
+            ])
+            ->add('email', EmailType::class, [
+                'required' => true,
+                'label' => 'E-mail',
+            ])
+            ->add('plainPassword', PasswordType::class, [
+                'required' => true,
+                'label' => 'Passwort',
+            ])
             ->add('roles', ChoiceType::class, [
                 'multiple' => true,
                 'choices' => [
@@ -59,11 +68,15 @@ class EditUserController extends Controller
                     'Verwalter' => 'ROLE_ADMINISTRATOR',
                     'Lehrer' => 'ROLE_TEACHER'
                 ],
+                'attr' => [
+                    'class' => 'selectpicker'
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-primary'
+                ],
+                'label' => 'Speichern',
             ])
             ->getForm();
 

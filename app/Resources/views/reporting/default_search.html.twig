@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'boostrap_4_form_layout.html.twig' %}
+{% block body %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-row">
+                            {{form_row(form.Raum)}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-row">
+                            {{form_row(form.Komponentenart)}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-row">
+                            {{form_row(form.Bezeichnung)}}
+                        </div>
+                    </div>
+                </div>
+                    {{form_row(form.Suchen)}}
+            {{ form_end(form) }}
+            {% if is_granted('ROLE_ADD_COMPONENT') %}
+                <a href="{{ url('add_component')}}" class="float-right btn btn-success">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Komponente erstellen</span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Komponentenverwaltung</h1>
+            {% for art, komp in values %}
+            <h2> Komponentenart: {{art}} </h2>
+            <table class="table table-striped">
+                <thead>
+                        {% for val in headers[art] %}
+                        <th scope="col">{{ val }}</th>
+                        {% endfor %}
+                    <th scope="col">Aktion</th>
+                </thead>
+                <tbody>
+                {% for id,rows in komp %}
+                    <tr>
+                            {% for val in headers[art] %}
+                                <td>
+                                    {{values[art][id][val]}} 
+                                </td>
+                            {% endfor %}
+                        <td>
+                            <div class="btn-group">
+                                    <a href="{{ url('edit_component', {'id': id}) }}" class="btn btn-success" role="button">
+                                        <span>Öffnen</span>
+                                    </a>
+                                    {% if is_granted('ROLE_WARTUNG') %}
+                                        <a href="{{ url('wartung', {'id': id}) }}" class="btn btn-info" role="button">
+                                            <span>Wartung</span>
+                                        </a>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_DELETE_COMPONENT') %}
+                                        <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-danger" role="button">
+                                            <span>Ausmustern</span>
+                                        </a>
+                                    {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock %}

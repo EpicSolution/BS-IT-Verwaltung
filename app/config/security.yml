@@ -8,17 +8,46 @@ security:
       ROLE_SYSTEM_ADMINISTRATOR:
         - ROLE_ADMIN
         - ROLE_REPORTING
+        - ROLE_EDIT_USER
+        - ROLE_EDIT_SUPPLIER
+        - ROLE_EDIT_ROOM
+        - ROLE_SHOW_COMPONENTS
+        - ROLE_EDIT_COMPONENTS
+        - ROLE_SHOW_BASE_DATA
+        - ROLE_ADD_COMPONENT
+        - ROLE_DELETE_COMPONENT
+        - ROLE_WARTUNG
       ROLE_TRAINEE:
         - ROLE_ADMIN
         - ROLE_REPORTING
+        - ROLE_EDIT_USER
+        - ROLE_EDIT_SUPPLIER
+        - ROLE_EDIT_ROOM
+        - ROLE_SHOW_COMPONENTS
+        - ROLE_EDIT_COMPONENTS
+        - ROLE_SHOW_BASE_DATA
+        - ROLE_ADD_COMPONENT
+        - ROLE_DELETE_COMPONENT
+        - ROLE_WARTUNG
       ROLE_ADMINISTRATOR:
         - ROLE_ADMIN
-        - ROLE_REPORTING
+        - ROLE_SHOW_COMPONENTS
       ROLE_TEACHER:
         - ROLE_ADMIN
-        - ROLE_REPORTING
+        - ROLE_SHOW_COMPONENTS
       ROLE_ADMIN:       ROLE_USER
-      ROLE_SUPER_ADMIN: ROLE_ADMIN
+      ROLE_SUPER_ADMIN:
+        - ROLE_ADMIN
+        - ROLE_REPORTING
+        - ROLE_EDIT_USER
+        - ROLE_EDIT_SUPPLIER
+        - ROLE_EDIT_ROOM
+        - ROLE_SHOW_COMPONENTS
+        - ROLE_EDIT_COMPONENTS
+        - ROLE_SHOW_BASE_DATA
+        - ROLE_ADD_COMPONENT
+        - ROLE_DELETE_COMPONENT
+        - ROLE_WARTUNG
 
   providers:
       fos_userbundle:
@@ -42,4 +71,21 @@ security:
       - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
       - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
       - { path: ^/admin/, role: ROLE_ADMIN }
+      - { path: ^/listUser, role: ROLE_EDIT_USER}
+      - { path: ^/edit/user/, role: ROLE_EDIT_USER}
+      - { path: ^/add/user, role: ROLE_EDIT_USER}
+      - { path: ^/delete/user/, role: ROLE_EDIT_USER}
+      - { path: ^/listLieferant, role: ROLE_EDIT_SUPPLIER}
+      - { path: ^/edit/lieferant, role: ROLE_EDIT_SUPPLIER}
+      - { path: ^/add/lieferant, role: ROLE_EDIT_SUPPLIER}
+      - { path: ^/delete/lieferant, role: ROLE_EDIT_SUPPLIER}
+      - { path: ^/listRoom, role: ROLE_EDIT_ROOM}
+      - { path: ^/edit/room/, role: ROLE_EDIT_ROOM}
+      - { path: ^/delete/room/, role: ROLE_EDIT_ROOM}
+      - { path: ^/add/Room, role: ROLE_EDIT_ROOM}
+      - { path: ^/komponenten, role: ROLE_SHOW_COMPONENTS}
+      - { path: ^/delete/component/, role: ROLE_DELETE_COMPONENT}
+      - { path: ^/addComponent, role: ROLE_ADD_COMPONENT}
+      - { path: ^/editComponent/, role: ROLE_ADD_COMPONENT}
+      - { path: ^/wartung/, role: ROLE_WARTUNG}
       - { path: ^/, role: ROLE_USER }

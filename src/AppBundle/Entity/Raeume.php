@@ -42,7 +42,7 @@ class Raeume
         return $this->id;
     }
 
-    public function setNr(int $Nr): self
+    public function setNr(string $Nr): self
     {
         $this->Nr = $Nr;
 
@@ -86,7 +86,6 @@ class Raeume
     public function setraeume(ArrayCollection $raeume): self
     {
         $this->raeume = $raeume;
-
         return $this;
     }
 
@@ -98,11 +97,14 @@ class Raeume
     public function setsoftware_in_raum(ArrayCollection $software_in_raum): self
     {
         $this->software_in_raum = $software_in_raum;
+        return $this;
     }
+
 
     public function __toString()
     {
-        return $this->getNr().' '.$this->getBezeichnung();
+        return $this->getBezeichnung();
+
     }
 }
 

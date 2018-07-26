@@ -44,36 +44,50 @@ class AddLieferantController extends Controller
         $lieferant = new Lieferant();
 
         $form = $this->createFormBuilder($lieferant)
-        ->add('Firmenname', TextType::class)
+        ->add('Firmenname', TextType::class, [
+                'label' => 'Firmenname',
+            ])
         ->add('Strasse', TextType::class, [
             'required' => false,
+            'label' => 'Straße',
             'empty_data' => ''
         ])
         ->add('Plz', TextType::class, [
             'required' => false,
+            'label' => 'PLZ',
             'empty_data' => ''
         ])
         ->add('Ort', TextType::class, [
             'required' => false,
+            'label' => 'Ort',
             'empty_data' => ''
         ])
         ->add('Tel', TextType::class, [
             'required' => false,
+            'label' => 'Telefon-Nr.',
             'empty_data' => ''
         ])
         ->add('Mobil', TextType::class, [
             'required' => false,
+            'label' => 'Mobiltelefon Nr.',
             'empty_data' => ''
         ])
         ->add('Fax', TextType::class, [
             'required' => false,
+            'label' => 'Fax',
             'empty_data' => ''
         ])
         ->add('Email', EmailType::class, [
             'required' => false,
+            'label' => 'Email',
             'empty_data' => ''
         ])
-        ->add('Anlegen', SubmitType::class)
+        ->add('Anlegen', SubmitType::class, [
+            'attr' => [
+                    'class' => 'btn btn-primary'
+            ],
+            'label' => 'Lieferant anlegen',
+        ])
         ->getForm();
 
         return $form;

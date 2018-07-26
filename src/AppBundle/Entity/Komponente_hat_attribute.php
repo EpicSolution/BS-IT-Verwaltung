@@ -3,8 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Komponenten;
-use KomponentenAttribute;
+use AppBundle\Entity\Komponenten;
+use AppBundle\Entity\Komponentenattribute;
 class Komponente_hat_attribute
 {
     /**
@@ -18,7 +18,7 @@ class Komponente_hat_attribute
     private $komponentenId;
 
     /**
-     * @var KomponentenAttribute
+     * @var Komponentenattribute
      */
     private $komponentenattributeId;
 
@@ -30,7 +30,7 @@ class Komponente_hat_attribute
 
     public function __construct()
     {
-  
+
     }
 
     public function getId(): int
@@ -38,26 +38,28 @@ class Komponente_hat_attribute
         return $this->id;
     }
 
-    public function setKomponentenId(int $komponentenId): self
+    public function setKomponentenId(Komponenten $komponentenId): self
     {
         $this->komponentenId = $komponentenId;
 
         return $this;
     }
 
-    public function getKomponentenId(): int
+    public function getKomponentenId(): Komponenten
     {
         return $this->komponentenId;
     }
 
-    public function setKomponentenattributeId(int $komponentenattributeId): self
+
+    public function setKomponentenattributeId(Komponentenattribute $komponentenattributeId): self
+
     {
         $this->komponentenattributeId = $komponentenattributeId;
 
         return $this;
     }
 
-    public function getKomponentenattributeId(): int
+    public function getKomponentenattributeId(): Komponentenattribute
     {
         return $this->komponentenattributeId;
     }
@@ -73,9 +75,9 @@ class Komponente_hat_attribute
     {
         return $this->wert;
     }
-    
 
 
-  
+
+
 }
 

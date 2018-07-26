@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 class RoomDetailsController extends Controller
 {
     /**
-     * @Route("/addRoom", name="add_room")
+     * @Route("/add/Room", name="add_room")
      */
     public function addRoomAction(Request $request): Response
     {
@@ -39,7 +39,7 @@ class RoomDetailsController extends Controller
     }
 
     /**
-    * @Route("/editRoom/{id}", name="edit_room", requirements  = { "id" = "\d+" })
+    * @Route("/edit/Room/{id}", name="edit_room", requirements  = { "id" = "\d+" })
     */
     public function updateRoomAction(Request $request, string $id): Response
     {
@@ -67,17 +67,21 @@ class RoomDetailsController extends Controller
         $form = $this->createFormBuilder($user)
             ->add('nr', TextType::class, [
                 'required' => true,
+                'label' => 'Raum-Nr.',
             ])
             ->add('bezeichnung', TextType::class, [
                 'required' => true,
+                'label' => 'Raumbezeichnung',
             ])
             ->add('notiz', TextareaType::class, [
-                'required' => false
+                'required' => false,
+                'label' => 'Notiz',
             ])
-            ->add('submit', SubmitType::class, [
+            ->add('Speichern', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-primary'
+                ],
+                'label' => 'Raum Hinzufügen',
             ])
             ->getForm();
         return $form;

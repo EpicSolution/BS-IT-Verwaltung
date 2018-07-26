@@ -13,25 +13,25 @@ class Lieferant
 
     /** @var string */
     protected $firmenname;
-    
+
     /** @var string */
     protected $strasse;
-    
+
     /** @var string */
     protected $plz;
-    
+
     /** @var string */
     protected $ort;
-    
+
     /** @var string */
     protected $tel;
-    
+
     /** @var string */
     protected $mobil;
-    
+
     /** @var string */
     protected $fax;
-    
+
     /** @var string */
     protected $email;
 
@@ -51,7 +51,7 @@ class Lieferant
     {
         $this->id = $id;
     }
-    
+
     public function setFirmenname(string $firmenname)
     {
         $this->firmenname = $firmenname;
@@ -91,7 +91,7 @@ class Lieferant
     {
         return $this->ort;
     }
-    
+
     public function setTel(string $tel)
     {
         $this->tel = $tel;
@@ -147,5 +147,10 @@ class Lieferant
         $this->komponenten = $komponenten;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getFirmenname();
     }
 }
