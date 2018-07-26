@@ -63,7 +63,7 @@ class ComponentDetailsController extends Controller
             }
             $this->addFlash('success', 'Komponente wurde erfolgreich hinzugefügt');
         }
-        return $this->render('component/component_details.html.twig', [
+        return $this->render('component/component_add.html.twig', [
             'form'  => $form->createView(), 'action' => 'hinzufügen'
         ]);
     }
@@ -74,7 +74,16 @@ class ComponentDetailsController extends Controller
     public function updateComponentAction(Request $request, string $id): Response
     {
         $component = $this->getDoctrine()->getRepository(Komponenten::class)->find($id);
+        $attributes = [];
         $form = $this->getForm($component);
+
+        if ($request->getMethod() === "POST") {
+            $content = $request->request->all()["form"];
+            $attributes = $content["attribute["];
+            unset($content["attribute["]);
+            unset($content["submit"]);
+            $request->request->set("form", $content);
+        }
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Component $component */
@@ -82,17 +91,37 @@ class ComponentDetailsController extends Controller
             $manager = $this->getDoctrine()->getManager();
             $manager->merge($component);
             $manager->flush();
+
+            $attributeRep = $this->getDoctrine()->getRepository(Komponentenattribute::class);
+            $valRep = $this->getDoctrine()->getRepository(Komponente_hat_attribute::class);
+
+            $vals = $valRep->findBy(["komponentenId" => $component]);
+            foreach ($vals as $val) {
+                $manager->remove($val);
+                $manager->flush();
+            }
+
+            foreach ($attributes as $attributeID => $value) {
+                $attributeValues = new Komponente_hat_attribute();
+                $attributeValues->setKomponentenId($component);
+                $attribute = $attributeRep->find($attributeID);
+                $attributeValues->setKomponentenattributeId($attribute);
+                $attributeValues->setWert($value);
+                $manager->persist($attributeValues);
+                $manager->flush();
+            }
+
             $this->addFlash('success', 'Komponente wurde erfolgreich geändert');
         }
-        return $this->render('component/component_details.html.twig', [
-            'form'  => $form->createView(), 'action' => 'ändern'
+        return $this->render('component/component_edit.html.twig', [
+            'form'  => $form->createView(), 'action' => 'ändern', 'ID' => $id
         ]);
     }
 
     /**
-    * @Route("/getCompAttr/{id}", name="get_CompAttr", requirements  = { "id" = "\d+" })
+    * @Route("/getAttr/{id}", name="get_Attr", requirements  = { "id" = "\d+" })
     */
-    public function getCompAttr(Request $request, string $id): Response
+    public function getAttr(Request $request, string $id): Response
     {
         $attrs = $this->getDoctrine()->getRepository(Wird_beschrieben_durch::class)->findBy(["komponentenartenId" => $id]);
 
@@ -102,13 +131,47 @@ class ComponentDetailsController extends Controller
 
             $attr = $attr->getKomponentenattributId();
 
-            $inputs .= "<input name='form[attribute[][".$attr->getId()."]]' placeholder='".$attr->getBezeichnung()."'></input>";
+            $inputs .= "<div class='form-group'><label for='attr".$attr->getId()."'>".$attr->getBezeichnung()."</label><input type='text' class='form-control' id='attr".$attr->getId()."' name='form[attribute[][".$attr->getId()."]]'></input></div>";
         }
 
         $response = new Response($inputs);
         $response->headers->set('Content-Type', 'text');
         return $response;
     }
+
+
+    /**
+    * @Route("/getCompAttr/{id}/{compID}", name="get_CompAttr", requirements  = { "id" = "\d+" })
+    */
+    public function getCompAttr(Request $request, string $id, string $compID): Response
+    {
+        $attrs = $this->getDoctrine()->getRepository(Wird_beschrieben_durch::class)->findBy(["komponentenartenId" => $id]);
+        $comp_attrs_rep = $this->getDoctrine()->getRepository(Komponente_hat_attribute::class);
+
+
+        $inputs = "";
+
+        foreach ($attrs as $attr) {
+
+            $attr = $attr->getKomponentenattributId();
+
+            $value = "";
+
+            if ($compID != -1) {
+                $obj = $comp_attrs_rep->findOneBy(["komponentenId" => $compID, "komponentenattributeId" => $attr->getId()]);
+                if ($obj) {
+                    $value = $obj->getWert();
+                }
+            }
+
+            $inputs .= "<div class='form-group'><label for='attr".$attr->getId()."'>".$attr->getBezeichnung()."</label><input type='text' class='form-control' id='attr".$attr->getId()."' name='form[attribute[][".$attr->getId()."]]' value='$value'></input></div>";
+        }
+
+        $response = new Response($inputs);
+        $response->headers->set('Content-Type', 'text');
+        return $response;
+    }
+
 
     private function getForm($component = null): FormInterface
     {
