@@ -8,8 +8,11 @@ use AppBundle\Service\KomponentenSucheService;
 use AppBundle\Entity\Raeume;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Service\verschiebeCompService;
+use AppBundle\Entity\Raeume;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -80,8 +83,19 @@ class ReportingController extends Controller
             "values" => $this->convertKomponentsToValues($komponenten),
             "form" => $form->createView()
          ));
+    }
 
+    /**
+     * @Route("/delete/component/{id}", name="delete_component",requirements  = { "id" = "\d+" })
+     */
+    public function searchActionAusmustern(Request $req, int $id) : Response
+    {
+        $verschiebeService = $this->get(verschiebeCompService::class);
+        $verschiebeService->komponentAusmustern($id);
+        $this->addFlash('success', 'Komponente wurde ausgemustert');
         
+        return $this->redirectToRoute('search');
+        //return $this->redirectToRoute('list_lieferant');
     }
 
     function getRaume() {

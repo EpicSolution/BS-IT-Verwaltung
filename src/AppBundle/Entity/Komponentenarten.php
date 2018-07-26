@@ -25,6 +25,7 @@ class Komponentenarten
     public function __construct()
     {
         $this->komponenten = new ArrayCollection();
+        $this->wirdBeschriebenDurch = new ArrayCollection();
     }
 
     public function getKomponenten(): Collection

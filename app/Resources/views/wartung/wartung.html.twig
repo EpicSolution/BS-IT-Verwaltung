@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class= "col-lg-12">
+            <table class= "table table-striped">
+                <thead>
+                    <th scope="col">zu warten:</th>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>{{ zuwarten.raeume_id }}</td>
+                    <td>{{ zuwarten.Ident }}</td>
+                    <td>{{ zuwarten.notiz }}</td>
+                    </tr>
+                </tbody>
+            </table>            
+            <table class="table table-striped">                
+                <thead>
+                    {% for data in komponenteHeader %}
+                        <th scope="col">{{ data }}</th>
+                    {% endfor %}
+                </thead>
+                <tbody>
+                    {% for komponente in komponentes %}
+                        <tr>
+                        <td>{{ komponente.raeume_id }}</td>
+                        <td>{{ komponente.ident }}</td>
+                        <td>{{ komponente.notiz }}</td>                       
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
