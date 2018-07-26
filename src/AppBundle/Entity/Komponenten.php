@@ -72,7 +72,7 @@ class Komponenten
         return $this->einkaufsdatum;
     }
 
-    public function setEinkaufsdatum(?\DateTime $einkaufsdatum)
+    public function setEinkaufsdatum(\DateTime $einkaufsdatum)
     {
         $this->einkaufsdatum = $einkaufsdatum;
     }
@@ -82,7 +82,7 @@ class Komponenten
         return $this->gewaehrleistungsdauer;
     }
 
-    public function setGewaehrleistungsdauer(?int $gewaehrleistungsdauer)
+    public function setGewaehrleistungsdauer(int $gewaehrleistungsdauer)
     {
         $this->gewaehrleistungsdauer = $gewaehrleistungsdauer;
     }
@@ -102,7 +102,7 @@ class Komponenten
         return $this->hersteller;
     }
 
-    public function setHersteller(?string $hersteller)
+    public function setHersteller(string $hersteller)
     {
         $this->hersteller = $hersteller;
     }
@@ -132,7 +132,7 @@ class Komponenten
         return $this->lieferanten_id;
     }
 
-    public function setlieferantenId(?Lieferant $lieferanten_id): void
+    public function setlieferantenId(Lieferant $lieferanten_id): void
     {
         $this->lieferanten_id = $lieferanten_id;
     }

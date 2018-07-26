@@ -16,6 +16,7 @@ AppBundle\Entity\Komponenten:
     notiz:
       type: string
       length: 1024
+      nullable: true
     hersteller:
       type: string
       length: 45
@@ -25,7 +26,7 @@ AppBundle\Entity\Komponenten:
           inversedBy: komponenten
           joinColumn:
               name: komponentenarten_id
-              referencedColumnName: id 
+              referencedColumnName: id
       lieferanten_id:
           targetEntity: Lieferant
           inversedBy: komponenten
