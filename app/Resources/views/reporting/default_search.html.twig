@@ -32,10 +32,12 @@
                 </div>
                     {{form_row(form.Suchen)}}
             {{ form_end(form) }}
-            <a href="{{ url('add_component')}}" class="float-right btn btn-success">
-                <i class="fas fa-plus-circle"></i>
-                <span>Komponente erstellen</span>
-            </a>
+            {% if is_granted('ROLE_ADD_COMPONENT') %}
+                <a href="{{ url('add_component')}}" class="float-right btn btn-success">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Komponente erstellen</span>
+                </a>
+            {% endif %}
         </div>
     </div>
     <div class="row">
@@ -63,12 +65,16 @@
                                     <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-success" role="button">
                                         <span>Öffnen</span>
                                     </a>
-                                    <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-info" role="button">
-                                        <span>Wartung</span>
-                                    </a>
-                                    <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-danger" role="button">
-                                        <span>Ausmustern</span>
-                                    </a>
+                                    {% if is_granted('ROLE_DELETE_COMPONENT') %}
+                                        <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-info" role="button">
+                                            <span>Wartung</span>
+                                        </a>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_AUSMUSTERN') %}
+                                        <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-danger" role="button">
+                                            <span>Ausmustern</span>
+                                        </a>
+                                    {% endif %}
                             </div>
                         </td>
                     </tr>

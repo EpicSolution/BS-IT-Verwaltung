@@ -17,6 +17,7 @@
     <a href="#" class="btn-expand-collapse"><span class="glyphicon fas fa-arrows-alt-h"></span></a>
     <ul class="navbar-primary-menu">
         <li>
+            {% if is_granted('ROLE_SHOW_BASE_DATA') %}
             <!-- STAMMDATEN START  -->
             <div class="accordion" id="accordionNav">
                 <div class="card">
@@ -79,6 +80,7 @@
                 </div>
             </div>
             <!-- STAMMDATEN ENDE  -->
+            {% endif %}
             <!---------------------------------------------------->
             <!-- KOMPONENTENVERWALTUNG START  -->
             <a href="{{ url('search') }}" class="btn btn-link">
