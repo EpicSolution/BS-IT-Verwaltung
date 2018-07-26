@@ -97,7 +97,7 @@ class Lieferant
         $this->tel = $tel;
     }
 
-    public function getTel(): ?string
+    public function getTel(): string
     {
         return $this->tel;
     }

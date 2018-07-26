@@ -10,12 +10,48 @@
             </div>
         {% endfor %}
     {% endfor %}
-    <a href="{{ url('list_lieferant') }}" class="float-right btn btn-success">
-        <i class="fas"></i>
+    <a href="{{ url('list_lieferant') }}" class="float-right btn btn-secondary">
+        <i class="fas fa-chevron-left"></i>
         <span>Lieferanten anzeigen</span>
     </a>
     <h2>Lieferant bearbeiten</h2>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            {{form_row(form.Firmenname)}}
+                        </div>
+                        <div class="form-row">
+                            {{form_row(form.Strasse)}}
+                        </div>
+                        <div class="form-row">
+                            {{form_row(form.Plz)}}
+                        </div>
+                        <div class="form-row">
+                            {{form_row(form.Ort)}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            {{form_row(form.Tel)}}
+                        </div>
+                        <div class="form-row">
+                            {{form_row(form.Mobil)}}
+                        </div>
+                        <div class="form-row">
+                            {{form_row(form.Fax)}}
+                        </div>
+                        <div class="form-row">
+                            {{form_row(form.Email)}}
+                        </div>
+                    </div>
+                </div>
+                <!-- SUBMIT BUTTON -->
+                {{form_row(form.Anlegen)}}
+                <!-- SUBMIT BUTTON -->
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
