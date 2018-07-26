@@ -46,7 +46,7 @@ class UserListController extends Controller
             $this->deleteUser($id);
             $this->addFlash('success', 'Benutzer wurde erfolgreich gelöscht');
         } catch(\Exception $err) {
-            $this->addFlash('danger', 'Lieferant konnte nicht gelöscht werden! (Eventuell wird dieser noch wo anders Referenziert?)');
+            $this->addFlash('danger', 'Benutzer konnte nicht gelöscht werden! (Eventuell wird dieser noch wo anders Referenziert?)');
         }
         
         return $this->redirectToRoute('list_user');
