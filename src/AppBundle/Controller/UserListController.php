@@ -42,9 +42,15 @@ class UserListController extends Controller
      */
     public function deleteUserAction(string $id): Response
     {
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         try {
-            $this->deleteUser($id);
-            $this->addFlash('success', 'Benutzer wurde erfolgreich gelöscht');
+            if ($currentUser->getId() == $id) 
+            {
+                $this->addFlash('danger', 'Sie können nicht ihren eigenen, aktiven, Login löschen!');
+            } else {
+                $this->deleteUser($id);
+                $this->addFlash('success', 'Benutzer wurde erfolgreich gelöscht');
+            }
         } catch(\Exception $err) {
             $this->addFlash('danger', 'Benutzer konnte nicht gelöscht werden! (Eventuell wird dieser noch wo anders Referenziert?)');
         }

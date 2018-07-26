@@ -36,6 +36,7 @@ class AddUserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var User $user */
             $user = $form->getData();
+            $user->setEnabled(true);
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($user);
             $manager->flush();

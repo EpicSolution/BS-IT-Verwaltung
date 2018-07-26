@@ -30,6 +30,9 @@ class EditUserController extends Controller
      */
     public function editAction(Request $request, string $id)
     {
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+        dump($currentUser);
+
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->getForm($user);
         $form->handleRequest($request);
