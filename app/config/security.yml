@@ -32,9 +32,11 @@ security:
       ROLE_ADMINISTRATOR:
         - ROLE_ADMIN
         - ROLE_SHOW_COMPONENTS
+        - ROLE_EDIT_COMPONENTS
       ROLE_TEACHER:
         - ROLE_ADMIN
         - ROLE_SHOW_COMPONENTS
+        - ROLE_EDIT_COMPONENTS
       ROLE_ADMIN:       ROLE_USER
       ROLE_SUPER_ADMIN:
         - ROLE_ADMIN
@@ -86,5 +88,6 @@ security:
       - { path: ^/komponenten, role: ROLE_SHOW_COMPONENTS}
       - { path: ^/delete/component/, role: ROLE_DELETE_COMPONENT}
       - { path: ^/addComponent, role: ROLE_ADD_COMPONENT}
+      - { path: ^/editComponent/, role: ROLE_EDIT_COMPONENTS}
       - { path: ^/wartung/, role: ROLE_WARTUNG}
       - { path: ^/, role: ROLE_USER }
