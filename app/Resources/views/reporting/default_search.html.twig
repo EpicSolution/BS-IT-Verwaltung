@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form 'boostrap_4_form_layout.html.twig' %}
 {% block body %}
     {% for label, messages in app.flashes %}
         {% for message in messages %}
@@ -9,50 +9,74 @@
             </div>
         {% endfor %}
     {% endfor %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
-     <a href="#" class="float-right btn btn-success">
-        <i class="fas fa-plus-circle"></i>
-        <span>Komponente erstellen</span>
-    </a>
-    <h1>Komponentenverwaltung</h1>
-    {% for art, komp in values %}
-    <h2> Komponentenart: {{art}} </h2>
-    <table class="table table-striped">
-        <thead>
-                {% for val in headers[art] %}
-                <th scope="col">{{ val }}</th>
-                {% endfor %}
-            <th scope="col">Aktion</th>
-        </thead>
-        <tbody>
-        {% for id,rows in komp %}
-            <tr>
-                    {% for val in headers[art] %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-row">
+                            {{form_row(form.Raum)}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-row">
+                            {{form_row(form.Komponentenart)}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-row">
+                            {{form_row(form.Bezeichnung)}}
+                        </div>
+                    </div>
+                </div>
+                    {{form_row(form.Suchen)}}
+            {{ form_end(form) }}
+            <a href="#" class="float-right btn btn-success">
+                <i class="fas fa-plus-circle"></i>
+                <span>Komponente erstellen</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Komponentenverwaltung</h1>
+            {% for art, komp in values %}
+            <h2> Komponentenart: {{art}} </h2>
+            <table class="table table-striped">
+                <thead>
+                        {% for val in headers[art] %}
+                        <th scope="col">{{ val }}</th>
+                        {% endfor %}
+                    <th scope="col">Aktion</th>
+                </thead>
+                <tbody>
+                {% for id,rows in komp %}
+                    <tr>
+                            {% for val in headers[art] %}
+                                <td>
+                                    {{values[art][id][val]}} 
+                                </td>
+                            {% endfor %}
                         <td>
-                            {{values[art][id][val]}} 
+                            <div class="btn-group">
+                                    <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-success" role="button">
+                                        <span>Öffnen</span>
+                                    </a>
+                                    <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-info" role="button">
+                                        <span>Wartung</span>
+                                    </a>
+                                    <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-danger" role="button">
+                                        <span>Ausmustern</span>
+                                    </a>
+                            </div>
                         </td>
-                    {% endfor %}
-                   <td>
-                       <div class="btn-group">
-                            <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-success" role="button">
-                                <span>Öffnen</span>
-                            </a>
-                            <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-info" role="button">
-                                <span>Wartung</span>
-                            </a>
-                            <a href="{{ url('delete_component', {'id': id}) }}" class="btn btn-danger" role="button">
-                                <span>Ausmustern</span>
-                            </a>
-                       </div>
-                   </td>
-            </tr>
-        {% endfor %}
-
-           
-        </tbody>
-    </table>
-    {% endfor %}
-
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endfor %}
+        </div>
+    </div>
+    
 {% endblock %}

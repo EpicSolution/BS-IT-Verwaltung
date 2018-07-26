@@ -184,26 +184,23 @@ class ReportingController extends Controller
         ->add('Raum', ChoiceType::class, array(
             'choices' => $raeume,
             'required' => false,
-            // 'choice_label' => function ($choiceValue, $key, $value) {
-        
-            //     return $value;
-
-            // },
+            "label" => 'Raum',
         ))
         ->add('Komponentenart', ChoiceType::class, array(
             'choices' => $arten,
             'required' => false,
-
-        //    'choice_label' => function ($choiceValue, $key, $value) {
-        
-        //         return $value;
-
-        //     },
+            "label" => 'Komponentenart',
         ))
         ->add("Bezeichnung", TextType::class, [
-            "required" => false
+            "required" => false,
+            "label" => 'Bezeichnung',
         ] )
-        ->add('Suchen', SubmitType::class)
+        ->add('Suchen', SubmitType::class, [
+            'attr' => [
+                    'class' => 'btn btn-primary'
+                ],
+                'label' => 'Suchen',
+        ])
         ->getForm();
 
         return $form;
