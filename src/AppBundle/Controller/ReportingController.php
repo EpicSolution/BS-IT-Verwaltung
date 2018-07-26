@@ -55,19 +55,23 @@ class ReportingController extends Controller
     function getKomponentenValuesForArt(Komponentenarten $art){
         $em = $this->getDoctrine()->getEntityManager();
         $qb = $em->createQueryBuilder();
-        $komponenten = $qb->select('k')
-                            ->from('AppBundle:Komponenten','k')
-                            ->join('k.komponentenarten_id', 'art')
-                            ->where('art.id = :id')
-                            ->setParameter('id', $art->getId())
-                            ->getQuery()->getResult();
+        // $komponenten = $qb->select('k')
+        //                     ->from('AppBundle:Komponenten','k')
+        //                     ->join('k.komponentenarten_id', 'art')
+        //                     ->where('art.id = :id')
+        //                     ->setParameter('id', $art->getId())
+        //                     ->getQuery()->getResult();
+        $komponentenrepo = $this->getDoctrine()->getRepository(Komponenten::class);
+
+        $komponenten = $komponentenrepo->findAll();
         $ret = [];
         foreach($komponenten as $komp){
             $ret['id'] = $komp->getId();
             $ret['raum'] = $komp->getraeume_id()->getId();
             $ret['notiz'] = $komp->getNotiz();
             foreach($komp->getkomponente_hat_attribute() as $attr){
-                $ret[$attr->getKomponentenattributeId()->getBezeichnung()] = $attr->getWert();
+                $var = $attr->getKomponentenattributeId();
+                $ret[$var->getBezeichnung()] = $attr->getWert();
             }
         }
         return $ret;
