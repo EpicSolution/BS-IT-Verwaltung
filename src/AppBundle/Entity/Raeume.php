@@ -66,7 +66,7 @@ class Raeume
         return $this->Bezeichnung;
     }
 
-    public function setNotiz(?string $Notiz): self
+    public function setNotiz(string $Notiz): self
     {
         $this->Notiz = $Notiz;
 

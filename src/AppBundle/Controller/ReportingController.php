@@ -8,6 +8,9 @@ use AppBundle\Entity\Komponentenarten;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Service\verschiebeCompService;
+use AppBundle\Entity\Raeume;
 
 class ReportingController extends Controller
 {
@@ -39,16 +42,20 @@ class ReportingController extends Controller
             "values" => $values
          ));   
     }
+
     /**
-     * @Route("/delete/component", name="delete_component",requirements  = { "id" = "\d+" })
+     * @Route("/delete/component/{id}", name="delete_component",requirements  = { "id" = "\d+" })
      */
-    public function searchActionAusmustern() : Response
+    public function searchActionAusmustern(Request $req, int $id) : Response
     {
-        //Service einbinden
+        $verschiebeService = $this->get(verschiebeCompService::class);
+        $verschiebeService->komponentAusmustern($id);
         $this->addFlash('success', 'Komponente wurde ausgemustert');
         
         return $this->redirectToRoute('search');
+        //return $this->redirectToRoute('list_lieferant');
     }
+
 
     function getArtenListe() {
         $komponentenartrepo = $this->getDoctrine()->getRepository(Komponentenarten::class);
@@ -78,7 +85,7 @@ class ReportingController extends Controller
             $id = $komp->getId();
             $ret[$id] =[];
             $ret[$id]['id'] = $komp->getId();
-            $ret[$id]['raum'] = $komp->getraeume_id()->getId();
+            $ret[$id]['raum'] = $komp->getRaeumeId()->getId();
             $ret[$id]['notiz'] = $komp->getNotiz();
             $ret[$id]['art'] = $art->getKomponentenart();
             foreach($komp->getkomponente_hat_attribute() as $attr){

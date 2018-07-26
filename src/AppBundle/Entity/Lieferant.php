@@ -92,7 +92,7 @@ class Lieferant
         return $this->ort;
     }
 
-    public function setTel(?string $tel)
+    public function setTel(string $tel)
     {
         $this->tel = $tel;
     }
