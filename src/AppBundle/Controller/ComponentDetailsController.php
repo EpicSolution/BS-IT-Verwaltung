@@ -45,7 +45,7 @@ class ComponentDetailsController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Component $component */
+            /** @var Komponenten $component */
             $component = $form->getData();
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($component);

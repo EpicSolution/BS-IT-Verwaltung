@@ -3,8 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Komponenten;
-use KomponentenAttribute;
+use AppBundle\Entity\Komponenten;
+use AppBundle\Entity\Komponentenattribute;
 class Komponente_hat_attribute
 {
     /**
