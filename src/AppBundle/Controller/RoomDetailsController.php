@@ -74,7 +74,7 @@ class RoomDetailsController extends Controller
                 'label' => 'Raumbezeichnung',
             ])
             ->add('notiz', TextareaType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Notiz',
             ])
             ->add('Speichern', SubmitType::class, [

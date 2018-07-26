@@ -92,7 +92,7 @@ class Komponenten
         return $this->notiz;
     }
 
-    public function setNotiz(?string $notiz)
+    public function setNotiz(string $notiz)
     {
         $this->notiz = $notiz;
     }
@@ -132,7 +132,7 @@ class Komponenten
         return $this->lieferanten_id;
     }
 
-    public function setlieferantenId(Lieferant $lieferanten_id): void
+    public function setlieferantenId(Lieferant $lieferanten_id)
     {
         $this->lieferanten_id = $lieferanten_id;
     }
@@ -142,7 +142,7 @@ class Komponenten
         return $this->komponente_hat_attribute;
     }
 
-    public function setkomponente_hat_attribute(PersistentCollection $komponente_hat_attribute): void
+    public function setkomponente_hat_attribute(PersistentCollection $komponente_hat_attribute)
     {
         $this->komponente_hat_attribute = $komponente_hat_attribute;
     }
@@ -152,7 +152,7 @@ class Komponenten
         return $this->software_in_raum;
     }
 
-    public function setsoftware_in_raum(ArrayCollection $software_in_raum): void
+    public function setsoftware_in_raum(ArrayCollection $software_in_raum)
     {
         $this->software_in_raum = $software_in_raum;
     }
