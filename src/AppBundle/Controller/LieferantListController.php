@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Config\Tests\Fixtures\Configuration\ExampleConfiguration;
 
 
 class LieferantListController extends Controller
@@ -36,8 +37,12 @@ class LieferantListController extends Controller
      */
     public function deleteLieferantAction(string $id): Response
     {
-        $this->deleteLieferant($id);
-        $this->addFlash('success', 'Lieferant wurde erfolgreich gelöscht');
+        try {
+            $this->deleteLieferant($id);
+            $this->addFlash('success', 'Lieferant wurde erfolgreich gelöscht');
+        } catch(\Exception $err) {
+            $this->addFlash('danger', 'Lieferant konnte nicht gelöscht werden. (Eventuell wird dieser noch wo anders Referenziert?)');
+        }
         
         return $this->redirectToRoute('list_lieferant');
     }
