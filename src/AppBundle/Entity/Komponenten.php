@@ -14,15 +14,6 @@ class Komponenten
     /** @var string */
     protected $Ident;
 
-<<<<<<< HEAD
-    /** @var Raeume */
-    protected $raeume_id;
-
-    /** @var int */
-    protected $lieferant_id;
-
-=======
->>>>>>> master
     /** @var int */
     protected $einkaufsdatum;
 
@@ -42,13 +33,8 @@ class Komponenten
     private $lieferanten_id;
 
     /** @var Raeume */
-<<<<<<< HEAD
-    private $raeume_id1;
-
-=======
     private $raeume_id;
-    
->>>>>>> master
+
     /** @var PersistentCollection */
     private $komponente_hat_attribute;
 
@@ -71,7 +57,6 @@ class Komponenten
         $this->id = $id;
     }
 
-<<<<<<< HEAD
     public function getRaeumeId(): ?Raeume
     {
         return $this->raeume_id;
@@ -93,9 +78,6 @@ class Komponenten
     }
 
     public function getEinkaufsdatum(): ?int
-=======
-    public function getEinkaufsdatum(): int
->>>>>>> master
     {
         return $this->einkaufsdatum;
     }
@@ -165,20 +147,12 @@ class Komponenten
         $this->lieferanten_id = $lieferanten_id;
     }
 
-<<<<<<< HEAD
-    public function getraeume_id1(): ?Raeume
-=======
     public function getraeume_id(): Raeume
->>>>>>> master
     {
         return $this->raeume_id;
     }
 
-<<<<<<< HEAD
-    public function setraeume_id1(?Raeume $raeume_id1): void
-=======
     public function setraeume_id(Raeume $raeume_id): void
->>>>>>> master
     {
         $this->raeume_id = $raeume_id;
     }
