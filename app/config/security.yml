@@ -8,15 +8,25 @@ security:
       ROLE_SYSTEM_ADMINISTRATOR:
         - ROLE_ADMIN
         - ROLE_REPORTING
+        - ROLE_EDIT_USER
+        - ROLE_EDIT_SUPPLIER
+        - ROLE_EDIT_ROOM
+        - ROLE_SHOW_COMPONENTS
+        - ROLE_EDIT_COMPONENTS
       ROLE_TRAINEE:
         - ROLE_ADMIN
         - ROLE_REPORTING
+        - ROLE_EDIT_USER
+        - ROLE_EDIT_SUPPLIER
+        - ROLE_EDIT_ROOM
+        - ROLE_SHOW_COMPONENTS
+        - ROLE_EDIT_COMPONENTS
       ROLE_ADMINISTRATOR:
         - ROLE_ADMIN
-        - ROLE_REPORTING
+        - ROLE_SHOW_COMPONENTS
       ROLE_TEACHER:
         - ROLE_ADMIN
-        - ROLE_REPORTING
+        - ROLE_SHOW_COMPONENTS
       ROLE_ADMIN:       ROLE_USER
       ROLE_SUPER_ADMIN: ROLE_ADMIN
 
@@ -42,4 +52,14 @@ security:
       - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
       - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
       - { path: ^/admin/, role: ROLE_ADMIN }
+      - { path: ^/listUser, role: ROLE_EDIT_USER}
+      - { path: ^/edit/user/, role: ROLE_EDIT_USER}
+      - { path: ^/delete/user/, role: ROLE_EDIT_USER}
+      - { path: ^/listLieferant, role: ROLE_EDIT_SUPPLIER}
+      - { path: ^/edit/lieferant, role: ROLE_EDIT_SUPPLIER}
+      - { path: ^/delete/lieferant, role: ROLE_EDIT_SUPPLIER}
+      - { path: ^/listRoom, role: ROLE_EDIT_ROOM}
+      - { path: ^/edit/room/, role: ROLE_EDIT_ROOM}
+      - { path: ^/delete/room/, role: ROLE_EDIT_ROOM}
+      - { path: ^/komponenten, role: ROLE_SHOW_COMPONENTS}
       - { path: ^/, role: ROLE_USER }
