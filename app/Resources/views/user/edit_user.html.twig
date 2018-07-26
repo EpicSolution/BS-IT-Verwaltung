@@ -14,7 +14,41 @@
         <span>Alle Benutzer anzeigen</span>
     </a>
     <h1>Benutzer bearbeiten</h1>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            {{form_row(form.email)}}
+                        </div>
+                        <div class="form-row">
+                            {{form_row(form.username)}}
+                        </div>
+                        <div class="form-row">
+                            {{form_row(form.plainPassword)}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-row">
+                            {{form_row(form.roles)}}
+                        </div>
+                    </div>
+                </div>
+                 {{form_row(form.submit)}}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            $('.selectpicker').selectpicker({
+                dropupAuto: true,
+                showContent: true,
+                multipleSeparator: ', '
+            })
+        });
+    </script>
 {% endblock %}
