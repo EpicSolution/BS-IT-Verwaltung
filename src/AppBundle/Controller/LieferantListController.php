@@ -9,8 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use AppBundle\Service\KomponentenSucheService;
-use AppBundle\Enum\KomponentenSuche as Suche;
 
 class LieferantListController extends Controller
 {
@@ -20,6 +18,7 @@ class LieferantListController extends Controller
      */
     public function showLieferantAction(Request $request): Response
     {
+
         $lieferantHeader = [];
         $lieferant = $this->getAllLieferanten();
         if (!empty($lieferant)) {
