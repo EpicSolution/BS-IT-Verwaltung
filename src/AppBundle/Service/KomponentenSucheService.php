@@ -54,7 +54,7 @@ class KomponentenSucheService
             $qb->setParameter('komp_art', $komp_art);
             $qb->andWhere('k.komponentenarten_id = :komp_art');
         }
-        return $qb->getQuery()->getArrayResult();
+        return $qb->getQuery()->getResult();
     }
 
     /**
