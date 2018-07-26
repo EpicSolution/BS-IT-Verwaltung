@@ -152,7 +152,8 @@ class ComponentDetailsController extends Controller
                 'required' => true
             ])
             ->add('notiz', TextareaType::class, [
-                'required' => false
+                'required' => false,
+                'empty_data' => ""
             ])
             ->getForm();
         return $form;

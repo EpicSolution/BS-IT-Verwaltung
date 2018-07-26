@@ -103,7 +103,8 @@ class Raeume
 
     public function __toString()
     {
-        return $this->getNr().' '.$this->getBezeichnung();
+        return $this->getBezeichnung();
+
     }
 }
 
