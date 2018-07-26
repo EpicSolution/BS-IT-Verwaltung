@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace AppBundle\Controller;
 use AppBundle\Entity\Komponenten;
 use AppBundle\Entity\Komponentenarten;
+use AppBundle\Entity\Software_in_raum;
 use AppBundle\Entity\Wird_beschrieben_durch;
 use AppBundle\Entity\Komponentenattribute;
 use AppBundle\Entity\Raeume;
@@ -34,6 +35,7 @@ class ComponentDetailsController extends Controller
     public function addComponentAction(Request $request): Response
     {
         $attributes = [];
+        dump($request);
         $form = $this->getForm();
 
         if ($request->getMethod() === "POST") {
@@ -112,6 +114,8 @@ class ComponentDetailsController extends Controller
 
     private function getForm($component = null): FormInterface
     {
+        /** @var Raeume $raume */
+        $raume = $this->getDoctrine()->getRepository(Raeume::class)->findAll();
         if ($component == null) {
             $component = new Komponenten();
         }
@@ -124,16 +128,16 @@ class ComponentDetailsController extends Controller
                 'label' => 'Art',
                 'required' => true
             ])
-            /*->add('software_in_raum', EntityType::class, [
+            /*->add('id', EntityType::class, [
                 'class' => Raeume::class,
                 'label' => 'Raum',
-                'required' => true
-                ,'multiple' => true
+                'required' => true,
+                'multiple' => true
             ])*/
             ->add('raeume_id', EntityType::class, [
                 'class' => Raeume::class,
                 'label' => 'Raum',
-                'required' => true
+                'required' => true,
             ])
             ->add('lieferanten_id', EntityType::class, [
                 'class' => Lieferant::class,
