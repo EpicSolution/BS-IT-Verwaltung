@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Doctrine\DBAL\Types\TextType;
+use Symfony\Component\HttpFoundation\Request;
 
 class ReportingController extends Controller
 {
@@ -30,8 +31,15 @@ class ReportingController extends Controller
             $header[$art->getKomponentenart()] = $this->getKomponentenHeaderForArt($art);
             $values[$art->getKomponentenart()] = $this->getKomponentenValuesForArt($art);
         }
-
-        
+        $raumarr = [];
+        foreach($raume as $raum){
+            $raumarr[$raum->getId()] = $raum;
+        }
+        $artenarr = [];
+        foreach($arten as $art){
+            $artenarr[$art->getId()] = $art;
+        }
+        $form = $this->getForm($raumarr, $artenarr);
 
         
         return $this->render('reporting/default_search.html.twig',
@@ -39,8 +47,7 @@ class ReportingController extends Controller
             "artenliste" => $artenliste,
             "headers" => $header,
             "values" => $values,
-            "raume" => $raume,
-            "arten" => $arten
+            "form" => $form
          ));
 
         
@@ -58,6 +65,12 @@ class ReportingController extends Controller
             return $other->getKomponentenart();
         },$arten );
         return $artenliste;
+
+    }
+    /**
+     * @Route("/gen", name="genParams")
+     */
+    public function generateParams(Request $request){
 
     }
 
@@ -121,7 +134,7 @@ class ReportingController extends Controller
             },
         ))
         ->add("Bezeichnung", TextType::class )
-        ->setAction($this->generateUrl("generateParams"))
+        ->setAction($this->generateUrl("genParams"))
         ->add('Suchen', SubmitType::class)
         ->getForm();
 
