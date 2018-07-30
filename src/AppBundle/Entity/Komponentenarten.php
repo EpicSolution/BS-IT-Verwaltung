@@ -19,12 +19,12 @@ class Komponentenarten
     protected $komponenten;
 
     /** @var ArrayCollection  */
-    protected $komponentenattribute;
+    protected $componentAttributes;
 
     public function __construct()
     {
         $this->komponenten = new ArrayCollection();
-        $this->komponentenattribute = new ArrayCollection();
+        $this->componentAttributes = new ArrayCollection();
     }
 
     public function getKomponenten(): ArrayCollection
@@ -59,16 +59,16 @@ class Komponentenarten
 
     public function getComponentAttributes(): Collection
     {
-        return $this->komponentenattribute;
+        return $this->componentAttributes;
     }
 
     public function addComponentAttribute(Komponentenattribute $komponentenattribute)
     {
-        $this->komponentenattribute->add($komponentenattribute);
+        $komponentenattribute->addComponentType($this);
     }
 
     public function removeComponentAttribute(Komponentenattribute $komponentenattribute)
     {
-        $this->komponentenattribute->remove($komponentenattribute);
+        $this->componentAttributes->remove($komponentenattribute);
     }
 }

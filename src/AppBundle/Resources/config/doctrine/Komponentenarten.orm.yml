@@ -14,7 +14,14 @@ AppBundle\Entity\Komponentenarten:
           targetEntity: Komponenten
           mappedBy: komponentenarten_id
   manyToMany:
-      komponentenattribute:
+      componentAttributes:
           targetEntity: Komponentenattribute
-          mappedBy: komponentenarten
-          cascade: [persist]
+          inversedBy: componentTypes
+          joinTable:
+              name: wird_beschrieben_durch
+              JoinColumns:
+                  komponentenarten_id:
+                      referencedColumnName: id
+              inverseJoinColumns:
+                  komponentenattribute_id:
+                      referencedColumnName: id

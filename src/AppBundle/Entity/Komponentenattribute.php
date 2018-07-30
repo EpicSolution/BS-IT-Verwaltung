@@ -22,12 +22,12 @@ class Komponentenattribute
     private $komponentenattribute_hat;
 
     /** @var ArrayCollection */
-    private $komponentenarten;
+    private $componentTypes;
 
     public function __construct()
     {
         $this->komponentenattribute_hat = new ArrayCollection();
-        $this->komponentenarten = new ArrayCollection();
+        $this->componentTypes = new ArrayCollection();
     }
 
     /**
@@ -64,9 +64,16 @@ class Komponentenattribute
         return $this;
     }
 
-    public function getKomponentenarten(): Collection
+    public function getComponentTypes(): Collection
     {
-        return $this->komponentenarten;
+        return $this->componentTypes;
+    }
+
+    public function addComponentType(Komponentenarten $komponentenart)
+    {
+        if (!$this->componentTypes->contains($komponentenart)) {
+            $this->componentTypes->add($komponentenart);
+        }
     }
 }
 
