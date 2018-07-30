@@ -17,7 +17,7 @@ AppBundle\Entity\Komponentenattribute:
             targetEntity: Komponente_hat_attribute
             mappedBy: komponentenattributeId
     manyToMany:
-        komponentenarten:
+        componentTypes:
             targetEntity: Komponentenarten
             mappedBy: componentAttributes
             cascade: [persist]
