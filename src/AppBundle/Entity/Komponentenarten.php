@@ -65,6 +65,7 @@ class Komponentenarten
     public function addComponentAttribute(Komponentenattribute $komponentenattribute)
     {
         $komponentenattribute->addComponentType($this);
+        $this->componentAttributes->add($komponentenattribute);
     }
 
     public function removeComponentAttribute(Komponentenattribute $komponentenattribute)

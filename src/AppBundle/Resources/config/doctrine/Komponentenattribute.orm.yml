@@ -20,4 +20,3 @@ AppBundle\Entity\Komponentenattribute:
         componentTypes:
             targetEntity: Komponentenarten
             mappedBy: componentAttributes
-            cascade: [persist]

@@ -25,3 +25,4 @@ AppBundle\Entity\Komponentenarten:
               inverseJoinColumns:
                   komponentenattribute_id:
                       referencedColumnName: id
+          cascade: [persist]
